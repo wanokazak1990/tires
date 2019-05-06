@@ -1,0 +1,299 @@
+/*
+font-family: 'Russo One', sans-serif;
+font-family: 'Roboto', sans-serif;
+*/
+body{
+    font-family: 'Roboto', sans-serif;
+}
+a{
+    color: #333;
+    text-decoration: none;
+}
+
+
+/*HEADER*/
+.header{
+    
+}
+.head-name{
+    font-family: 'Russo One', sans-serif;
+    font-size: 22px;
+}
+.head-slogan{
+    font-size: 14px;
+}
+.head-phone{
+    font-family: 'Russo One', sans-serif;
+    font-size: 22px;
+}
+.head-address{
+    font-size: 14px;
+}
+@media screen and (max-width: 755px){
+    .head-address, .head-phone{
+        text-align: center;
+    }
+}
+
+.fixed-menu{
+    position:fixed;
+    left:0px;
+    top:0px;
+    z-index:100;
+    background:#fff;
+    box-shadow: 0 0 5px #000;
+}
+
+
+/*SLIDER*/
+.carousel-item{
+    height: 500px !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+/*FILTER*/
+.filter-form{}
+.filter-form label{padding: 0px; margin: 0px; font-size: 12px;}
+.filter-form input, .filter-form select{
+    display: block;
+    width: 100%;
+}
+.card-header{
+    padding: 0px;
+    margin: 0px;
+    background: #ffc107;
+}
+.card-header button{
+    color: #333;
+}
+.card-header button:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+/*PRODUCT BLOCK*/
+.product{
+    padding: 15px;
+    padding-bottom: 40px;
+}
+.product-cell:hover{
+    border-color: #faa !important;
+}
+.product-img img{
+    width: 100%;
+}
+.product-name{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.product table{
+    margin-top: 15px;
+    font-size: 12px;    
+    width: 100%;
+    color: #666;
+}
+.product table tr{
+    border-bottom: 1px solid #ddd;
+}
+.product table tr:last-child{
+    border: 0px;
+}
+.product table td{
+    padding: 2px 0px;
+}
+.product tr td:last-child{
+    text-align: right;
+}
+.product-more{
+    margin: 15px 0px;
+}
+.product-price{
+    font-size: 16px;
+    font-family: 'Russo One', sans-serif;
+    margin: 15px 0px;
+    text-align: right; 
+}
+.product .btn-group{
+    width: 100%;
+}
+.product .btn-group i{
+    font-size: 20px;
+}
+.product .btn-group .btn{
+    font-size: 12px;
+    width: 50%;display: inline-block;
+}
+.product .small-visible{
+    margin-top: 15px;
+    font-size: 10px;
+}
+.bs{
+    position: absolute;bottom: 15px;left: 0px;width: 100%;
+}
+.small-visible{
+    display: none;
+}
+@media screen and (max-width:755px){
+    .product table{
+        display: none;
+    }
+    .small-visible{
+        display: block;
+    }
+}
+
+
+/*NEWS*/
+.news-slider {
+    margin-bottom: 25px;
+}
+.news-slider .item-block {
+    display: flex;
+    padding: 0px 10px;
+    position: relative;
+}
+.news-slider img{
+    display: block;width: 100%;
+}
+.news-slider .date{
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    background: #fff;
+    font-size: 10px;
+}
+.news-slider .title{
+    margin: 5px 0;
+}
+
+.news-slider .description{
+    font-size: 12px;color: #666;text-align: justify;
+}
+.newslist{
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.newslist img{
+    width: 100%;
+    height: auto;
+}
+.itemnews{
+    margin-top: 25px;
+    margin-bottom: 25px; 
+}
+.itemnews img{
+    width: 100%;
+    height: auto;
+}
+
+/*myquality*/
+.myquality{
+    text-align: center;
+    background:#ffc107;
+    padding-top:25px;
+    padding-bottom: 25px;
+}
+.myquality i{
+    display: block;font-size: 100px;
+    margin-bottom: 15px; 
+    transition: transform 1s linear;
+}
+.myquality i:hover{
+    transform: rotate(360deg);
+}
+.myquality span{
+    display: block;font-size: 20px;text-align: center;font-weight: 300;color: #666;
+}
+
+
+/*FEEDBACK*/
+.feedback{
+  padding-top: 20px;
+}
+.feedback-block{
+  border-top:1px solid #ddd;
+  margin-bottom: 30px;
+  font-weight: 300;
+  color: #444;
+}
+
+.feedback-block:hover{
+  animation: tintin 0.3s linear;
+}
+@keyframes tintin{
+  0%{
+    transform: translateX(0px);
+  }
+  25%{
+    transform: translateX(5px);
+  }
+  50%{
+    transform: translateX(0px);
+  }
+  75%{
+    transform: translateX(-5px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
+}
+.feedback-name{
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.feedback-message{
+  font-size: 15px;
+}
+
+/*FOOTER*/
+.footer{
+    height: 300px;
+    background: #333;
+}
+
+/*MODAL*/
+#modalProduct img{
+    width: 100%;
+    display: block;
+}
+#modalProduct .description{
+    text-align: justify;
+    font-size: 12px;
+    color: #666;
+}
+#modalProduct table{
+    width: 100%;
+}
+#modalProduct tr{
+    border-bottom: 1px solid #ddd;
+}
+#modalProduct tr:last-child{
+    border:0px;
+}
+#modalProduct tr td:last-child{
+    text-align: right;
+}
+#modalProduct .price{
+    font-size: 25px;
+    font-family: 'Russo One', sans-serif;
+}
+
+#modalCart img{
+    width: 70px;
+    height: auto;
+}
+#modalCart td, #modalCart th{
+    border:0px;
+    vertical-align: middle;
+}
+.bold-price{
+    font-family: 'Russo One', sans-serif;
+    font-size: 22px;
+    padding-top: 1rem;
+}

@@ -3,7 +3,6 @@
 @section('content')
 
 	@if(isset($list))
-	<div class="container">
 		<div class="col-12 pt-3 pb-3">
 			<a class="btn btn-warning" href="{{route('feedbackcreate')}}">
 				Добавить
@@ -38,30 +37,31 @@
 			</table>
 		</div>
 		@else
-			<div class="">Вы ещё не создали ни одного слайда.</div>
+			<div class="">Отзывов не найдено.</div>
 		@endif
-	</div>
 	@endif
 
 	@if(isset($feedback) && !empty($feedback))
-	<div class="container admin-editor" >
+	<div class="admin-editor">
 		
 		{{Form::open(array('files'=>'true','url'=>$route))}}
-		<div class="row"> 
-			<div class="col-6">
-				{{Form::label('title','Имя')}}
-				{{Form::text('name',$feedback->name,['class'=>'form-control'])}}
-			
-				{{Form::label('title','Текст')}}
-				{{Form::textarea('text',$feedback->text,['class'=>'form-control'])}}
+		<div class="container">
+			<div class="row"> 
+				<div class="col-12">
+					{{Form::label('title','Имя')}}
+					{{Form::text('name',$feedback->name,['class'=>'form-control'])}}
+				
+					{{Form::label('title','Текст')}}
+					{{Form::textarea('text',$feedback->text,['class'=>'form-control'])}}
 
-				{{Form::label('title','Статус')}}
-				{{Form::checkbox('status',1,($feedback->status)?'true':'')}}
+					{{Form::label('title','Статус')}}
+					{{Form::checkbox('status',1,($feedback->status)?'true':'')}}
+				</div>
+
+				<div class="col-12">
+					{{Form::submit('OK')}}
+				</div>	
 			</div>
-
-			<div class="col-12">
-				{{Form::submit('OK')}}
-			</div>	
 		</div>
 		{{Form::close()}}
 		

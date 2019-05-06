@@ -13,7 +13,8 @@ class SliderController extends Controller
     {
     	return view('admin.sliderlist')
         	->with('title','Список слайдов')
-        	->with('list',slider::get());
+        	->with('list',slider::get())
+            ->with('sliderlistActive', 'active');
     }
 
     public function create()

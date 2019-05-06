@@ -3,7 +3,6 @@
 @section('content')
 
 	@if(isset($list))
-	<div class="container">
 		<div class="col-12 pt-3 pb-3">
 			<a class="btn btn-warning" href="{{route('catcreate')}}">
 				Добавить
@@ -37,25 +36,26 @@
 		@else
 			<div class="">Вы ещё не создали ни одного слайда.</div>
 		@endif
-	</div>
 	@endif
 
 	@if(isset($category) && !empty($category))
-	<div class="container admin-editor" >
+	<div class="admin-editor">
 		
 		{{Form::open(array('files'=>'true','url'=>$route))}}
-		<div class="row"> 
-			<div class="col-6">
-				{{Form::label('title','Имя')}}
-				{{Form::text('name',$category->name,['class'=>'form-control'])}}
+		<div class="container">
+			<div class="row"> 
+				<div class="col-md-6 col-sm-12">
+					{{Form::label('title','Имя')}}
+					{{Form::text('name',$category->name,['class'=>'form-control'])}}
 
-				{{Form::label('title','Статус')}}
-				{{Form::checkbox('status',1,($category->status)?'true':'')}}
+					{{Form::label('title','Статус')}}
+					{{Form::checkbox('status',1,($category->status)?'true':'')}}
+				</div>
+
+				<div class="col-12">
+					{{Form::submit('OK')}}
+				</div>	
 			</div>
-
-			<div class="col-12">
-				{{Form::submit('OK')}}
-			</div>	
 		</div>
 		{{Form::close()}}
 		

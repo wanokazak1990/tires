@@ -75,16 +75,25 @@
       }
     </style>
   </head>
-  <body>
+  <body class="bg-light">
 
-  <section class="header">
-    <a href="{{route('sliderlist')}}">SLIDERS</a>
-    <a href="{{route('feedbacklist')}}">FEEDBACKS</a>
-    <a href="{{route('newlist')}}">NEWS</a>
-    <a href="{{route('catlist')}}">CATEGORY</a>
-    <a href="{{route('attrlist')}}">ATTRIBUTES</a>
-    <a href="{{route('tovarlist')}}">PRODUCTS</a>
-  </section>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <a class="navbar-brand" href="{{route('admin')}}"><img src="/assets/images/logo.jpg" width="50" height="50"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link {{ $sliderlistActive or '' }}" href="{{route('sliderlist')}}">Слайдер</a>
+        <a class="nav-item nav-link {{ $feedbackActive or '' }}" href="{{route('feedbacklist')}}">Отзывы</a>
+        <a class="nav-item nav-link {{ $newslistActive or '' }}" href="{{route('newlist')}}">Новости</a>
+        <a class="nav-item nav-link {{ $categoryActive or '' }}" href="{{route('catlist')}}">Категории</a>
+        <a class="nav-item nav-link {{ $attributeActive or '' }}" href="{{route('attrlist')}}">Атрибуты</a>
+        <a class="nav-item nav-link {{ $productActive or '' }}" href="{{route('tovarlist')}}">Продукты</a>
+        <a class="nav-item nav-link text-warning" href="{{route('main')}}" target="_blank">Перейти в магазин</a>
+      </div>
+    </div>
+  </nav>
 @show
 
 <section class="content">

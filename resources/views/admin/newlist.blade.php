@@ -3,7 +3,6 @@
 @section('content')
 
 	@if(isset($list))
-	<div class="container">
 		<div class="col-12 pt-3 pb-3">
 			<a class="btn btn-warning" href="{{route('newcreate')}}">
 				Добавить
@@ -21,7 +20,7 @@
 					</td>
 					<td>
 						<h4>{{$item->title}}</h4>
-						<div>{!! $item->text !!}</div>
+						<div>{!! substr(substr($item->text, 0, 300), 0, strrpos(substr($item->text, 0, 300), ' ')) !!}...</div>
 					<td>
 						{{$item->alias}}
 					</td>
@@ -44,41 +43,42 @@
 			{{$list->links()}}
 		</div>
 		@else
-			<div class="">Вы ещё не создали ни одного слайда.</div>
+			<div class="">Новостей не найдено.</div>
 		@endif
-	</div>
 	@endif
 
 	@if(isset($new) && !empty($new))
-	<div class="container admin-editor" >
+	<div class="admin-editor">
 		
 		{{Form::open(array('files'=>'true','url'=>$route))}}
-		<div class="row"> 
-			<div class="col-6">
-				{{Form::label('title','Заголовок')}}
-				{{Form::text('title',$new->title,['class'=>'form-control'])}}
-				
-				{{Form::label('title','Псевдоним(eng)')}}
-				{{Form::text('alias',$new->alias,['class'=>'form-control'])}}
+		<div class="container">
+			<div class="row"> 
+				<div class="col-md-6 col-sm-12">
+					{{Form::label('title','Заголовок')}}
+					{{Form::text('title',$new->title,['class'=>'form-control'])}}
+					
+					{{Form::label('title','Псевдоним(eng)')}}
+					{{Form::text('alias',$new->alias,['class'=>'form-control'])}}
 
-				{{Form::label('title','Текст')}}
-				{{Form::textarea('text',$new->text,['class'=>'form-control'])}}
+					{{Form::label('title','Текст')}}
+					{{Form::textarea('text',$new->text,['class'=>'form-control'])}}
 
-				{{Form::label('title','Статус')}}
-				{{Form::checkbox('status',1,($new->status)?'true':'')}}
+					{{Form::label('title','Статус')}}
+					{{Form::checkbox('status',1,($new->status)?'true':'')}}
+				</div>
+
+				<div class="col-md-6 col-sm-12">
+					{{Form::label('title','Фаил')}}
+					@if(!empty($new->img))
+						<img src="{{ $new->getUrlImg() }}">
+					@endif
+					<br>{{Form::file('img')}}
+				</div>	
+
+				<div class="col-12">
+					{{Form::submit('OK')}}
+				</div>	
 			</div>
-
-			<div class="col-6">
-				{{Form::label('title','Фаил')}}
-				@if(!empty($new->img))
-					<img src="{{ $new->getUrlImg() }}">
-				@endif
-				<br>{{Form::file('img')}}
-			</div>	
-
-			<div class="col-12">
-				{{Form::submit('OK')}}
-			</div>	
 		</div>
 		{{Form::close()}}
 		

@@ -11,6 +11,7 @@ class NewsController extends Controller
     {
     	return view('admin.newlist')
         	->with('title','Список новостей')
+            ->with('newslistActive', 'active')
         	->with('list',news::orderBy('id','DESC')->paginate(env('PAGINATE')));
     }
 

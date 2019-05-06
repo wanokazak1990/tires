@@ -11,7 +11,8 @@ class FeedbackController extends Controller
     {
     	return view('admin.feedback')
         	->with('title','Список отзывов')
-        	->with('list',feedback::get());
+        	->with('list',feedback::get())
+            ->with('feedbackActive', 'active');
     }
 
     public function create()

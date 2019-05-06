@@ -7,14 +7,7 @@ $(document).ready(function(){
         form.submit()
     })
 
-    $(document).on('click','.filter-block .btn-link',function(){
-        f_height = $('.filter-block').height()
-        p_height = $('.product-block').height()
-        if(f_height>p_height){
-            $('.product-block').height(f_height)
-            $('.filter-block').offset($('.product-block').offset())
-        }
-    })
+
 
     $(document).on('change','#filter-vendor',function(){
     	url = $(this).attr('url')

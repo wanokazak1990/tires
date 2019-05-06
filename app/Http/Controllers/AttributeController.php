@@ -13,6 +13,7 @@ class AttributeController extends Controller
     {
     	return view('admin.attribute')
         	->with('title','Список аттрибутов')
+            ->with('attributeActive', 'active')
         	->with('list',attribute::with('category')->with('values')->orderBy('category_id')->get());
     }
 

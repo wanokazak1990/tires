@@ -15,6 +15,7 @@ class ProductController extends Controller
     	
     	return view('admin.product')
         	->with('title','Список продуктов')
+            ->with('productActive', 'active')
         	->with('list',$list);
     }
 

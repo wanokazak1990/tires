@@ -11,6 +11,7 @@ class CategoryController extends Controller
     {
     	return view('admin.category')
         	->with('title','Список категорий')
+            ->with('categoryActive', 'active')
         	->with('list',category::get());
     }
 

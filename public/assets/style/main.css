@@ -297,3 +297,13 @@ a{
     font-size: 22px;
     padding-top: 1rem;
 }
+
+/*MAGELAN*/
+.fixed-magelan{
+    position: fixed;
+    top: 60px;
+}
+.bottom-magelan{
+    position: absolute;
+    bottom: 0px;
+}

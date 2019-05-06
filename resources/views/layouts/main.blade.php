@@ -131,14 +131,15 @@
                                     Сервис
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Шины</a>
-                                    <a class="dropdown-item" href="#">Диски</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Прочее</a>
+                                    @foreach(App\hm_service::get() as $service)
+                                        <a class="dropdown-item" href="{{route('sevices',['alias'=>$service->alias])}}">
+                                            {{$service->name}}
+                                        </a>
+                                    @endforeach
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-danger" href="{{route('main')}}">Акции</a>
+                                <a class="nav-link text-danger" href="{{route('actionlist')}}">Акции</a>
                             </li> 
                         </ul>
 
@@ -268,6 +269,9 @@
     <script src="{{asset('/assets/js/function.js')}}"></script>
     <script src="{{asset('/assets/js/filter.js')}}"></script>
 
+    <script src="{{asset('/assets/js/fixed-magelan.js')}}"></script>
+    <script src="{{asset('/assets/js/fixed-top.js')}}"></script>
+
     <script>
         $(document).ready(function(){
             $(function() {
@@ -308,7 +312,7 @@
 
 
             //FIXED ELEMENTS
-            var menuOffsetTop = $('.top-menu').offset().top
+            /*var menuOffsetTop = $('.top-menu').offset().top
             var filterOffsetTop = $('.filter-block').offset().top
             var displayWidth = $(window).width();
             var lastProductEndPos = $('.product-block').offset().top+$('.product-block').height()-50
@@ -392,7 +396,7 @@
                             'top':(lastProductEndPos-filter.height()-filter.parent().offset().top-10)+'px'
                         })
                 }
-            })
+            })*/
 
             //BORDER PRODUCT
             var productBlockWidth = $('.product-block').outerWidth()

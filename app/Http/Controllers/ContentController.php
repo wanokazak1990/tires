@@ -12,23 +12,24 @@ use App\hm_new as news;
 use App\hm_feedback as feedback;
 use App\hm_car_filter as filter;
 use App\hm_attribute_value as valattr;
+use App\hm_action as action;
+use App\hm_service as service;
+
 use DB;
 use Cart;
 use Session;
+
 class ContentController extends Controller
 {
     public function index()
     {   
         $attributes = array();
-
         $products = array();
-
         $sliders = slider::where('status','>','0')->get();
         $news = news::where('status','>','0')->get();
         $feedbacks = feedback::where('status','>','0')->get();
-
         $categories = category::get();
-        
+
         if(is_object($categories) && count($categories)>0)
         {   
             foreach($categories as $cat)
@@ -272,5 +273,32 @@ class ContentController extends Controller
             ]);
             $attr->save();
         }*/
+    }
+
+    public function actionList(Request $request)
+    {
+        $actions = action::get();
+        $title = 'Список акций';
+        return view('content.action')
+            ->with('list',$actions)
+            ->with('title',$title);
+    }
+
+    public function actionItem($id,Request $request)
+    {
+        $action = action::find($id);
+        $title = $action->name;
+        return view('content.action')
+            ->with('action',$action)
+            ->with('title',$title);
+    }
+
+    public function sevices($alias,Request $request)
+    {
+        $service = service::where('alias',$alias)->first();
+        $title = $service->name;
+        return view('content.service')
+        ->with('service',$service)
+        ->with('title',$title);
     }
 }

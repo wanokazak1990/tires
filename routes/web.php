@@ -16,7 +16,11 @@ Route::match(['get', 'post'],'/content/product','ContentController@productlist')
 Route::post('/content/search','ContentController@search')->name('search');
 Route::get('/formatfilter','ContentController@formatfilter');
 Route::get('/newslist','NewsController@siteList')->name('newslist');
-Route::get('/itemnew{id}','NewsController@siteItem')->name('itemnew');
+Route::get('/itemnew/{id}','NewsController@siteItem')->name('itemnew');
+Route::get('/actionlist','ContentController@actionList')->name('actionlist');
+Route::get('/actionitem/{id}','ContentController@actionItem')->name('actionitem');
+Route::get('/services/{alias}','ContentController@sevices')->name('sevices');
+
 Auth::routes();
 
 Route::get('/home', function(){

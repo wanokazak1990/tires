@@ -174,4 +174,10 @@ $(document).ready(function(){
 
     preloadIndikators()
     CheckProductOnCart()
+
+    if($(window).width()<755)
+    {
+        var clone = $('.cart-in-nav').clone()
+        $('.navbar-brand').html(clone).css('font-size','14px')
+    }
 })

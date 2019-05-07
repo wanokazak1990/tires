@@ -16,6 +16,7 @@
 		<table class="table table-hover table-bordered product-stock">
 			<thead class="thead-dark">
 				<tr>
+					<th>Артикул</th>
 					<th>Название</th>
 					<th>Изображение</th>
 					<th>Атрибуты</th>

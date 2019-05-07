@@ -17,7 +17,7 @@
     <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">
 
     
-    <title>Hello, world!</title>
+    <title>{{ $info->name }}</title>
   </head>
   <body>
     <span style="display: none;" id="cartpreloader" url="{{route('cartindikator')}}"></span>
@@ -66,27 +66,27 @@
             <div class="container pt-3 pb-3">
                 <div class="row">
                     <div class="col-6 col-sm-2 justify-content-start d-flex ">
-                        <img src="{{ asset('/assets/images/logo.jpg') }}" style="height:100px;width: 100px;display: block;">                        
+                        <img src="{{ $info->getLogoUrl() }}" style="height:100px;width: 100px;display: block;">                        
                     </div>
                     
                     <div class="col-6 col-sm-3 d-flex">
                         <div class="align-self-center">
-                            <div class="head-name">Автоцентр Hofmann</div>
-                            <div class="head-slogan">Шины для Вашей машины</div>
+                            <div class="head-name">{{ $info->name }}</div>
+                            <div class="head-slogan">{{ $info->slogan }}</div>
                         </div>
                     </div> 
                     
                     <div class="col-12 col-sm-4 d-flex">
                         <div class="align-self-center text-center text-center" style="width: 100%;">
-                            <div class="head-name">24 / 7</div>
-                            <div class="head-slogan">Без выходных</div>
+                            <div class="head-name">{{ $info->hours }}</div>
+                            <div class="head-slogan">{{ $info->weekend }}</div>
                         </div>                    
                     </div> 
 
                     <div class="col-12 col-sm-3 d-flex">
                         <div class="align-self-center head-info pl-3">
-                                <div class="head-phone">8 (8212) 553-997</div>
-                                <div class="head-address">г.Сыктывкар, ул.Орджоникидзе, 87</div>
+                                <div class="head-phone">{{ $info->phone }}</div>
+                                <div class="head-address">{{ $info->address }}</div>
                         </div>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
 </section-->
 
 <section class="container-fluid">
-        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3978e8318169f3aab86f19dd45446ed09bfae7ddd3680ca15f380404aaa305da&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>   
+    {!! $info->map_code or '' !!}
 </section>
 
 <section class="footer container-fluid">

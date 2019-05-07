@@ -19,7 +19,7 @@ class NewsController extends Controller
     {
     	$new = new news();
     	return view('admin.newlist')
-    	->with('title','Новый новость')
+    	->with('title','Добавить новость')
     	->with('new',$new)
     	->with('route',route('newstore'));
     }
@@ -38,7 +38,7 @@ class NewsController extends Controller
     {
     	$new=news::find($id);
     	return view('admin.newlist')
-    	->with('title','Редактировать слайд')
+    	->with('title','Редактировать новость')
     	->with('new',$new)
     	->with('route',route('newupdate',['id'=>$id]));
     }

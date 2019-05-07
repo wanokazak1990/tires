@@ -3,7 +3,16 @@
 @section('content')
 
 	@if(isset($list))
-		<div class="col-12 pt-3 pb-3"><a class="btn btn-warning" href="{{route('slidercreate')}}">Добавить</a></div>
+		<div class="col-12 pt-3">
+			<div class="h3">Слайдер</div>
+		</div>
+		<div class="col-12 pt-3 pb-3">
+			<div class="input-group no-gutters">
+				<div class="col-sm-4 col-md-2">
+					<a class="btn btn-outline-dark btn-block" href="{{route('slidercreate')}}">Добавить</a>
+				</div>
+			</div>
+		</div>
 		@if(count($list)) 
 		<div class="col-12">
 			<div class="content-list container">
@@ -11,8 +20,8 @@
 					@foreach($list as $slide)
 					<div class="col-4 p-0 content-item">
 						<div style="border-left: 1px solid #fff;border-bottom: 1px solid #fff;">
-							<a class="content-del" data-id="{{$slide->id}}" url="{{route('sliderdelete')}}">
-								x
+							<a href="javascript://" title="Удалить" class="content-del" data-id="{{$slide->id}}" url="{{route('sliderdelete')}}">
+								<i class="icofont-ui-delete"></i>
 							</a>
 							<div class="content-block">
 								<div class="content-img" style="background: url('{{$slide->getUrlImg()}}');">
@@ -36,12 +45,15 @@
 	@endif
 
 	@if(isset($slider) && !empty($slider))
+	<div class="col-12 pt-3">
+		<div class="h3">{{ $title }}</div>
+	</div>
 	<div class="admin-editor">
 		
 		{{Form::open(array('files'=>'true','url'=>$route))}}
-		<div class="container"> 
+		<div class="container mb-3"> 
 			<div class="row"> 
-				<div class="col-md-6 col-sm-12">
+				<div class="col-md-6 col-sm-12 mb-3">
 					{{Form::label('title','Заголовок')}}
 					{{Form::text('title',$slider->title,['class'=>'form-control mb-2'])}}
 				
@@ -55,16 +67,20 @@
 					{{Form::checkbox('status',1,($slider->status)?'true':'')}}
 				</div>	
 
-				<div class="col-md-6 col-sm-12">
-					{{Form::label('title','Файл')}}
+				<div class="col-md-6 col-sm-12 mb-3">
+					{{Form::label('title','Изображение')}}
 					@if(!empty($slider->img))
 						<img src="{{ $slider->getUrlImg() }}" class="mb-2">
 					@endif
-					{{Form::file('img')}}
+					<br>{{Form::file('img')}}
 				</div>	
 
 				<div class="col-12">
-					{{Form::submit('OK')}}
+					<div class="input-group no-gutters">
+						<div class="col-md-2 col-sm-12">
+							{{Form::submit('Применить', ['class'=>'btn btn-success btn-block'])}}
+						</div>
+					</div>
 				</div>	
 			</div>
 		</div>

@@ -21,7 +21,7 @@ class SliderController extends Controller
     {
     	$slider = new slider();
     	return view('admin.sliderlist')
-    	->with('title','Новый слайд')
+    	->with('title','Добавить слайд')
     	->with('slider',$slider)
     	->with('route',route('sliderstore'));
     }

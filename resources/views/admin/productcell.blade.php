@@ -35,10 +35,10 @@
     <td>
         {{$item->available}}
     </td>
-    <td class="{{($item->status)?'text-success':''}}" style="width: 50px" >
+    <td class="{{($item->status)?'text-success':''}}" align="center" style="width: 50px" >
         <i class="icofont-power admin-icon"></i>
     </td>
-    <td>
+    <td align="center">
         <a href="{{route('tovarshow',['id'=>$item->id])}}">
             <i class="icofont-edit admin-icon"></i>
         </a>         

@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
     	$category = new category();
     	return view('admin.category')
-    	->with('title','Новая категория')
+    	->with('title','Добавить категорию')
     	->with('category',$category)
     	->with('route',route('catstore'));
     }

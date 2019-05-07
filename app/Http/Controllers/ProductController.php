@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
     	$product = new product();
     	return view('admin.productadd')
-    	->with('title','Новый продукт')
+    	->with('title','Добавить продукт')
     	->with('product',$product)
     	->with('route',route('tovarstore'));
     }

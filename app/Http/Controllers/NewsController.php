@@ -64,18 +64,4 @@ class NewsController extends Controller
         @unlink(storage_path('app/'.$new->img));
         echo $new->delete();
     }
-
-    public function siteList()
-    {
-        $list = news::where('status',1)->paginate(env('PAGINATE'));
-        return view('content.newslist')
-        ->with('list',$list);
-    }
-
-    public function siteItem($id)
-    {
-        $new = news::find($id);
-        return view('content.newslist')
-        ->with('new',$new);
-    }
 }

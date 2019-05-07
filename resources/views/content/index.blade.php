@@ -90,7 +90,7 @@
         <div class="row">
           <div class="container">
             <div class="row">
-              <div class="col-12 text-center pt-4">
+              <div class="col-12  pt-4">
                 <h2>Отзывы</h2>
               </div>
             </div>

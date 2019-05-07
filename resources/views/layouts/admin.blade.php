@@ -90,6 +90,8 @@
         <a class="nav-item nav-link {{ $categoryActive or '' }}" href="{{route('catlist')}}">Категории</a>
         <a class="nav-item nav-link {{ $attributeActive or '' }}" href="{{route('attrlist')}}">Атрибуты</a>
         <a class="nav-item nav-link {{ $productActive or '' }}" href="{{route('tovarlist')}}">Продукты</a>
+        <a class="nav-item nav-link {{ $actionActive or '' }}" href="{{route('actionindex')}}">Акции</a>
+        <a class="nav-item nav-link {{ $serviceActive or '' }}" href="{{route('serviceindex')}}">Сервис</a>
         <a class="nav-item nav-link text-warning" href="{{route('main')}}" target="_blank">Перейти в магазин</a>
       </div>
     </div>
@@ -110,6 +112,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="{{asset('/assets/js/function.js')}}"></script>
+  <script type="text/javascript" src="{{asset('/assets/lib/ckeditor/ckeditor.js')}}"></script>
+  <script type="text/javascript">
+    if($("#editor").length>0)
+      CKEDITOR.replace('editor')
+  </script>
 
   <script>
     $(document).on('click','.content-del',function(){

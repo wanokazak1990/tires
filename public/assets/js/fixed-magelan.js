@@ -15,15 +15,17 @@ $(document).ready(function(){
 
 	function setter()
 	{
-		displayWidth = $(window).width()
-		magelanYT = magelan.offset().top
-		magelanYB = magelan.offset().top+magelan.height()
-		magelanWidth = magelan.parent().width()
-		magelanHeight = magelan.height()
+		if(magelan.length>0){
+			displayWidth = $(window).width()
+			magelanYT = magelan.offset().top
+			magelanYB = magelan.offset().top+magelan.height()
+			magelanWidth = magelan.parent().width()
+			magelanHeight = magelan.height()
 
-		maxYT = $('.product-block').offset().top
-		maxYB = $('.product-block').offset().top+$('.product-block').height()
-		maxHeight = $('.product-block').height()
+			maxYT = $('.product-block').offset().top
+			maxYB = $('.product-block').offset().top+$('.product-block').height()
+			maxHeight = $('.product-block').height()
+		}
 	}
 
 	function fly(scroll)

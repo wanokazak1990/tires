@@ -14,6 +14,7 @@ use App\hm_car_filter as filter;
 use App\hm_attribute_value as valattr;
 use App\hm_action as action;
 use App\hm_service as service;
+use App\hm_info;
 
 use DB;
 use Cart;
@@ -29,6 +30,8 @@ class ContentController extends Controller
         $news = news::where('status','>','0')->get();
         $feedbacks = feedback::where('status','>','0')->get();
         $categories = category::get();
+
+        $info = hm_info::first();
 
         if(is_object($categories) && count($categories)>0)
         {   
@@ -49,6 +52,7 @@ class ContentController extends Controller
             }
         }
         return view('content.index')
+            ->with('info',$info)
             ->with('sliders',$sliders)
             ->with('products',$products)
             ->with('attributes',$attributes)
@@ -59,6 +63,8 @@ class ContentController extends Controller
 
     public function productlist(Request $request)
     {   
+        $info = hm_info::first();
+        
         $sliders = slider::where('status','>','0')->get();
 
         $data = $request->all();
@@ -105,6 +111,7 @@ class ContentController extends Controller
         $catName = $catName[$data['category_id']]->name;
         
         return view('content.productlist')
+            ->with('info', $info)
             ->with('categories',$categories)
             ->with('attributes',$attributes)
             ->with('products',$products)
@@ -121,6 +128,8 @@ class ContentController extends Controller
         unset($data['_token']);
 
         $search = array();
+
+        $info = hm_info::first();
 
         if(count($data)==4)
         {   
@@ -220,6 +229,7 @@ class ContentController extends Controller
 
         }
         return view('content.search')
+            ->with('info', $info)
             ->with('search',$search)
             ->with('attributes',$attributes)
             ->with('categories',$categories);
@@ -229,7 +239,9 @@ class ContentController extends Controller
     {
         $actions = action::get();
         $title = 'Список акций';
+        $info = hm_info::first();
         return view('content.action')
+            ->with('info', $info)
             ->with('list',$actions)
             ->with('title',$title);
     }
@@ -238,7 +250,9 @@ class ContentController extends Controller
     {
         $action = action::find($id);
         $title = $action->name;
+        $info = hm_info::first();
         return view('content.action')
+            ->with('info', $info)
             ->with('action',$action)
             ->with('title',$title);
     }
@@ -247,7 +261,9 @@ class ContentController extends Controller
     {
         $service = service::where('alias',$alias)->first();
         $title = isset($service->name)?$service->name:'Страница не найдена';
+        $info = hm_info::first();
         return view('content.service')
+        ->with('info', $info)
         ->with('service',$service)
         ->with('title',$title);
     }
@@ -255,14 +271,18 @@ class ContentController extends Controller
     public function siteList()
     {
         $list = news::where('status',1)->paginate(env('PAGINATE'));
+        $info = hm_info::first();
         return view('content.newslist')
+        ->with('info', $info)
         ->with('list',$list);
     }
 
     public function siteItem($id)
     {
         $new = news::find($id);
+        $info = hm_info::first();
         return view('content.newslist')
+        ->with('info', $info)
         ->with('new',$new);
     }
 }

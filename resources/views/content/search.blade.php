@@ -3,11 +3,11 @@
 @section('products')
 <section class="container">
 	<div class="row">
-		<div class="col-4">
-			1
+		<div class="col-12 col-sm-12 col-md-3">
+			@include('content.filter')
 		</div>
 
-		<div class="col-8">
+		<div class="col-12 col-md-9 product-block">
 			@if(!empty($search))
 			<div class="row">
 				<div class="col-6">

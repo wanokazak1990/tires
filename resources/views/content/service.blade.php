@@ -6,11 +6,14 @@
 	@if(isset($service))
 		<div class="row itemnews">
 			<div class="col-12">
+				@if(isset($service->img))
+					<img src="{{$service->getUrlImg()}}">
+				@endif
 				<h2>
 					{{$service->name}}
 				</h2>
 				<p class="text-justify">
-					{{$service->text}}
+					{!!$service->text!!}
 				</p>
 			</div>
 		</div>

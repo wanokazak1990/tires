@@ -161,6 +161,23 @@ $(document).ready(function(){
         $('#modalOrder').modal('show')
     })
 
+    //оформление заказа
+    $(document).on('click','#ordermaker',function(){
+        var form = $(this).closest('form')
+        var url = form.attr('action')
+        var parameters = form.serialize()
+        $.when(ajax(parameters,url).then(function(data){
+            if(data=='1')
+                alert('Заказ принят')
+        }))
+    })
+
     preloadIndikators()
     CheckProductOnCart()
+
+    if($(window).width()<755)
+    {
+        var clone = $('.cart-in-nav').clone()
+        $('.navbar-brand').html(clone).css('font-size','14px')
+    }
 })

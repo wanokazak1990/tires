@@ -30,16 +30,12 @@
                     <div class="col-8">
                         <nav class="nav p-0">
                             <a class="nav-link" href="#">Магазин</a>
-                            <a class="nav-link" href="#">Как купить</a>
-                            
-                            <a class="nav-link" href="#">Статьи</a>
-                            <a class="nav-link" href="#">Шиномонтаж</a>
-                            
+                            <a class="nav-link" href="#">Как купить</a>                            
                         </nav>
                     </div>
 
                     <div class="col-4 ">
-                        <nav class="nav justify-content-end">
+                        <!--nav class="nav justify-content-end">
                             @if(isset(Auth::user()->name))
                                 <a class="nav-link" href="">
                                     Личный кабинет
@@ -60,7 +56,7 @@
                                     Вход
                                 </a>
                             @endif
-                        </nav>
+                        </nav-->
                     </div>
                 </div>
             </div>
@@ -99,7 +95,8 @@
 
         <div class="row top-menu" >
             <div class="container">
-                <nav class="navbar navbar-expand-lg p-0">
+                <nav class="p-0 navbar navbar-expand-lg navbar-light" >
+                    <a class="navbar-brand" href="#"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -189,7 +186,7 @@
     
 </section>
 
-<section class="myquality container-fluid">
+<!--section class="myquality container-fluid">
         <div class="row">
             <div class="container">
                 <div class="row">
@@ -212,7 +209,7 @@
                 </div>
             </div>
         </div> 
-</section>
+</section-->
 
 <section class="container-fluid">
     {!! $info->map_code or '' !!}
@@ -223,11 +220,11 @@
 </section>
 
 
-    @include('content.productmodal')
+@include('content.productmodal')
 
-    @include('content.cartmodal')
+@include('content.cartmodal')
 
-    @include('content.ordermodal')
+@include('content.ordermodal')
 
 
     <!-- Optional JavaScript -->
@@ -316,94 +313,6 @@
                 }))
             })
 
-
-            //FIXED ELEMENTS
-            /*var menuOffsetTop = $('.top-menu').offset().top
-            var filterOffsetTop = $('.filter-block').offset().top
-            var displayWidth = $(window).width();
-            var lastProductEndPos = $('.product-block').offset().top+$('.product-block').height()-50
-
-            $(document).on('scroll',function(){
-                if(displayWidth>755){
-                    if($('.filter-block').height()>$('.product-block').height())
-                        $('.product-block').height($('.filter-block').height())
-
-                    let menu = $('.top-menu')
-                    if(menuOffsetTop<$(this).scrollTop())
-                        menu.css({
-                            'width':($('body').width()+15)+'px',
-                        }).addClass('fixed-menu')
-                    else{
-                        menu.css({
-                             'width':($('body').width())+'px'                      
-                        }).removeClass('fixed-menu')
-                    }
-                    
-                    let filter = $('.filter-block')
-                    if(filterOffsetTop<$(this).scrollTop()+100)
-                        filter.css({
-                            'position':'fixed',
-                            'top':'60px',
-                            'width':filter.parent().width()+'px'
-                        })
-                    else if(filterOffsetTop>$(this).scrollTop())
-                        filter.css({
-                            'position':'static'
-                        })
-
-                    let offFilterPos = filter.offset().top+filter.height()
-                    if(offFilterPos>=lastProductEndPos)
-                        filter.css({
-                            'position':'absolute',
-                            'top':(lastProductEndPos-filter.height()-filter.parent().offset().top-10)+'px'
-                        })
-                }
-            })
-
-            $(window).on('resize',function(){
-                menuOffsetTop = $('.top-menu').offset().top
-                filterOffsetTop = $('.filter-block').offset().top
-                displayWidth = $(window).width();
-                lastProductEndPos = $('.product:last').offset().top+$('.product:last').height()
-                let filter = $('.filter-block')
-                let menu = $('.top-menu')
-                filter.css({
-                            'position':'static',
-                            'width':'100%'
-                        })
-                if(displayWidth>755){
-                    
-                    if(menuOffsetTop<$(this).scrollTop())
-                        menu.css({
-                            'width':($('body').width()+15)+'px',
-                        }).addClass('fixed-menu')
-                    else{
-                        menu.css({
-                             'width':($('body').width())+'px'                      
-                        }).removeClass('fixed-menu')
-                    }
-                    
-                    
-                    if(filterOffsetTop<$(this).scrollTop()+100)
-                        filter.css({
-                            'position':'fixed',
-                            'top':'60px',
-                            'width':filter.parent().width()+'px'
-                        })
-                    else if(filterOffsetTop>$(this).scrollTop())
-                        filter.css({
-                            'position':'static'
-                        })
-
-                    let offFilterPos = filter.offset().top+filter.height()
-                    if(offFilterPos>=lastProductEndPos)
-                        filter.css({
-                            'position':'absolute',
-                            'top':(lastProductEndPos-filter.height()-filter.parent().offset().top-10)+'px'
-                        })
-                }
-            })*/
-
             //BORDER PRODUCT
             var productBlockWidth = $('.product-block').outerWidth()
             var productCellWidth = $('.product-block .product-cell').width()
@@ -426,6 +335,8 @@
                 })    
             })
 
+
+            
             
             
 

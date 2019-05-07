@@ -213,7 +213,7 @@
             let val = obj.values[k]
             opt+='<option value="'+val.id+'">'+val.value+'</option>'
           }
-          let select = '<select name="attr['+obj.id+']">'+opt+'</select>'
+          let select = '<select style="width:100%;" name="attr['+obj.id+']">'+opt+'</select>'
           $('.parameters').append('<tr><td>'+attr_name+'</td><td>'+select+'</td></tr>')
         }
         $('.parameters').append('</table>')

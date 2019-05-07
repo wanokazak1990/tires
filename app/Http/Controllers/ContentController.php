@@ -120,7 +120,7 @@ class ContentController extends Controller
         $data = $request->all();
         unset($data['_token']);
 
-        $attributes = array();
+        $search = array();
 
         if(count($data)==4)
         {   
@@ -155,7 +155,7 @@ class ContentController extends Controller
                 foreach ($stock_disk as $key => $disk) {
                     $disk = str_replace('x ', '', $disk);
                     $disk = explode(' ', $disk);
-                    $attributes['stock_disk'][] = [
+                    $search['stock_disk'][] = [
                         'pcd'=>$list->pcd,
                         'co'=>$list->diametr,
                         'width'=>$disk[0],
@@ -171,7 +171,7 @@ class ContentController extends Controller
                 foreach ($change_disk as $key => $disk) {
                     $disk = str_replace('x ', '', $disk);
                     $disk = explode(' ', $disk);
-                    $attributes['change_disk'][] = [
+                    $search['change_disk'][] = [
                         'pcd'=>$list->pcd,
                         'co'=>$list->diametr,
                         'width'=>$disk[0],
@@ -188,7 +188,7 @@ class ContentController extends Controller
                     $tire = str_replace('/', ' ', $tire);
                     $tire = str_replace('R', 'R ', $tire);
                     $tire = explode(' ', $tire);
-                    $attributes['stock_tires'][] = [
+                    $search['stock_tires'][] = [
                         'width_tire'=>$tire[0],
                         'profile_tire'=>$tire[1],
                         'type_tire'=>$tire[2],
@@ -204,7 +204,7 @@ class ContentController extends Controller
                     $tire = str_replace('/', ' ', $tire);
                     $tire = str_replace('R', 'R ', $tire);
                     $tire = explode(' ', $tire);
-                    $attributes['change_tires'][] = [
+                    $search['change_tires'][] = [
                         'width_tire'=>$tire[0],
                         'profile_tire'=>$tire[1],
                         'type_tire'=>$tire[2],
@@ -212,67 +212,17 @@ class ContentController extends Controller
                     ]; 
                 }
             }
+            $categories = category::get();
+            foreach ($categories as $key => $cat) {
+                $attributes[$cat->id] = attribute::where('category_id',$cat->id)
+                    ->pluck('name','id')->toArray(); 
+            }
+
         }
         return view('content.search')
-            ->with('search',$attributes);
-    }
-
-    public function formatfilter($str = [])
-    {
-        $filter = valattr::get();
-        foreach ($filter as $key => $value) {
-            $value->value = str_replace(',', '.', $value->value);
-            $value->save();
-        }
-        /*$filter = new filter();
-        $list = $filter->pluck('zavod_shini');
-
-        foreach ($list as $key => $value) {
-            $list[$key] = str_replace('#', '|', $value);
-        }
-
-        foreach ($list as $key => $obj) {
-            $mas = explode('|', $obj);
-            foreach ($mas as $value) {
-                $value=explode('/', $value);
-                if(isset($value[1]))
-                {
-                    $val = explode('R', $value[1]);
-                    if(isset($val[0]))
-                        $str[] = trim($val[0]);
-                }
-            }
-        }
-
-        $list = $filter->pluck('zamen_shini');
-
-        foreach ($list as $key => $value) {
-            $list[$key] = str_replace('#', '|', $value);
-        }
-
-        foreach ($list as $key => $obj) {
-            $mas = explode('|', $obj);
-            foreach ($mas as $value) {
-                $value=explode('/', $value);
-                if(isset($value[1]))
-                {
-                    $val = explode('R', $value[1]);
-                    if(isset($val[0]))
-                        $str[] = trim($val[0]);
-                }
-            }
-        }
-        //WIDTHTIRES
-        $res = array_unique($str);
-        dump($res);
-        foreach ($res as $key => $value) {
-            $attr = new valattr([
-                'attribute_id'=>17,
-                'value'=>$value,
-                'status'=>1
-            ]);
-            $attr->save();
-        }*/
+            ->with('search',$search)
+            ->with('attributes',$attributes)
+            ->with('categories',$categories);
     }
 
     public function actionList(Request $request)
@@ -293,12 +243,26 @@ class ContentController extends Controller
             ->with('title',$title);
     }
 
-    public function sevices($alias,Request $request)
+    public function services($alias,Request $request)
     {
         $service = service::where('alias',$alias)->first();
-        $title = $service->name;
+        $title = isset($service->name)?$service->name:'Страница не найдена';
         return view('content.service')
         ->with('service',$service)
         ->with('title',$title);
+    }
+
+    public function siteList()
+    {
+        $list = news::where('status',1)->paginate(env('PAGINATE'));
+        return view('content.newslist')
+        ->with('list',$list);
+    }
+
+    public function siteItem($id)
+    {
+        $new = news::find($id);
+        return view('content.newslist')
+        ->with('new',$new);
     }
 }

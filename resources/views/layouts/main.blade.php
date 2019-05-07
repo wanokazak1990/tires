@@ -31,10 +31,10 @@
                         <nav class="nav p-0">
                             <a class="nav-link" href="#">Магазин</a>
                             <a class="nav-link" href="#">Как купить</a>
-                            <a class="nav-link" href="{{route('newslist')}}">Новости</a>
+                            
                             <a class="nav-link" href="#">Статьи</a>
                             <a class="nav-link" href="#">Шиномонтаж</a>
-                            <a class="nav-link" href="#">Контакты</a>
+                            
                         </nav>
                     </div>
 
@@ -131,8 +131,8 @@
                                     Сервис
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @foreach(App\hm_service::get() as $service)
-                                        <a class="dropdown-item" href="{{route('sevices',['alias'=>$service->alias])}}">
+                                    @foreach(App\hm_service::where('status','>','0')->get() as $service)
+                                        <a class="dropdown-item" href="{{route('services',['alias'=>$service->alias])}}">
                                             {{$service->name}}
                                         </a>
                                     @endforeach
@@ -141,6 +141,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-danger" href="{{route('actionlist')}}">Акции</a>
                             </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('newslist')}}">Новости</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Контакты</a>
+                            </li>
                         </ul>
 
                         <ul class="navbar-nav my-2 my-lg-0">
@@ -172,6 +178,17 @@
 
 @show
 
+
+
+
+@section('feedbacks')
+
+@show
+
+<section class="contact container-fluid">
+    
+</section>
+
 <section class="myquality container-fluid">
         <div class="row">
             <div class="container">
@@ -196,17 +213,6 @@
             </div>
         </div> 
 </section>
-
-
-@section('feedbacks')
-
-@show
-
-<section class="contact container-fluid">
-    
-</section>
-
-
 
 <section class="container-fluid">
         <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3978e8318169f3aab86f19dd45446ed09bfae7ddd3680ca15f380404aaa305da&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>   

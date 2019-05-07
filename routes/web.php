@@ -15,11 +15,11 @@ Route::get('/', 'ContentController@index')->name('main');
 Route::match(['get', 'post'],'/content/product','ContentController@productlist')->name('productlist');
 Route::post('/content/search','ContentController@search')->name('search');
 Route::get('/formatfilter','ContentController@formatfilter');
-Route::get('/newslist','NewsController@siteList')->name('newslist');
-Route::get('/itemnew/{id}','NewsController@siteItem')->name('itemnew');
+Route::get('/newslist','ContentController@siteList')->name('newslist');
+Route::get('/itemnew/{id}','ContentController@siteItem')->name('itemnew');
 Route::get('/actionlist','ContentController@actionList')->name('actionlist');
 Route::get('/actionitem/{id}','ContentController@actionItem')->name('actionitem');
-Route::get('/services/{alias}','ContentController@sevices')->name('sevices');
+Route::get('/services/{alias}','ContentController@services')->name('services');
 
 Auth::routes();
 
@@ -83,6 +83,24 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 		Route::get('/{id}/edit','ProductController@show')	->name('tovarshow');
 		Route::post('/{id}','ProductController@update')		->name('tovarupdate');
 		Route::delete('/','ProductController@destroy')		->name('tovardelete');
+	});
+
+	Route::group(['prefix'=>'action'],function(){
+		Route::get('/','ActionController@index')->name('actionindex');
+		Route::get('/create','ActionController@create')->name('actioncreate');
+		Route::post('/create','ActionController@store')->name('actionstore');
+		Route::get('/edit/{id}','ActionController@show')->name('actionshow');
+		Route::post('/edit/{id}','ActionController@update')->name('actionupdate');
+		Route::delete('/','ActionController@destroy')->name('actiondelete');
+	});
+
+	Route::group(['prefix'=>'services'],function(){
+		Route::get('/','ServiceController@index')->name('serviceindex');
+		Route::get('/create','ServiceController@create')->name('servicecreate');
+		Route::post('/create','ServiceController@store')->name('servicestore');
+		Route::get('/edit/{id}','ServiceController@show')->name('serviceshow');
+		Route::post('/edit/{id}','ServiceController@update')->name('serviceupdate');
+		Route::delete('/','ServiceController@destroy')->name('servicedelete');
 	});
 
 

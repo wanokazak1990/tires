@@ -22,7 +22,7 @@ class ServiceController extends Controller
     {
     	$service = new service();
     	return view('admin.service')
-    	->with('title','Новая страницы сервиса')
+    	->with('title','Новая страница сервиса')
     	->with($this->link)
     	->with('service',$service)
     	->with('route',route('servicestore'));

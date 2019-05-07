@@ -103,6 +103,15 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 		Route::delete('/','ServiceController@destroy')->name('servicedelete');
 	});
 
+	Route::group(['prefix'=>'info'],function(){
+		Route::get('/','InfoController@index')->name('infoindex');
+		Route::get('/edit','InfoController@edit')->name('infoedit');
+		Route::post('/edit','InfoController@update')->name('infoupdate');
+		/*Route::get('/edit/{id}','ServiceController@show')->name('serviceshow');
+		Route::post('/edit/{id}','ServiceController@update')->name('serviceupdate');
+		Route::delete('/','ServiceController@destroy')->name('servicedelete');*/
+	});
+
 
 });
 

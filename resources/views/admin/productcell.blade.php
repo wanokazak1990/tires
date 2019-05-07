@@ -8,7 +8,10 @@
     то есть массив $attributes[category_id][attribute_id] = Профиль шины
 */
 ?>
-<tr>                       
+<tr>
+    <td class="product-name">
+        {{$item->article}}
+    </td>                       
     <td class="product-name">
         {{$item->name}}
     </td>

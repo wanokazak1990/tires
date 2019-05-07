@@ -14,6 +14,7 @@
 Route::get('/', 'ContentController@index')->name('main');
 Route::match(['get', 'post'],'/content/product','ContentController@productlist')->name('productlist');
 Route::post('/content/search','ContentController@search')->name('search');
+Route::get('/content/searchresult','ContentController@searchresult')->name('searchresult');
 Route::get('/formatfilter','ContentController@formatfilter');
 Route::get('/newslist','ContentController@siteList')->name('newslist');
 Route::get('/itemnew/{id}','ContentController@siteItem')->name('itemnew');
@@ -127,4 +128,5 @@ Route::group(['prefix'=>'cart','middleware'=>'cart'],function(){
 	Route::post('/remove','CartController@remove')->name('cartremove');
 	Route::post('/','CartController@show')->name('cartshow');
 	Route::post('/cartindikator','CartController@cartIndikator')->name('cartindikator');
+	Route::post('/order','CartController@order')->name('order');
 });

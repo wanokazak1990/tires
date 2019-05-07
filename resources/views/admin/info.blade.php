@@ -19,7 +19,7 @@
 		<table class="table table-hover">
 			<tbody>
 				<tr>
-					<td>Название сайта:</td>
+					<td width="25%">Название сайта:</td>
 					<td>{{ $info->name }}</td>
 				</tr>
 				<tr>

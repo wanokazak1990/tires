@@ -19,7 +19,7 @@ class FeedbackController extends Controller
     {
     	$feedback = new feedback();
     	return view('admin.feedback')
-    	->with('title','Новый отзыв')
+    	->with('title','Добавить отзыв')
     	->with('feedback',$feedback)
     	->with('route',route('feedbackstore'));
     }

@@ -12,7 +12,7 @@ class AttributeController extends Controller
     public function index()
     {
     	return view('admin.attribute')
-        	->with('title','Список аттрибутов')
+        	->with('title','Список атрибутов')
             ->with('attributeActive', 'active')
         	->with('list',attribute::with('category')->with('values')->orderBy('category_id')->get());
     }
@@ -22,7 +22,7 @@ class AttributeController extends Controller
     	$attr = new attribute();
     	$category = category::pluck('name','id');
     	return view('admin.attribute')
-    	->with('title','Новый аттрибут')
+    	->with('title','Добавить атрибут')
     	->with('attribute',$attr)
     	->with('category',$category)
     	->with('route',route('attrstore'));
@@ -55,7 +55,7 @@ class AttributeController extends Controller
     	$attribute=attribute::with('values')->find($id);
     	$category = category::pluck('name','id');
     	return view('admin.attribute')
-    	->with('title','Редактировать аттрибут')
+    	->with('title','Редактировать атрибут')
     	->with('attribute',$attribute)
     	->with('category',$category)
     	->with('route',route('attrupdate',['id'=>$id]));

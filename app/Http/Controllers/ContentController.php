@@ -41,7 +41,7 @@ class ContentController extends Controller
                 if($products[$cat->id]['products']->count()>0)
                 {
                     $products[$cat->id]['category'] = $cat->name;
-                    $attributes[$cat->id] = attribute::where('category_id',$cat->id)
+                    $attributes[$cat->id] = attribute::where('category_id',$cat->id)->where('status','1')
                         ->pluck('name','id')->toArray();                        
                 }
                 else
@@ -97,7 +97,7 @@ class ContentController extends Controller
 
         $categories = category::get();
         foreach ($categories as $key => $cat) {
-            $attributes[$cat->id] = attribute::where('category_id',$cat->id)
+            $attributes[$cat->id] = attribute::where('category_id',$cat->id)->where('status','1')
                 ->pluck('name','id')->toArray(); 
         }
 
@@ -156,6 +156,7 @@ class ContentController extends Controller
                     $disk = str_replace('x ', '', $disk);
                     $disk = explode(' ', $disk);
                     $search['stock_disk'][] = [
+                        'category_id'=>2,
                         'pcd'=>$list->pcd,
                         'co'=>$list->diametr,
                         'width'=>$disk[0],
@@ -172,6 +173,7 @@ class ContentController extends Controller
                     $disk = str_replace('x ', '', $disk);
                     $disk = explode(' ', $disk);
                     $search['change_disk'][] = [
+                        'category_id'=>2,
                         'pcd'=>$list->pcd,
                         'co'=>$list->diametr,
                         'width'=>$disk[0],
@@ -189,6 +191,7 @@ class ContentController extends Controller
                     $tire = str_replace('R', 'R ', $tire);
                     $tire = explode(' ', $tire);
                     $search['stock_tires'][] = [
+                        'category_id'=>1,
                         'width_tire'=>$tire[0],
                         'profile_tire'=>$tire[1],
                         'type_tire'=>$tire[2],
@@ -205,6 +208,7 @@ class ContentController extends Controller
                     $tire = str_replace('R', 'R ', $tire);
                     $tire = explode(' ', $tire);
                     $search['change_tires'][] = [
+                        'category_id'=>1,
                         'width_tire'=>$tire[0],
                         'profile_tire'=>$tire[1],
                         'type_tire'=>$tire[2],
@@ -214,7 +218,7 @@ class ContentController extends Controller
             }
             $categories = category::get();
             foreach ($categories as $key => $cat) {
-                $attributes[$cat->id] = attribute::where('category_id',$cat->id)
+                $attributes[$cat->id] = attribute::where('category_id',$cat->id)->where('status','1')
                     ->pluck('name','id')->toArray(); 
             }
 
@@ -223,6 +227,56 @@ class ContentController extends Controller
             ->with('search',$search)
             ->with('attributes',$attributes)
             ->with('categories',$categories);
+    }
+
+    public function searchresult(Request $request)
+    {
+        if($request->has('params'))
+        {
+            $data = explode('+',$request->params);
+            if($data[0]==1)
+            {
+                $width = valattr::where('attribute_id',19)->where('value',$data[1])->first();
+                $profile = valattr::where('attribute_id',17)->where('value',$data[2])->first();
+                $type = valattr::where('attribute_id',18)->where('value',$data[3])->first();
+                $diameter = valattr::where('attribute_id',16)->where('value',$data[4])->first();
+                $mas['category_id']=$data[0];
+                if(isset($width->id))
+                    $mas['attribute['.$width->attribute_id.']'] = $width->id;
+                if(isset($profile->id))
+                    $mas['attribute['.$profile->attribute_id.']'] = $profile->id;
+                if(isset($type->id))
+                    $mas['attribute['.$type->attribute_id.']'] = $type->id;
+                if(isset($diameter->id))
+                    $mas['attribute['.$diameter->attribute_id.']'] = $diameter->id;
+                return redirect()->route('productlist',$mas);
+            }
+            elseif ($data[0]==2)
+            {
+                $data[5] = str_replace('ET', '', $data[5]);
+                $data[5] = str_replace('et', '', $data[5]);
+
+                $pcd = valattr::where('attribute_id',11)->where('value',$data[1])->first();
+                $co = valattr::where('attribute_id',12)->where('value',$data[2])->first();
+                $width = valattr::where('attribute_id',13)->where('value',$data[3])->first();
+                $diameter = valattr::where('attribute_id',14)->where('value',$data[4])->first();
+                $et = valattr::where('attribute_id',15)->where('value',$data[5])->first();
+                
+                $mas['category_id']=$data[0];
+                if(isset($pcd->id))
+                    $mas['attribute['.$pcd->attribute_id.']'] = $pcd->id;
+                if(isset($co->id))
+                    $mas['attribute['.$co->attribute_id.']'] = $co->id;
+                if(isset($width->id))
+                    $mas['attribute['.$width->attribute_id.']'] = $width->id;
+                if(isset($diameter->id))
+                    $mas['attribute['.$diameter->attribute_id.']'] = $diameter->id;
+                if(isset($et->id))
+                    $mas['attribute['.$et->attribute_id.']'] = $et->id;
+                
+                return redirect()->route('productlist',$mas);
+            }
+        }
     }
 
     public function actionList(Request $request)

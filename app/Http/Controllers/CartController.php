@@ -51,4 +51,11 @@ class CartController extends Controller
     {
         echo Cart::cartIndikator();
     }
+
+    public function order(Request $request)
+    {
+        $data = $request->all();
+        if(isset($data['name']) && isset($data['phone']) && isset($data['mail']))
+            echo "1";
+    }
 }

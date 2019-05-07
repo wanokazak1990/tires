@@ -2,7 +2,7 @@
 
 @section('products')
 <section class="container">
-	<div class="row">
+	<div class="row pt-4 pb-4">
 		<div class="col-12 col-sm-12 col-md-3">
 			@include('content.filter')
 		</div>
@@ -15,9 +15,11 @@
 						<h5>Рекомендованные заводом диски</h5>						
 						@foreach($search['stock_disk'] as $disk)
 							<div>
-								<a href="">
-								@foreach($disk as $item)
-									{{$item}}
+								<a href="{{route('searchresult',['params'=>implode('+',$disk)])}}">
+								@foreach($disk as $key=>$item)
+									@if($key!='category_id')
+										{{$item}}
+									@endif
 								@endforeach
 								</a>
 							</div>
@@ -28,9 +30,11 @@
 						<h5>Допустимые к установке диски</h5>						
 						@foreach($search['change_disk'] as $disk)
 							<div>
-								<a href="">
-								@foreach($disk as $item)
-									{{$item}}
+								<a href="{{route('searchresult',['params'=>implode('+',$disk)])}}">
+								@foreach($disk as $key=>$item)
+									@if($key!='category_id')
+										{{$item}}
+									@endif
 								@endforeach
 								</a>
 							</div>
@@ -43,9 +47,11 @@
 						<h5>Рекомендованные заводом шины</h5>						
 						@foreach($search['stock_tires'] as $tire)
 							<div>
-								<a href="">
-								@foreach($tire as $item)
-									{{$item}}
+								<a href="{{route('searchresult',['params'=>implode('+',$tire)])}}">
+								@foreach($tire as $key=>$item)
+									@if($key!='category_id')
+										{{$item}}
+									@endif
 								@endforeach
 								</a>
 							</div>
@@ -56,9 +62,11 @@
 						<h5>Допустимые к установке шины</h5>						
 						@foreach($search['change_tires'] as $tire)
 							<div>
-								<a href="">
-								@foreach($tire as $item)
-									{{$item}}
+								<a href="{{route('searchresult',['params'=>implode('+',$tire)])}}">
+								@foreach($tire as $key=>$item)
+									@if($key!='category_id')
+										{{$item}}
+									@endif
 								@endforeach
 								</a>
 							</div>
@@ -66,6 +74,10 @@
 					@endif
 				</div>
 			</div>
+			@else
+				<div class="row"><div class="col-12">
+					<h3>К сожалению по Вашим параметрам не нашлось ни одного товара</h3>
+				</div></div>
 			@endif
 		</div>
 	</div>

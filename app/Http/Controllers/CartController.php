@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 use Session;
 use Cart;
 use Mail;
+use Validator;
+use App\hm_client as client;
+use App\hm_order as order;
+use App\hm_order_product as oproduct;
+
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -55,41 +60,54 @@ class CartController extends Controller
 
     public function order(Request $request)
     {
-        
-        $cart = Cart::getCart();
-        $messages = [
-          'required' => "Field :attribute is required",
-          'email' => "Field :attribute must be an email"  
-        ];
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'mail' => 'required|email',
-            'phone' => 'required'
-        ], $messages);
+        $validator = Validator::make($request->all(),
+            array(
+                'name' => 'required',
+                'phone' => 'required|min:8',
+                'mail' => 'required|email'
+            )
+        );
 
-        $data = $request->all();
-
-        $to= "Mary <wanokazak@gmail.com>";
-
-        /* тема/subject */
-        $subject = "Новый заказ";
-
-        /* сообщение */
-        $message = '';
-        foreach ($cart as $key => $value) {
-            $message.=$value->name.' '.$value->count.'штук '.$value->price;
+        if($validator->fails())
+        {
+            echo $validator->messages();
+            return;
         }
 
-        /* Для отправки HTML-почты вы можете установить шапку Content-type. */
-        $headers= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+        $client = client::where('phone',$request->phone)->first();
+        if(!isset($client->id))
+        {
+            $client = new client();
+            $client->fill($request->all());
+            $client->save();
+        }
 
-        /* дополнительные шапки */
-        $headers .= "From: ORDER <birthday@example.com>\r\n";
-        $headers .= "Cc: birthdayarchive@example.com\r\n";
-        $headers .= "Bcc: birthdaycheck@example.com\r\n";
+        $cart = Cart::getCart();
+        if(count($cart)<1)
+        {
+            echo json_encode(['error'=>['Корзина пуста']]);
+            return;
+        }
 
-        /* и теперь отправим из */
-        echo mail($to, $subject, $message, $headers);
+        $order = order::create([
+            'client_id'=>$client->id,
+            'status'=>1,
+            'type'=>1
+        ]);
+
+        if(isset($order->id))
+        {
+            foreach ($cart as $key => $prod) {
+                oproduct::create([
+                    'order_id'=>$order->id,
+                    'product_id'=>$prod->id,
+                    'count'=>$prod->count,
+                    'saleprice'=>$prod->price
+                ]);
+            }
+        }
+
+        echo json_encode(['result'=>['Ваш заказ принят.']]);
+        
     }
 }

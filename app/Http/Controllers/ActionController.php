@@ -44,6 +44,7 @@ class ActionController extends Controller
     	return view('admin.action')
     	->with('title','Редактировать акции')
     	->with('action',$action)
+        ->with($this->link)
     	->with('route',route('actionupdate',['id'=>$id]));
     }
 

@@ -43,6 +43,10 @@
 					<td>{{ $info->weekend }}</td>
 				</tr>
 				<tr>
+					<td>Описание компании:</td>
+					<td>{!! $info->description or 'Нет описания' !!}</td>
+				</tr>
+				<tr>
 					<td>Электронный адрес админа:</td>
 					<td>{{ $info->admin_email or 'Адрес не указан' }}</td>
 				</tr>

@@ -38,6 +38,7 @@ class InfoController extends Controller
     	$info->address = $request->address;
     	$info->hours = $request->hours;
     	$info->weekend = $request->weekend;
+    	$info->description = $request->description;
     	$info->admin_email = $request->admin_email;
     	$info->vk_group = $request->vk_group;
 

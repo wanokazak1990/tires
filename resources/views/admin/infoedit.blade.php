@@ -66,6 +66,15 @@
 
 		<div class="input-group no-gutters mb-2">
 			<div class="col-md-4 col-sm-12 d-flex align-items-center">
+				Описание компании:
+			</div>
+			<div class="col-md-8 col-sm-12">
+				<textarea id="editor" name="description">{{ $info->description }}</textarea>
+			</div>
+		</div>
+
+		<div class="input-group no-gutters mb-2">
+			<div class="col-md-4 col-sm-12 d-flex align-items-center">
 				Электронный адрес админа:
 			</div>
 			<div class="col-md-8 col-sm-12">

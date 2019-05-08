@@ -118,10 +118,15 @@ $(document).ready(function(){
         }))
     })
 
+    $(window).on('resize',function(){
+        log($(window).width())
+    })
     //МЕНЯЕТ СОСТОЯНИЕ КНОПКИ ДОБАВИТЬ В КОРЗИНУ
     function CheckProductOnCart(){
+
         $('body').find('.tocart').addClass('btn-warning')
-        $('body').find('.tocart').html('В корзину')
+        if($(window).width()>1180)
+            $('body').find('.tocart').html('В корзину')
 
         var url = $('.cart-in-nav').attr('url')
         var parameters = {'val':'id'}
@@ -167,8 +172,8 @@ $(document).ready(function(){
         var url = form.attr('action')
         var parameters = form.serialize()
         $.when(ajax(parameters,url).then(function(data){
-            if(data=='1')
-                alert('Заказ принят')
+            data = JSON.parse(data)
+            alert(data)
         }))
     })
 
@@ -176,8 +181,9 @@ $(document).ready(function(){
     CheckProductOnCart()
 
     if($(window).width()<755)
-    {
+    {        
         var clone = $('.cart-in-nav').clone()
+        $('.cart-in-nav').parent().html('')
         $('.navbar-brand').html(clone).css('font-size','14px')
     }
 })

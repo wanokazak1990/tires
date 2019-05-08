@@ -56,10 +56,10 @@
                             </span>
                         </button>
                         <button class="btn btn-warning tocart" product-id="{{$item->id}}" url="{{route('cartadd')}}">
-                            <span class="d-sm-block d-lg-none">
+                            <span class="d-block d-sm-block  d-md-block d-xl-none">
                                 <i class="icofont-cart"></i>
                             </span>
-                            <span class="d-none d-lg-block">
+                            <span class="d-none d-xl-block">
                                 В корзину
                             </span>
                         </button>

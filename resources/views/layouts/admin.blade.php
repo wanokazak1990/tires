@@ -85,6 +85,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link {{ $infoActive or '' }}" href="{{route('infoindex')}}">Основная информация</a>
+        <a class="nav-item nav-link {{ $pagesActive or '' }}" href="{{route('pageindex')}}">Страницы сайта</a>
         <a class="nav-item nav-link {{ $sliderlistActive or '' }}" href="{{route('sliderlist')}}">Слайдер</a>
         <a class="nav-item nav-link {{ $feedbackActive or '' }}" href="{{route('feedbacklist')}}">Отзывы</a>
         <a class="nav-item nav-link {{ $newslistActive or '' }}" href="{{route('newlist')}}">Новости</a>

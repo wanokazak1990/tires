@@ -15,6 +15,7 @@ use App\hm_attribute_value as valattr;
 use App\hm_action as action;
 use App\hm_service as service;
 use App\hm_info;
+use App\hm_page;
 
 use DB;
 use Cart;
@@ -320,6 +321,17 @@ class ContentController extends Controller
         ->with('info', $info)
         ->with('service',$service)
         ->with('title',$title);
+    }
+
+    public function pages(Request $request, $alias)
+    {
+        $page = hm_page::where('alias', $alias)->first();
+        $title = isset($page->title) ? $page->title : 'Страница не найдена';
+        $info = hm_info::first();
+        return view('content.page')
+        ->with('info', $info)
+        ->with('page', $page)
+        ->with('title', $title);
     }
 
     public function siteList()

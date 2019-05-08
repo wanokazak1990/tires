@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
     <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">
 
-    
+    <link rel="shortcut icon" href="{{ $info->getTitleIconUrl() }}" type="image/png">
     <title>{{ $info->name }}</title>
   </head>
   <body>
@@ -29,8 +29,11 @@
                 <div class="row">
                     <div class="col-8">
                         <nav class="nav p-0">
-                            <a class="nav-link" href="#">Магазин</a>
-                            <a class="nav-link" href="#">Как купить</a>                            
+                            @foreach(App\hm_page::where('status','>','0')->get() as $page)
+                                <a class="nav-link" href="{{route('pages',['alias'=>$page->alias])}}">
+                                    {{ $page->title }}
+                                </a>
+                            @endforeach
                         </nav>
                     </div>
 
@@ -175,7 +178,9 @@
 
 @show
 
+@section('page')
 
+@show
 
 
 @section('feedbacks')

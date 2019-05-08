@@ -13,12 +13,18 @@ class hm_info extends Model
     public function getLogoUrl()
     {
     	$file = pathinfo($this->logo)['basename'];
-        return asset('storage/settings/'.$file);
+        if ($file)
+            return asset('storage/settings/'.$file);
+        else
+            return '';
     }
 
     public function getTitleIconUrl()
     {
     	$file = pathinfo($this->title_icon)['basename'];
-        return asset('storage/settings/'.$file);
+        if ($file)
+            return asset('storage/settings/'.$file);
+        else
+            return '';
     }
 }

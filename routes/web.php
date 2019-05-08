@@ -21,6 +21,7 @@ Route::get('/itemnew/{id}','ContentController@siteItem')->name('itemnew');
 Route::get('/actionlist','ContentController@actionList')->name('actionlist');
 Route::get('/actionitem/{id}','ContentController@actionItem')->name('actionitem');
 Route::get('/services/{alias}','ContentController@services')->name('services');
+Route::get('/pages/{alias}','ContentController@pages')->name('pages');
 
 Auth::routes();
 
@@ -110,6 +111,14 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 		Route::post('/edit','InfoController@update')->name('infoupdate');
 	});
 
+	Route::group(['prefix'=>'pages'],function(){
+		Route::get('/', 'PageController@index')->name('pageindex');
+		Route::get('/add', 'PageController@add')->name('pageadd');
+		Route::post('/add','PageController@put')->name('pageput');
+		Route::get('/{id}/edit','PageController@edit')->name('pageedit');
+		Route::post('/{id}','PageController@update')->name('pageupdate');
+		Route::delete('/','PageController@destroy')->name('pagedelete');
+	});
 
 });
 

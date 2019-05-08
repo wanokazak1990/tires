@@ -6,7 +6,7 @@
 		<div class="col-12 pt-3">
 			<div class="h3">Новости</div>
 		</div>
-		<div class="col-12 pt-3 pb-3">
+		<div class="col-12 py-3">
 			<div class="input-group no-gutters">
 				<div class="col-sm-4 col-md-2">
 					<a class="btn btn-outline-dark btn-block" href="{{route('newcreate')}}">Добавить</a>

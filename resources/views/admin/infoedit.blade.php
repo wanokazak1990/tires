@@ -93,7 +93,7 @@
 
 		<div class="input-group no-gutters mb-2">
 			<div class="col-md-4 col-sm-12 d-flex align-items-center">
-				Иконка заголовка:
+				Иконка заголовка (в формате .PNG):
 			</div>
 			<div class="col-md-8 col-sm-12">
 				<input type="file" name="title_icon" class="form-control-file">

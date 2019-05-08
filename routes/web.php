@@ -22,6 +22,7 @@ Route::get('/actionlist','ContentController@actionList')->name('actionlist');
 Route::get('/actionitem/{id}','ContentController@actionItem')->name('actionitem');
 Route::get('/services/{alias}','ContentController@services')->name('services');
 Route::get('/pages/{alias}','ContentController@pages')->name('pages');
+Route::get('/contacts','ContentController@contacts')->name('contacts');
 
 Auth::routes();
 

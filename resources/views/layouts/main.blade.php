@@ -145,7 +145,7 @@
                                 <a class="nav-link" href="{{route('newslist')}}">Новости</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Контакты</a>
+                                <a class="nav-link" href="{{ route('contacts') }}">Контакты</a>
                             </li>
                         </ul>
 
@@ -166,25 +166,21 @@
 @show
 
 @section('slider')
-
 @show
 
-@section('products')
-            
+@section('products')      
 @show
-
 
 @section('news')
-
 @show
 
 @section('page')
-
 @show
 
+@section('contacts')
+@show
 
 @section('feedbacks')
-
 @show
 
 <section class="contact container-fluid">
@@ -216,12 +212,57 @@
         </div> 
 </section-->
 
+@isset($map)
 <section class="container-fluid">
-    {!! $info->map_code or '' !!}
+    {!! $map !!}
 </section>
+@endisset
 
 <section class="footer container-fluid">
-    FOOTER
+    <div class="row h-100">
+        <div class="container h-100">
+            <div class="input-group no-gutters text-light d-flex align-items-center pb-3">
+                <div class="col-md-4 col-sm-12 d-flex align-items-center">
+                    <div class="input-group no-gutters d-flex align-items-center">
+                        <div class="col-md-4 col-sm-12 d-flex align-items-center">
+                            <img src="{{ $info->getLogoUrl() }}" style="width: 100px; height: 100px;"> 
+                        </div>
+                        <div class="col-md-8 col-sm-12 py-3">
+                            <div class="input-group no-gutters">
+                                <span class="h5">{{ $info->name }}</span>
+                            </div>
+                            <div class="input-group no-gutters">
+                                {{ $info->slogan }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12 d-flex align-items-center">
+                    <ul class="list-unstyled m-0 py-3">
+                        <li>Режим работы: {{ $info->hours }}, {{ $info->weekend }}</li>
+                        <li>Телефон: {{ $info->phone }}</li>
+                        <li>Адрес компании: {{ $info->address }}</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 col-sm-12">
+                    <ul class="list-unstyled m-0 py-3">
+                        <li><a href="{{route('main')}}" class="text-light">Главная</a></li>
+                        <li><a href="{{route('newslist')}}" class="text-light">Новости</a></li>
+                        <li><a href="{{route('actionlist')}}" class="text-light">Акции</a></li>
+                        @foreach(App\hm_page::where('status','>','0')->get() as $page)
+                            <li><a href="{{route('pages',['alias'=>$page->alias])}}" class="text-light">{{ $page->title }}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            <div class="input-group no-gutters text-light d-flex justify-content-end">
+                <span>2019 © Все права защищены.</span>
+            </div>
+        </div>
+    </div>
 </section>
 
 

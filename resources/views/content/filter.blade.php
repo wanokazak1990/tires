@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label> {{$attr}}</label>
                                 <select 
-                                    class="filter-attribute" 
+                                    class="filter-attribute form-control" 
                                     name="attribute[{{$a_key}}]" 
                                 >
                                     <option selected value="0">Любой</option>
@@ -77,7 +77,7 @@
                 {{Form::open(['url'=>route('search'),'class'=>'filter-form'])}}
                         <div class="form-group">
                             <label>Марка</label>
-                            <select name="vendor" class="width-400" id="filter-vendor" url="{{route('filter')}}">
+                            <select name="vendor" class="width-400 form-control" id="filter-vendor" url="{{route('filter')}}">
                                 <option selected disabled></option>
                                 @foreach(App\hm_car_filter::getBrands() as $brand)
                                     <option value="{{$brand}}">{{$brand}}</option>
@@ -87,21 +87,21 @@
 
                         <div class="form-group">
                             <label>Модель</label>
-                            <select name="car" class="width-400" id="filter-car" url="{{route('filter')}}">
+                            <select name="car" class="width-400 form-control" id="filter-car" url="{{route('filter')}}">
                                 <option selected disabled></option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>Год</label>
-                            <select name="year" class="width-400" id="filter-year" url="{{route('filter')}}">
+                            <select name="year" class="width-400 form-control" id="filter-year" url="{{route('filter')}}">
                                 <option selected disabled></option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>Исполнение</label>
-                            <select name="modification" class="width-400" id="filter-modification" url="{{route('filter')}}">
+                            <select name="modification" class="width-400 form-control" id="filter-modification" url="{{route('filter')}}">
                                 <option selected disabled></option>
                             </select>
                         </div>

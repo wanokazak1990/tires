@@ -54,6 +54,7 @@ class ContentController extends Controller
         }
         return view('content.index')
             ->with('info',$info)
+            ->with('map', $info->map_code)
             ->with('sliders',$sliders)
             ->with('products',$products)
             ->with('attributes',$attributes)
@@ -332,6 +333,14 @@ class ContentController extends Controller
         ->with('info', $info)
         ->with('page', $page)
         ->with('title', $title);
+    }
+
+    public function contacts(Request $request)
+    {
+        $info = hm_info::first();
+        return view('content.contacts')
+        ->with('info', $info)
+        ->with('title', 'Контакты');
     }
 
     public function siteList()

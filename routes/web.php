@@ -121,6 +121,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 		Route::delete('/','PageController@destroy')->name('pagedelete');
 	});
 
+	Route::group(['prefix'=>'orders'],function(){
+		Route::get('/','OrderController@index')->name('orderindex');
+		Route::match(['get','post'],'/{id}','OrderController@show')->name('ordershow');
+	});
+
 });
 
 Route::group(['prefix'=>'ajax'],function(){

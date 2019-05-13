@@ -119,7 +119,7 @@ $(document).ready(function(){
     })
 
     $(window).on('resize',function(){
-        log($(window).width())
+        
     })
     //МЕНЯЕТ СОСТОЯНИЕ КНОПКИ ДОБАВИТЬ В КОРЗИНУ
     function CheckProductOnCart(){

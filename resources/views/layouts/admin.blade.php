@@ -118,7 +118,10 @@
   <script type="text/javascript" src="{{asset('/assets/lib/ckeditor/ckeditor.js')}}"></script>
   <script type="text/javascript">
     if($("#editor").length>0)
-      CKEDITOR.replace('editor')
+      CKEDITOR.replace('editor',{
+        cloudServices_tokenUrl: 'https://example.com/cs-token-endpoint',
+        cloudServices_uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/'
+      })
   </script>
 
   <script>

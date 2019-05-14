@@ -78,6 +78,9 @@
 
 					{{Form::label('title','Статус')}}
 					{{Form::checkbox('status',1,($action->status)?'true':'')}}
+
+					{{Form::label('title','Текст')}}
+					{{Form::textarea('text',$action->text,['class'=>'form-control','id'=>'editor'])}}
 				</div>
 
 				<div class="col-md-6 col-sm-12 mb-3">
@@ -87,11 +90,6 @@
 					@endif
 					<br>{{Form::file('img')}}
 				</div>
-
-				<div class="col-12 mb-3">
-					{{Form::label('title','Текст')}}
-					{{Form::textarea('text',$action->text,['class'=>'form-control','id'=>'editor'])}}
-				</div>	
 
 				<div class="col-12 mb-3">
 					<div class="input-group no-gutters">

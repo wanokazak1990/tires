@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use SiteInfo;
 use App\hm_info;
+use App\visit;
 
 class InfoController extends Controller
 {
@@ -13,10 +14,13 @@ class InfoController extends Controller
     public function index(Request $request)
     {
     	$info = hm_info::first();
-
+        $visits = visit::limit(3)->orderBy('id','desc')->get();
+        $totalVisit = visit::sum('count');
     	return view('admin.info')
     	->with('info', $info)
         ->with($this->link)
+        ->with('visits',$visits)
+        ->with('totalVisit',$totalVisit)
     	->with('title','Основная информация');
     }
 

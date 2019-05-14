@@ -72,8 +72,7 @@
 	<div class="admin-editor container">
 		
 		{{Form::open(array('files'=>'true','url'=>route('ordershow',['id'=>$order->id])))}}
-		
-			<div class="row" > 
+			<div class="row"> 
 				<div class="col-12 pt-3 pb-3">
 					<h5>Статус заказа: {{$order->getStatus()}}</h5>
 					<h5>Трафик заказа: {{$order->getType()}}</h5>
@@ -151,20 +150,17 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-6"></div>
-				<div class="col-3 text-right">
-						{{Form::submit('Применить изменения', ['class'=>'btn btn-danger mt-3 btn-block'])}}
-				</div>
+
+			<div class="input-group no-gutters d-flex justify-content-between">
 				<div class="col-3">
-					<a href="{{Session::get('orderPrevPage')}}" class="btn btn-block btn-success mt-3">Назад</a>
+					{{Form::submit('Применить изменения', ['class'=>'btn btn-success btn-block mt-3'])}}
+				</div>
+				<div class="col-2">
+					<a href="{{Session::get('orderPrevPage')}}" class="btn btn-danger btn-block mt-3">Назад</a>
 				</div>
 			</div>
 
-
-
-		{{Form::close()}}
-		
+		{{Form::close()}}		
 	</div>
 	@endif
 

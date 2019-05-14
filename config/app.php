@@ -180,6 +180,9 @@ return [
         App\Providers\CartProvider::class,
         App\Providers\InfoProvider::class,
 
+        App\Providers\ImageProvider::class,
+
+
 
     ],
 
@@ -231,7 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Cart' => App\Helpers\Cart\CartFacade::class,
         'SiteInfo' => App\Helpers\SiteInfo\SiteInfoFacade::class,
-
+        'Image' => App\Helpers\Image\ImageFacade::class,
     ],
 
 ];

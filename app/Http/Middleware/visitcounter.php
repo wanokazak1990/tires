@@ -22,7 +22,7 @@ class visitcounter
         {
             Session::put('userSession',true);
             $visit = visit::whereDate('created_at',date('Y-m-d'))->first();
-            if(count($visit))
+            if(isset($visit->id))
             {
                 $visit->count+=1;
                 $visit->update();

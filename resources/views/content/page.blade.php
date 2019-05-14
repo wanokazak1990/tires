@@ -7,7 +7,7 @@
 		<div class="row content-area">
 			<div class="col-12">
 				@if(isset($page->img))
-					<img src="{{$page->getUrlImg()}}" width="100%">
+					<img src="{{Image::url($page->img)}}" width="100%">
 				@endif
 				<h2>
 					{{$page->title}}

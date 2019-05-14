@@ -17,7 +17,7 @@ Class SiteInfo
 		{
 			$info = info::first();
 
-			if (count($info) != 0)
+			if (isset($info->id))
 				Session::put('info', $info);
 			else
 				Session::put('info', new info());

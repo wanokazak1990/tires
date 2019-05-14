@@ -37,20 +37,53 @@ class hm_order extends Model
     {
     	switch ($this->status) {
     		case 1:
-    			return 'Новый заказ';
+    			return 'Новый заказ, связаться с клинтом';
     			break;
     		case 2:
-    			return 'В обработке';
+    			return 'Заказ обработан, ожидается клиент';
     			break;
     		case 3:
-    			return 'Закрытый заказ';
+    			return 'Заказ закрыт, товар выдан';
     			break;
     		case 4:
-    			return 'Отменёный заказ';
+    			return 'Заказ отменён, клиент отказался';
     			break;
     		
     		default:
     			return 'Неизвестно';
+    			break;
+    	}
+    }
+
+    public function statusArr()
+    {
+    	return [
+    		1=>'Заказ новый, связаться с клинтом',
+    		2=>'Заказ обработан, ожидается клиент',
+    		3=>'Заказ закрыт, товар выдан',
+    		4=>'Заказ отменён, клиент отказался'
+    	];
+    }
+
+    public function orderTotalPrice($format='numeric')
+    {
+    	$totalPrice = 0;
+    	if(!empty($this->products))
+    		foreach ($this->products as $key => $prod) 
+    		{
+    			$totalPrice+=($prod->count*$prod->saleprice);
+    		}
+
+    	switch ($format) {
+    		case 'numeric':
+    			return $totalPrice;
+    			break;
+    		case 'money':
+    			return number_format($totalPrice,0,'',' ');
+    			break;
+    		
+    		default:
+    			return $totalPrice;
     			break;
     	}
     }

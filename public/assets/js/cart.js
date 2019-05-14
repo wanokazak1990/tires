@@ -178,9 +178,15 @@ $(document).ready(function(){
         var parameters = form.serialize()
         $.when(ajax(parameters,url).then(function(data){
             data = JSON.parse(data)
-            alert(data)
-        }))
-    })
+            
+            var result = '';
+            $.each(data, function(index, value) {
+                result += value[0] + "\n";
+            });
+            alert(result)
+
+        }));
+    });
 
     preloadIndikators()
     CheckProductOnCart()

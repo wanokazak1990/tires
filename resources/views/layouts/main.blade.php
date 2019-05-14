@@ -16,8 +16,8 @@
     <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
     <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">
 
-    <link rel="shortcut icon" href="{{ $info->getTitleIconUrl() }}" type="image/png">
-    <title>{{ $info->name }}</title>
+    <link rel="shortcut icon" href="{{ SiteInfo::getInfo()->getTitleIconUrl() }}" type="image/png">
+    <title>{{ SiteInfo::getInfo()->name }}</title>
   </head>
   <body>
     <span style="display: none;" id="cartpreloader" url="{{route('cartindikator')}}"></span>
@@ -69,27 +69,27 @@
             <div class="container pt-3 pb-3">
                 <div class="row">
                     <div class="col-6 col-sm-2 justify-content-start d-flex ">
-                        <img src="{{ $info->getLogoUrl() }}" style="height:100px;width: 100px;display: block;">                        
+                        <img src="{{ SiteInfo::getInfo()->getLogoUrl() }}" style="height:100px;width: 100px;display: block;">                        
                     </div>
                     
                     <div class="col-6 col-sm-3 d-flex">
                         <div class="align-self-center">
-                            <div class="head-name">{{ $info->name }}</div>
-                            <div class="head-slogan">{{ $info->slogan }}</div>
+                            <div class="head-name">{{ SiteInfo::getInfo()->name }}</div>
+                            <div class="head-slogan">{{ SiteInfo::getInfo()->slogan }}</div>
                         </div>
                     </div> 
                     
                     <div class="col-12 col-sm-4 d-flex">
                         <div class="align-self-center text-center text-center" style="width: 100%;">
-                            <div class="head-name">{{ $info->hours }}</div>
-                            <div class="head-slogan">{{ $info->weekend }}</div>
+                            <div class="head-name">{{ SiteInfo::getInfo()->hours }}</div>
+                            <div class="head-slogan">{{ SiteInfo::getInfo()->weekend }}</div>
                         </div>                    
                     </div> 
 
                     <div class="col-12 col-sm-3 d-flex">
                         <div class="align-self-center head-info pl-3">
-                                <div class="head-phone">{{ $info->phone }}</div>
-                                <div class="head-address">{{ $info->address }}</div>
+                                <div class="head-phone">{{ SiteInfo::getInfo()->phone }}</div>
+                                <div class="head-address">{{ SiteInfo::getInfo()->address }}</div>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
         <div class="row top-menu" >
             <div class="container">
                 <nav class="p-0 navbar navbar-expand-lg navbar-light" >
-                    <a class="navbar-brand" href="#"></a>
+                    <a class="navbar-brand" href="javascript://"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -110,7 +110,7 @@
                                 <a class="nav-link" href="{{route('main')}}">Главная</a>
                             </li>                       
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="javascript://" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Каталог
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -127,7 +127,7 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="javascript://" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Сервис
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -151,7 +151,7 @@
 
                         <ul class="navbar-nav my-2 my-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link cart-in-nav" url="{{route('cartshow')}}">
+                                <a href="javascript://" class="nav-link cart-in-nav" url="{{route('cartshow')}}">
                                     <i class="icofont-cart"></i>
                                     <span class="cart-indikator">Корзина</span>
                                 </a>
@@ -225,14 +225,14 @@
                 <div class="col-md-4 col-sm-12 d-flex align-items-center">
                     <div class="input-group no-gutters d-flex align-items-center">
                         <div class="col-md-4 col-sm-12 d-flex align-items-center">
-                            <img src="{{ $info->getLogoUrl() }}" style="width: 100px; height: 100px;"> 
+                            <img src="{{ SiteInfo::getInfo()->getLogoUrl() }}" style="width: 100px; height: 100px;"> 
                         </div>
                         <div class="col-md-8 col-sm-12 py-3">
                             <div class="input-group no-gutters">
-                                <span class="h5">{{ $info->name }}</span>
+                                <span class="h5">{{ SiteInfo::getInfo()->name }}</span>
                             </div>
                             <div class="input-group no-gutters">
-                                {{ $info->slogan }}
+                                {{ SiteInfo::getInfo()->slogan }}
                             </div>
                         </div>
                     </div>
@@ -240,9 +240,9 @@
 
                 <div class="col-md-4 col-sm-12 d-flex align-items-center">
                     <ul class="list-unstyled m-0 py-3">
-                        <li>Режим работы: {{ $info->hours }}, {{ $info->weekend }}</li>
-                        <li>Телефон: {{ $info->phone }}</li>
-                        <li>Адрес компании: {{ $info->address }}</li>
+                        <li>Режим работы: {{ SiteInfo::getInfo()->hours }}, {{ SiteInfo::getInfo()->weekend }}</li>
+                        <li>Телефон: {{ SiteInfo::getInfo()->phone }}</li>
+                        <li>Адрес компании: {{ SiteInfo::getInfo()->address }}</li>
                     </ul>
                 </div>
 

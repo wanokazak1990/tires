@@ -52,6 +52,7 @@
                         <hr>
                         <h2>Новости</h2>
                     </div>
+
                     <div class="news-slider col-12">
                         @foreach($news as $new)
                         <div class="item-block">
@@ -59,7 +60,8 @@
                                 <div class="date">
                                     {{$new->created_at->format('d.m.Y')}}
                                 </div>
-                                <img src="{{asset($new->getUrlImg())}}">
+                                <div style="width: 100%; height: 200px; background: url('{{asset($new->getUrlImg())}}'); background-size: cover; background-position: center;">
+                                </div>
                                 <div class="title">
                                     {{$new->title}}
                                 </div>
@@ -75,6 +77,30 @@
                         </div>
                         @endforeach
                     </div>
+                    
+                    <!-- @foreach($news as $key => $new)
+                        @if($key < 3)
+                        <div class="col-sm-12 col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-img-top border-bottom" style="width: 100%; height: 200px;">
+                                    <img class="" src="{{ asset($new->getUrlImg()) }}" alt="News Image" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $new->title }}</h5>
+                                    <p class="card-text">{{ mb_strimwidth($new->text,0,216,'...') }}</p>
+                                </div>
+                                <div class="text-right mr-3 mb-2">
+                                    <a href="{{route('itemnew',['id'=>$new->id])}}" class="btn btn-light">
+                                        Подробнее
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @else
+                            @break
+                        @endif
+                    @endforeach -->
+
                 </div>
             </div>
         </div>
@@ -96,8 +122,8 @@
             </div>
             <div class="row" style="">
                 @foreach($feedbacks as $feed)
-                <div class="col-sm-4 text-center" >
-                  <div class="feedback-block" style="">
+                <div class="col-sm-4 text-center">
+                  <div class="feedback-block pt-3" style="">
                     <span class="feedback-name">{{$feed->name}}</span>
                     <p class="feedback-message">
                       {{$feed->text}}

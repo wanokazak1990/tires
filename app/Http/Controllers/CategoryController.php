@@ -7,21 +7,24 @@ use App\hm_category as category;
 
 class CategoryController extends Controller
 {
+    public $link = ['categoryActive'=>'active'];
+
     public function index()
     {
     	return view('admin.category')
-        	->with('title','Список категорий')
-            ->with('categoryActive', 'active')
-        	->with('list',category::get());
+        	->with('title', 'Список категорий')
+            ->with($this->link)
+        	->with('list', category::get());
     }
 
     public function create()
     {
     	$category = new category();
     	return view('admin.category')
-    	->with('title','Добавить категорию')
-    	->with('category',$category)
-    	->with('route',route('catstore'));
+    	->with('title', 'Добавить категорию')
+    	->with('category', $category)
+        ->with($this->link)
+    	->with('route', route('catstore'));
     }
 
     public function store(Request $request)
@@ -36,9 +39,10 @@ class CategoryController extends Controller
     {
     	$category=category::find($id);
     	return view('admin.category')
-    	->with('title','Редактировать категорию')
-    	->with('category',$category)
-    	->with('route',route('catupdate',['id'=>$id]));
+    	->with('title', 'Редактировать категорию')
+    	->with('category', $category)
+        ->with($this->link)
+    	->with('route', route('catupdate',['id'=>$id]));
     }
 
     public function update($id,Request $request)

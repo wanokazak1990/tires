@@ -9,12 +9,14 @@ use App\hm_attribute_value as value;
 
 class AttributeController extends Controller
 {
+    public $link = ['attributeActive'=>'active'];
+
     public function index()
     {
     	return view('admin.attribute')
-        	->with('title','Список атрибутов')
-            ->with('attributeActive', 'active')
-        	->with('list',attribute::with('category')->with('values')->orderBy('category_id')->get());
+        	->with('title', 'Список атрибутов')
+            ->with($this->link)
+        	->with('list', attribute::with('category')->with('values')->orderBy('category_id')->get());
     }
 
     public function create()
@@ -22,10 +24,11 @@ class AttributeController extends Controller
     	$attr = new attribute();
     	$category = category::pluck('name','id');
     	return view('admin.attribute')
-    	->with('title','Добавить атрибут')
-    	->with('attribute',$attr)
-    	->with('category',$category)
-    	->with('route',route('attrstore'));
+    	->with('title', 'Добавить атрибут')
+    	->with('attribute', $attr)
+    	->with('category', $category)
+        ->with($this->link)
+    	->with('route', route('attrstore'));
     }
 
     public function store(Request $request)
@@ -55,10 +58,11 @@ class AttributeController extends Controller
     	$attribute=attribute::with('values')->find($id);
     	$category = category::pluck('name','id');
     	return view('admin.attribute')
-    	->with('title','Редактировать атрибут')
-    	->with('attribute',$attribute)
-    	->with('category',$category)
-    	->with('route',route('attrupdate',['id'=>$id]));
+    	->with('title', 'Редактировать атрибут')
+    	->with('attribute', $attribute)
+    	->with('category', $category)
+        ->with($this->link)
+    	->with('route', route('attrupdate',['id'=>$id]));
     }
 
     public function update($id,Request $request)

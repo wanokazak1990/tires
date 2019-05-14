@@ -9,12 +9,14 @@ use Storage;
 
 class SliderController extends Controller
 {
+    public $link = ['sliderlistActive'=>'active'];
+
     public function index()
     {
     	return view('admin.sliderlist')
         	->with('title','Список слайдов')
         	->with('list',slider::get())
-            ->with('sliderlistActive', 'active');
+            ->with($this->link);
     }
 
     public function create()
@@ -23,6 +25,7 @@ class SliderController extends Controller
     	return view('admin.sliderlist')
     	->with('title','Добавить слайд')
     	->with('slider',$slider)
+        ->with($this->link)
     	->with('route',route('sliderstore'));
     }
 
@@ -42,6 +45,7 @@ class SliderController extends Controller
     	return view('admin.sliderlist')
     	->with('title','Редактировать слайд')
     	->with('slider',$slider)
+        ->with($this->link)
     	->with('route',route('sliderupdate',['id'=>$id]));
     }
 

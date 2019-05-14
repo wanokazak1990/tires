@@ -23,6 +23,7 @@ class PageController extends Controller
 
     	return view('admin.pages')
     	->with('page', $page)
+        ->with($this->link)
     	->with('route',route('pageput'))
     	->with('title','Добавить страницу');
     }
@@ -49,6 +50,7 @@ class PageController extends Controller
 
     	return view('admin.pages')
     	->with('page', $page)
+        ->with($this->link)
     	->with('route',route('pageupdate',['id'=>$id]))
     	->with('title','Добавить страницу');
     }

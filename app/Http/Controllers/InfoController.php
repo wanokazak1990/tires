@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use SiteInfo;
 use App\hm_info;
 
 class InfoController extends Controller
@@ -15,7 +16,7 @@ class InfoController extends Controller
 
     	return view('admin.info')
     	->with('info', $info)
-    	->with($this->link)
+        ->with($this->link)
     	->with('title','Основная информация');
     }
 
@@ -25,6 +26,7 @@ class InfoController extends Controller
 
     	return view('admin.infoedit')
     	->with('info', $info)
+    	->with($this->link)
     	->with('route', route('infoupdate'))
     	->with('title','Редактирование основной информации');
     }

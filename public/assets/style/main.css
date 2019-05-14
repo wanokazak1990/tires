@@ -214,7 +214,7 @@ a{
   padding-top: 20px;
 }
 .feedback-block{
-  border-top:1px solid #ddd;
+  /*border-top:1px solid #ddd;*/
   margin-bottom: 30px;
   font-weight: 300;
   color: #444;

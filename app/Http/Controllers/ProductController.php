@@ -9,23 +9,26 @@ use App\hm_product_attribute as pattribute;
 
 class ProductController extends Controller
 {
+    public $link = ['productActive'=>'active'];
+
     public function index()
     {
     	$list = product::with('category')->with('attributes')->orderBy('category_id','DESC')->paginate(env('PAGINATE'));
     	
     	return view('admin.product')
-        	->with('title','Список продуктов')
-            ->with('productActive', 'active')
-        	->with('list',$list);
+        	->with('title', 'Список продуктов')
+            ->with($this->link)
+        	->with('list', $list);
     }
 
     public function create()
     {
     	$product = new product();
     	return view('admin.productadd')
-    	->with('title','Добавить продукт')
-    	->with('product',$product)
-    	->with('route',route('tovarstore'));
+    	->with('title', 'Добавить продукт')
+    	->with('product', $product)
+        ->with($this->link)
+    	->with('route', route('tovarstore'));
     }
 
     public function store(Request $request)
@@ -51,9 +54,10 @@ class ProductController extends Controller
     {
     	$product=product::with('attributes')->find($id);
     	return view('admin.productadd')
-    	->with('title','Редактировать продукт')
-    	->with('product',$product)
-    	->with('route',route('tovarupdate',['id'=>$id]));
+    	->with('title', 'Редактировать продукт')
+    	->with('product', $product)
+        ->with($this->link)
+    	->with('route', route('tovarupdate',['id'=>$id]));
     }
 
     public function update($id,Request $request)

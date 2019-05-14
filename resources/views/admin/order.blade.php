@@ -116,7 +116,7 @@
 						@foreach($order->products as $sale)
 							<tr>
 								<td>
-									<img src="{{$sale->originalProduct->getUrlImg()}}" style="width: 100px;height: auto;">
+									<img src="{{Image::url($sale->originalProduct->img)}}" style="width: 100px;height: auto;">
 								</td>
 								<td>
 									<h4>{{$sale->originalProduct->name}}</h4>

@@ -70,7 +70,7 @@
 				<div class="col-md-6 col-sm-12 mb-3">
 					{{Form::label('title','Изображение')}}
 					@if(!empty($slider->img))
-						<img src="{{ $slider->getUrlImg() }}" class="mb-2">
+						<img src="{{ Image::url($slider->img) }}" class="mb-2">
 					@endif
 					<br>{{Form::file('img')}}
 				</div>	

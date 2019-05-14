@@ -66,7 +66,7 @@
 				<div class="col-md-4 col-sm-12 mb-3">
 					{{Form::label('title','Изображение')}}
 					@if(!empty($product->img))
-						<img src="{{ $product->getUrlImg() }}" class="mb-2">
+						<img src="{{ Image::url($product->img) }}" class="mb-2">
 					@endif
 					<br>{{Form::file('img')}}
 				</div>

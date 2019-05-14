@@ -7,21 +7,24 @@ use App\hm_new as news;
 
 class NewsController extends Controller
 {
+    public $link = ['newslistActive'=>'active'];
+
     public function index()
     {
     	return view('admin.newlist')
-        	->with('title','Список новостей')
-            ->with('newslistActive', 'active')
-        	->with('list',news::orderBy('id','DESC')->paginate(env('PAGINATE')));
+        	->with('title', 'Список новостей')
+            ->with($this->link)
+        	->with('list', news::orderBy('id','DESC')->paginate(env('PAGINATE')));
     }
 
     public function create()
     {
     	$new = new news();
     	return view('admin.newlist')
-    	->with('title','Добавить новость')
-    	->with('new',$new)
-    	->with('route',route('newstore'));
+    	->with('title', 'Добавить новость')
+    	->with('new', $new)
+        ->with($this->link)
+    	->with('route', route('newstore'));
     }
 
     public function store(Request $request)
@@ -38,9 +41,10 @@ class NewsController extends Controller
     {
     	$new=news::find($id);
     	return view('admin.newlist')
-    	->with('title','Редактировать новость')
-    	->with('new',$new)
-    	->with('route',route('newupdate',['id'=>$id]));
+    	->with('title', 'Редактировать новость')
+    	->with('new', $new)
+        ->with($this->link)
+    	->with('route', route('newupdate',['id'=>$id]));
     }
 
     public function update($id,Request $request)

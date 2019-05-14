@@ -7,12 +7,14 @@ use App\hm_feedback as feedback;
 
 class FeedbackController extends Controller
 {
+    public $link = ['feedbackActive'=>'active'];
+
     public function index()
     {
     	return view('admin.feedback')
         	->with('title','Список отзывов')
         	->with('list',feedback::get())
-            ->with('feedbackActive', 'active');
+            ->with($this->link);
     }
 
     public function create()
@@ -21,6 +23,7 @@ class FeedbackController extends Controller
     	return view('admin.feedback')
     	->with('title','Добавить отзыв')
     	->with('feedback',$feedback)
+        ->with($this->link)
     	->with('route',route('feedbackstore'));
     }
 
@@ -38,6 +41,7 @@ class FeedbackController extends Controller
     	return view('admin.feedback')
     	->with('title','Редактировать отзыв')
     	->with('feedback',$feedback)
+        ->with($this->link)
     	->with('route',route('feedbackupdate',['id'=>$id]));
     }
 

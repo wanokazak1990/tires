@@ -162,9 +162,14 @@ $(document).ready(function(){
     }
 
     $(document).on('click','#addorder',function(){
-        $(this).closest('.modal').modal('hide')
-        $('#modalOrder').modal('show')
-    })
+        if ($(this).closest('.modal').find('.cart-product .item_product').length == 0)
+            alert('Ваша корзина пуста.');
+        else
+        {
+            $(this).closest('.modal').modal('hide');
+            $('#modalOrder').modal('show');
+        }
+    });
 
     //оформление заказа
     $(document).on('click','#ordermaker',function(){

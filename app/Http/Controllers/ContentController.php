@@ -17,6 +17,8 @@ use App\hm_service as service;
 use App\hm_info;
 use App\hm_page;
 
+use SiteInfo;
+
 use DB;
 use Cart;
 use Session;
@@ -28,11 +30,9 @@ class ContentController extends Controller
         $attributes = array();
         $products = array();
         $sliders = slider::where('status','>','0')->get();
-        $news = news::where('status','>','0')->get();
+        $news = news::where('status','>','0')->orderBy('id', 'desc')->limit(9)->get();
         $feedbacks = feedback::where('status','>','0')->get();
         $categories = category::get();
-
-        $info = hm_info::first();
 
         if(is_object($categories) && count($categories)>0)
         {   
@@ -53,8 +53,7 @@ class ContentController extends Controller
             }
         }
         return view('content.index')
-            ->with('info',$info)
-            ->with('map', $info->map_code)
+            ->with('map', SiteInfo::getInfo()->map_code)
             ->with('sliders',$sliders)
             ->with('products',$products)
             ->with('attributes',$attributes)
@@ -64,9 +63,7 @@ class ContentController extends Controller
     }
 
     public function productlist(Request $request)
-    {   
-        $info = hm_info::first();
-        
+    {           
         $sliders = slider::where('status','>','0')->get();
 
         $data = $request->all();
@@ -113,7 +110,6 @@ class ContentController extends Controller
         $catName = $catName[$data['category_id']]->name;
         
         return view('content.productlist')
-            ->with('info', $info)
             ->with('categories',$categories)
             ->with('attributes',$attributes)
             ->with('products',$products)
@@ -130,8 +126,6 @@ class ContentController extends Controller
         unset($data['_token']);
 
         $search = array();
-
-        $info = hm_info::first();
 
         if(count($data)==4)
         {   
@@ -235,7 +229,6 @@ class ContentController extends Controller
 
         }
         return view('content.search')
-            ->with('info', $info)
             ->with('search',$search)
             ->with('attributes',$attributes)
             ->with('categories',$categories);
@@ -295,9 +288,8 @@ class ContentController extends Controller
     {
         $actions = action::get();
         $title = 'Список акций';
-        $info = hm_info::first();
+        
         return view('content.action')
-            ->with('info', $info)
             ->with('list',$actions)
             ->with('title',$title);
     }
@@ -306,9 +298,8 @@ class ContentController extends Controller
     {
         $action = action::find($id);
         $title = $action->name;
-        $info = hm_info::first();
+        
         return view('content.action')
-            ->with('info', $info)
             ->with('action',$action)
             ->with('title',$title);
     }
@@ -317,9 +308,8 @@ class ContentController extends Controller
     {
         $service = service::where('alias',$alias)->first();
         $title = isset($service->name)?$service->name:'Страница не найдена';
-        $info = hm_info::first();
+        
         return view('content.service')
-        ->with('info', $info)
         ->with('service',$service)
         ->with('title',$title);
     }
@@ -328,36 +318,31 @@ class ContentController extends Controller
     {
         $page = hm_page::where('alias', $alias)->first();
         $title = isset($page->title) ? $page->title : 'Страница не найдена';
-        $info = hm_info::first();
+        
         return view('content.page')
-        ->with('info', $info)
         ->with('page', $page)
         ->with('title', $title);
     }
 
     public function contacts(Request $request)
     {
-        $info = hm_info::first();
         return view('content.contacts')
-        ->with('info', $info)
         ->with('title', 'Контакты');
     }
 
     public function siteList()
     {
-        $list = news::where('status',1)->paginate(env('PAGINATE'));
-        $info = hm_info::first();
+        $list = news::where('status',1)->orderBy('id', 'DESC')->paginate(env('PAGINATE'));
+        
         return view('content.newslist')
-        ->with('info', $info)
         ->with('list',$list);
     }
 
     public function siteItem($id)
     {
         $new = news::find($id);
-        $info = hm_info::first();
+        
         return view('content.newslist')
-        ->with('info', $info)
         ->with('new',$new);
     }
 }

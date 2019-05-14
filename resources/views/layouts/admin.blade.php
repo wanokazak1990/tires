@@ -94,6 +94,7 @@
         <a class="nav-item nav-link {{ $productActive or '' }}" href="{{route('tovarlist')}}">Продукты</a>
         <a class="nav-item nav-link {{ $actionActive or '' }}" href="{{route('actionindex')}}">Акции</a>
         <a class="nav-item nav-link {{ $serviceActive or '' }}" href="{{route('serviceindex')}}">Сервис</a>
+        <a class="nav-item nav-link {{ $orderActive or '' }}" href="{{route('orderindex')}}">Заказы</a>
         <a class="nav-item nav-link text-warning" href="{{route('main')}}" target="_blank">Перейти в магазин</a>
       </div>
     </div>

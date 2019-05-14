@@ -19,6 +19,9 @@
 
 	<div class="col-12">
 		@if(count($pagesList))
+			<style>
+				img{max-width: 100%;}
+			</style>
 			<table class="table table-hover table-bordered">
 				<thead class="thead-dark">
 					<tr>

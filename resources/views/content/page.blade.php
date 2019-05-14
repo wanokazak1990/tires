@@ -4,10 +4,10 @@
 <section class="container">
 
 	@if(isset($page))
-		<div class="row itemnews">
+		<div class="row content-area">
 			<div class="col-12">
 				@if(isset($page->img))
-					<img src="{{$page->getUrlImg()}}" width="50%">
+					<img src="{{$page->getUrlImg()}}" width="100%">
 				@endif
 				<h2>
 					{{$page->title}}

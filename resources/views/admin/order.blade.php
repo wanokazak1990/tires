@@ -150,6 +150,7 @@
 				</div>
 			</div>
 
+
 			<div class="input-group no-gutters d-flex justify-content-between">
 				<div class="col-3">
 					{{Form::submit('Применить изменения', ['class'=>'btn btn-success btn-block mt-3'])}}

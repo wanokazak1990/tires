@@ -81,7 +81,7 @@
 					{{Form::text('alias',$new->alias,['class'=>'form-control mb-2'])}}
 
 					{{Form::label('title','Текст')}}
-					{{Form::textarea('text',$new->text,['class'=>'form-control mb-2'])}}
+					{{Form::textarea('text',$new->text,['class'=>'form-control mb-2','id'=>'editor'])}}
 
 					{{Form::label('title','Статус')}}
 					{{Form::checkbox('status',1,($new->status)?'true':'')}}

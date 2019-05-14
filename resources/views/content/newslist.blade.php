@@ -11,7 +11,7 @@
 			</div>
 			<div class="col-8">
 				<h2>{{$item->title}}</h2>
-				<p class="text-justify">{{mb_strimwidth($item->text,0,420,'...')}}</p>
+				<p class="text-justify">{!!mb_strimwidth($item->text,0,420,'...')!!}</p>
 				<div class="text-right">
 					<a href="{{route('itemnew',['id'=>$item->id])}}" class="btn btn-warning">
 						Подробнее
@@ -26,15 +26,15 @@
 	@endif
 
 	@if(isset($new))
-		<div class="row itemnews">
+		<div class="row content-area pb-4">
 			<div class="col-12">
-				<img src="{{$new->getUrlImg()}}" style="float: left;padding-right: 15px;padding-bottom: 15px;">
+				<img src="{{$new->getUrlImg()}}" style="padding-bottom: 15px;">
 
 				<h2>
 					{{$new->title}}
 				</h2>
 				<p class="text-justify">
-					{{$new->text}}
+					{!!$new->text!!}
 				</p>
 				<div class="text-right" >
 					<a href="{{url()->previous()}}" class="btn btn-warning">

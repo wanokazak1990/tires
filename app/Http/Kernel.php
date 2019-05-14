@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\adminUser::class,
         'cart' => \App\Http\Middleware\cartProduct::class,
         'info' => \App\Http\Middleware\ContentInfo::class,
+        'visit' => \App\Http\Middleware\visitcounter::class,
     ];
 }

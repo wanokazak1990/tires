@@ -144,6 +144,9 @@ a{
     }
 }
 
+.content-area img{
+    max-width: 100%;
+}
 
 /*NEWS*/
 .news-slider {

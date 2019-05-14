@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['middleware' => 'info'], function() {
+Route::group(['middleware' => ['info','visit']], function() {
 	Route::get('/', 'ContentController@index')->name('main');
 	Route::match(['get', 'post'],'/content/product','ContentController@productlist')->name('productlist');
 	Route::post('/content/search','ContentController@search')->name('search');

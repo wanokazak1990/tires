@@ -152,11 +152,12 @@
 			</div>
 
 			<div class="row">
+				<div class="col-6"></div>
 				<div class="col-3 text-right">
-						{{Form::submit('Применить изменения', ['class'=>'btn btn-danger mt-3'])}}
+						{{Form::submit('Применить изменения', ['class'=>'btn btn-danger mt-3 btn-block'])}}
 				</div>
 				<div class="col-3">
-					<a href="{{Session::get('orderPrevPage')}}" class="btn btn-success mt-3">Назад</a>
+					<a href="{{Session::get('orderPrevPage')}}" class="btn btn-block btn-success mt-3">Назад</a>
 				</div>
 			</div>
 

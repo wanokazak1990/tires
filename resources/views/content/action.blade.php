@@ -23,9 +23,9 @@
 	@endif
 
 	@if(isset($action))
-		<div class="row   pb-4">
+		<div class="row content-area pb-4">
 			<div class="col-12">
-				<img src="{{$action->getUrlImg()}}" style="float: left;padding-right: 15px;padding-bottom: 15px;width: 100%;">
+				<img src="{{$action->getUrlImg()}}" style="padding-bottom: 15px;width: 100%;height: auto;">
 
 				<h2>
 					{{$action->name}}

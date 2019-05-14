@@ -11,12 +11,15 @@ use Session;
 
 class OrderController extends Controller
 {
+    public $link = ['orderActive'=>'active'];
+
     public function index()
     {
     	Session::forget('orderPrevPage');
     	$orders = order::with('client')->orderBy('status')->orderBy('id')->paginate(30);
     	return view('admin.order')
 	    	->with('title','Список заказов')
+            ->with($this->link)
 	    	->with('list',$orders);
     }
 
@@ -43,6 +46,7 @@ class OrderController extends Controller
 	    }
 	    return view('admin.order')
 		    	->with('title','Заказ №'.$order->id.' от '.$order->created_at->format('d.m.Y h:m'))
+                ->with($this->link)
 		    	->with('order',$order);
     }
 }

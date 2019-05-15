@@ -330,3 +330,9 @@ a{
     position: absolute;
     bottom: 0px;
 }
+
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #f8f9fa !important;
+    background-color: #343a40 !important;
+}

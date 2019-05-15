@@ -66,7 +66,7 @@
                                     {{$new->title}}
                                 </div>
                                 <div class="description">
-                                    {{mb_strimwidth($new->text,0,216,'...')}}
+                                    {!! mb_strimwidth($new->text,0,216,'...') !!}
                                 </div>
                                 <div class="text-right mt-3" >
                                     <a href="{{route('itemnew',['id'=>$new->id])}}" >

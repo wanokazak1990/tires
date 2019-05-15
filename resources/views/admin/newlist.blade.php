@@ -30,7 +30,7 @@
 					<tr class="col-4 p-0 content-item ">
 						<td style="width: 200px;">
 							@if($item->img)
-								<img src="{{ $item->getUrlImg() }}">
+								<img src="{{ Image::url($item->img) }}">
 							@endif
 						</td>
 						<td>
@@ -90,7 +90,7 @@
 				<div class="col-md-6 col-sm-12 mb-3">
 					{{Form::label('title','Изображение')}}
 					@if(!empty($new->img))
-						<img src="{{ $new->getUrlImg() }}">
+						<img src="{{ Image::url($new->img) }}">
 					@endif
 					<br>{{Form::file('img')}}
 				</div>	

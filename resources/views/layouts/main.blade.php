@@ -69,7 +69,8 @@
             <div class="container pt-3 pb-3">
                 <div class="row">
                     <div class="col-6 col-sm-2 justify-content-start d-flex ">
-                        <img src="{{ SiteInfo::getInfo()->getLogoUrl() }}" style="height:100px;width: 100px;display: block;">                        
+                        <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="height:100px;width: 100px;display: block;">
+                        
                     </div>
                     
                     <div class="col-6 col-sm-3 d-flex">
@@ -225,7 +226,7 @@
                 <div class="col-md-4 col-sm-12 d-flex align-items-center">
                     <div class="input-group no-gutters d-flex align-items-center">
                         <div class="col-md-4 col-sm-12 d-flex align-items-center">
-                            <img src="{{ SiteInfo::getInfo()->getLogoUrl() }}" style="width: 100px; height: 100px;"> 
+                            <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="width: 100px; height: 100px;"> 
                         </div>
                         <div class="col-md-8 col-sm-12 py-3">
                             <div class="input-group no-gutters">

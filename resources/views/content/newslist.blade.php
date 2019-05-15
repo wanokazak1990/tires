@@ -7,7 +7,7 @@
 		@foreach($list as $item)
 		<div class="row newslist">
 			<div class="col-4">
-				<img src="{{$item->getUrlImg()}}">
+				<img src="{{Image::url($item->img)}}">
 			</div>
 			<div class="col-8">
 				<h2>{{$item->title}}</h2>
@@ -28,7 +28,7 @@
 	@if(isset($new))
 		<div class="row content-area pb-4">
 			<div class="col-12">
-				<img src="{{$new->getUrlImg()}}" style="padding-bottom: 15px;">
+				<img src="{{Image::url($new->img)}}" style="padding-bottom: 15px;">
 
 				<h2>
 					{{$new->title}}

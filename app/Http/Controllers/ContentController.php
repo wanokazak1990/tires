@@ -22,11 +22,18 @@ use SiteInfo;
 use DB;
 use Cart;
 use Session;
+use Image;
 
 class ContentController extends Controller
 {
+    public function upload()
+    {
+        echo "string";
+    }
+    
     public function index()
     {   
+        
         $attributes = array();
         $products = array();
         $sliders = slider::where('status','>','0')->get();

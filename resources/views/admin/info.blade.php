@@ -68,7 +68,7 @@
 					<td>Основной логотип:</td>
 					<td>
 						@if(isset($info->logo))
-							<img src="{{ $info->getLogoUrl() }}" width="100">
+							<img src="{{ Image::url($info->img) }}" width="100">
 						@else
 							Логотип не загружен
 						@endif
@@ -78,7 +78,7 @@
 					<td>Иконка заголовка:</td>
 					<td>
 						@if(isset($info->title_icon))
-							<img src="{{ $info->getTitleIconUrl() }}" width="100">
+							<img src="{{ Image::url($info->title_icon) }}" width="100">
 						@else
 							Иконка не загружена
 						@endif

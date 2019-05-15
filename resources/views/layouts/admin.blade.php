@@ -78,7 +78,9 @@
   <body class="bg-light">
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <a class="navbar-brand" href="{{route('admin')}}"><img src="/assets/images/logo.jpg" width="50" height="50"></a>
+    <a class="navbar-brand" href="{{route('admin')}}">
+      <img src="/assets/images/logo.jpg" width="50" height="50">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -118,10 +120,7 @@
   <script type="text/javascript" src="{{asset('/assets/lib/ckeditor/ckeditor.js')}}"></script>
   <script type="text/javascript">
     if($("#editor").length>0)
-      CKEDITOR.replace('editor',{
-        cloudServices_tokenUrl: 'https://example.com/cs-token-endpoint',
-        cloudServices_uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/'
-      })
+       CKEDITOR.replace( 'editor');
   </script>
 
   <script>

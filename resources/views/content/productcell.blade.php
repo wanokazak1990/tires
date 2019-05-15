@@ -14,7 +14,7 @@
             {{$item->name}}
         </div>
         <div class="product-img">
-            <img src="{{$item->getUrlImg()}}">
+            <img src="{{Image::url($item->img)}}">
         </div>
         <div class="product-info">
             <table class="product-table">

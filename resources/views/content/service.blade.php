@@ -7,7 +7,7 @@
 		<div class="row itemnews">
 			<div class="col-12">
 				@if(isset($service->img))
-					<img src="{{$service->getUrlImg()}}">
+					<img src="{{Image::url($service->img)}}">
 				@endif
 				<h2>
 					{{$service->name}}

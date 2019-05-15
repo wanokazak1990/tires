@@ -13,7 +13,7 @@
         </ol>
         <div class="carousel-inner">
             @foreach($sliders as $key => $slide)
-                <div class="carousel-item {{ ($key==0)?'active':'' }}" style="background: url('{{ $slide->getUrlImg() }}');">
+                <div class="carousel-item {{ ($key==0)?'active':'' }}" style="background: url('{{ Image::url($slide->img) }}');">
                     
                 </div>
             @endforeach

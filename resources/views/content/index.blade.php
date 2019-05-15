@@ -60,7 +60,7 @@
                                 <div class="date">
                                     {{$new->created_at->format('d.m.Y')}}
                                 </div>
-                                <div style="width: 100%; height: 200px; background: url('{{asset($new->getUrlImg())}}'); background-size: cover; background-position: center;">
+                                <div style="width: 100%; height: 200px; background: url('{{Image::url($new->img)}}'); background-size: cover; background-position: center;">
                                 </div>
                                 <div class="title">
                                     {{$new->title}}

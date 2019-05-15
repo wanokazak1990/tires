@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::match(['get','post'],'ContentController@upload');
 
 Route::group(['middleware' => ['info','visit']], function() {
 	Route::get('/', 'ContentController@index')->name('main');

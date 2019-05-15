@@ -4,10 +4,15 @@
 <section class="container">
 	
 	@if(isset($list))
-		<h2>{{$title}}</h2>
+		<div class="row content-area">
+			<div class="col-12">
+				<h2 class="area-title">{{$title}}</h2>
+			</div>
+		</div>
+		<div class="row">
 		@foreach($list as $item)
-		<div class="row pb-4 pt-4">
-			<div class="col-12 col-sm-12 col-md-6">
+		
+			<div class="col-12 col-sm-12 col-md-6 mb-4">
 				<div style="position: relative;">
 					<h2 style="padding:0 15px;position: absolute;top: 15px; left: 0px; background: rgba(255,255,255,0.5);width: 100%;">{{$item->name}}</h2>
 					<img src="{{Image::url($item->img)}}" style="width: 100%;height: auto;">
@@ -18,22 +23,23 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		
 		@endforeach
+		</div>
 	@endif
 
 	@if(isset($action))
 		<div class="row content-area pb-4">
 			<div class="col-12">
-				<img src="{{Image::url($action->img)}}" style="padding-bottom: 15px;width: 100%;height: auto;">
+				<img src="{{Image::url($action->img)}}" class="area-img">
 
-				<h2>
+				<h2 class="area-title">
 					{{$action->name}}
 				</h2>
-				<p class="text-justify">
+				<div>
 					{!!$action->text!!}
-				</p>
-				<div class="text-right" >
+				</div>
+				<div class="text-right pt-3" >
 					<a href="{{url()->previous()}}" class="btn btn-warning">
 						Назад
 					</a>

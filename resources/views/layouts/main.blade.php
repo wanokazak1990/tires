@@ -23,11 +23,11 @@
     <span style="display: none;" id="cartpreloader" url="{{route('cartindikator')}}"></span>
 
 <section class="header">
-    <div class="container-fluid  ">
-        <div class="row ">
+    <div class="container-fluid">
+        <div class="row">
             <div class="container" style="border-bottom:1px solid #ccc;">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                         <nav class="nav p-0">
                             @foreach(App\hm_page::where('status','>','0')->get() as $page)
                                 <a class="nav-link" href="{{route('pages',['alias'=>$page->alias])}}">
@@ -35,31 +35,6 @@
                                 </a>
                             @endforeach
                         </nav>
-                    </div>
-
-                    <div class="col-4 ">
-                        <!--nav class="nav justify-content-end">
-                            @if(isset(Auth::user()->name))
-                                <a class="nav-link" href="">
-                                    Личный кабинет
-                                </a>
-                                <a 
-                                    class="nav-link" 
-                                    href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    Выход
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            @else
-                                <a class="nav-link" href="{{route('login')}}">
-                                    Вход
-                                </a>
-                            @endif
-                        </nav-->
                     </div>
                 </div>
             </div>

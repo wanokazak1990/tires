@@ -21,7 +21,7 @@ class InfoController extends Controller
         ->with($this->link)
         ->with('visits',$visits)
         ->with('totalVisit',$totalVisit)
-    	->with('title','Основная информация');
+    	->with('title','Основные настройки');
     }
 
     public function edit(Request $request)
@@ -32,7 +32,7 @@ class InfoController extends Controller
     	->with('info', $info)
     	->with($this->link)
     	->with('route', route('infoupdate'))
-    	->with('title','Редактирование основной информации');
+    	->with('title','Редактирование настроек');
     }
 
     public function update(Request $request)

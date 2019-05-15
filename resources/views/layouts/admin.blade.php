@@ -82,24 +82,53 @@
     <a class="navbar-brand" href="{{route('admin')}}">
       <img src="/assets/images/logo.jpg" width="50" height="50">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#adminNavbarNavAltMarkup" aria-controls="adminNavbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse justify-content-between" id="adminNavbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link {{ $infoActive or '' }}" href="{{route('infoindex')}}">Основная информация</a>
-        <a class="nav-item nav-link {{ $pagesActive or '' }}" href="{{route('pageindex')}}">Страницы сайта</a>
-        <a class="nav-item nav-link {{ $sliderlistActive or '' }}" href="{{route('sliderlist')}}">Слайдер</a>
-        <a class="nav-item nav-link {{ $feedbackActive or '' }}" href="{{route('feedbacklist')}}">Отзывы</a>
-        <a class="nav-item nav-link {{ $newslistActive or '' }}" href="{{route('newlist')}}">Новости</a>
-        <a class="nav-item nav-link {{ $categoryActive or '' }}" href="{{route('catlist')}}">Категории</a>
-        <a class="nav-item nav-link {{ $attributeActive or '' }}" href="{{route('attrlist')}}">Атрибуты</a>
-        <a class="nav-item nav-link {{ $productActive or '' }}" href="{{route('tovarlist')}}">Продукты</a>
-        <a class="nav-item nav-link {{ $actionActive or '' }}" href="{{route('actionindex')}}">Акции</a>
-        <a class="nav-item nav-link {{ $serviceActive or '' }}" href="{{route('serviceindex')}}">Сервис</a>
+        <a class="nav-item nav-link {{ $infoActive or '' }}" href="{{route('infoindex')}}">Основные настройки</a>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="contentNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Контент
+          </a>
+          <div class="dropdown-menu" aria-labelledby="contentNavbarDropdown">
+            <a class="dropdown-item {{ $sliderlistActive or '' }}" href="{{route('sliderlist')}}">Слайдер</a>
+            <a class="dropdown-item {{ $pagesActive or '' }}" href="{{route('pageindex')}}">Страницы сайта</a>
+            <a class="dropdown-item {{ $serviceActive or '' }}" href="{{route('serviceindex')}}">Сервис</a>
+            <a class="dropdown-item {{ $newslistActive or '' }}" href="{{route('newlist')}}">Новости</a>
+            <a class="dropdown-item {{ $feedbackActive or '' }}" href="{{route('feedbacklist')}}">Отзывы</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="productsNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Товары
+          </a>
+          <div class="dropdown-menu" aria-labelledby="productsNavbarDropdown">
+            <a class="dropdown-item {{ $categoryActive or '' }}" href="{{route('catlist')}}">Категории</a>
+            <a class="dropdown-item {{ $attributeActive or '' }}" href="{{route('attrlist')}}">Атрибуты</a>
+            <a class="dropdown-item {{ $productActive or '' }}" href="{{route('tovarlist')}}">Продукты</a>
+          </div>
+        </li>
+        
         <a class="nav-item nav-link {{ $orderActive or '' }}" href="{{route('orderindex')}}">Заказы</a>
+        <a class="nav-item nav-link {{ $actionActive or '' }}" href="{{route('actionindex')}}">Акции</a>
         <a class="nav-item nav-link text-warning" href="{{route('main')}}" target="_blank">Перейти в магазин</a>
       </div>
+      @if(isset(Auth::user()->name))
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="{{ route('logout') }}"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Выход
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
+      </div>
+      @endif
     </div>
   </nav>
 @show
@@ -227,7 +256,7 @@
         }
         $('.parameters').append('</table>')
       }))
-    })
+    });
   </script>
 
 </body>

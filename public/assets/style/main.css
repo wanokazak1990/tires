@@ -13,6 +13,15 @@ a{
 .content-area .col-md-12{
     padding: 0px !important;
 }
+.content-area .area-title{
+    border-bottom: 3px solid #fc3;
+    margin-top: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+.content-area .area-img{
+    width: 100%;
+}
 
 /*HEADER*/
 .header{
@@ -150,6 +159,13 @@ a{
 .content-area img{
     max-width: 100%;
 }
+.content-area table,.content-area tr,.content-area td{
+    border:1px solid #ccc;
+}
+.content-area td{
+    padding: 5px;
+}
+
 
 /*NEWS*/
 .news-slider {
@@ -180,7 +196,6 @@ a{
 .newslist{
     margin-bottom: 15px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #ddd;
 }
 .newslist img{
     width: 100%;

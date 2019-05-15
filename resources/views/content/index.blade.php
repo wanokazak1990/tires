@@ -77,30 +77,6 @@
                         </div>
                         @endforeach
                     </div>
-                    
-                    <!-- @foreach($news as $key => $new)
-                        @if($key < 3)
-                        <div class="col-sm-12 col-md-4 mb-3">
-                            <div class="card">
-                                <div class="card-img-top border-bottom" style="width: 100%; height: 200px;">
-                                    <img class="" src="{{ asset($new->getUrlImg()) }}" alt="News Image" style="width: 100%; height: 100%; object-fit: cover;">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $new->title }}</h5>
-                                    <p class="card-text">{{ mb_strimwidth($new->text,0,216,'...') }}</p>
-                                </div>
-                                <div class="text-right mr-3 mb-2">
-                                    <a href="{{route('itemnew',['id'=>$new->id])}}" class="btn btn-light">
-                                        Подробнее
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        @else
-                            @break
-                        @endif
-                    @endforeach -->
-
                 </div>
             </div>
         </div>

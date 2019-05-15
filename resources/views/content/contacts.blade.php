@@ -4,31 +4,52 @@
 <section class="container">
 
 	<div class="row">
-		<div class="col-12 pb-3">
-			<h2 class="pt-3">{{ SiteInfo::getInfo()->name }}</h2>
-			<h4>{{ SiteInfo::getInfo()->slogan }}</h4>
-		</div>
 
 		<div class="col-12">
 			<div class="row">
 				<div class="col-md-6 col-sm-12 pb-3">
-					{!! SiteInfo::getInfo()->description !!}
+					<table class="table">
+						<tr>
+							<td colspan="2">
+								<h2 class="head-phone">{{ SiteInfo::getInfo()->name }}</h2>
+								<h4 class="head-slogan">{{ SiteInfo::getInfo()->slogan }}</h4>
+							</td>
+						</tr>
+						<tr>
+							<td>Режим работы: </td>
+							<td>{{ SiteInfo::getInfo()->hours }}, {{ SiteInfo::getInfo()->weekend }}</td>
+						</tr>
+
+						<tr>
+							<td>Телефон:</td>
+							<td>{{ SiteInfo::getInfo()->phone }}</td>
+						</tr>
+						<tr>
+							<td>E-mail:</td>
+							<td>{{ SiteInfo::getInfo()->admin_email }}</td>
+						</tr>
+						<tr>
+							<td>Адрес компании:</td>
+							<td>{{ SiteInfo::getInfo()->address }}</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="font-size: 14px;">
+								{!! SiteInfo::getInfo()->description !!}
+							</td>
+						</tr>
+					</table>
 				</div>
 				<div class="col-md-6 col-sm-12 pb-3">
-					<ul class="list-unstyled">
-						<li>Режим работы: {{ SiteInfo::getInfo()->hours }}, {{ SiteInfo::getInfo()->weekend }}</li>
-						<li>Телефон: {{ SiteInfo::getInfo()->phone }}</li>
-						<li>Адрес компании: {{ SiteInfo::getInfo()->address }}</li>
-					</ul>
+					@isset(SiteInfo::getInfo()->map_code)
+	
+						{!! SiteInfo::getInfo()->map_code !!}
+				
+					@endisset
 				</div>
 			</div>
 		</div>
 
-		@isset(SiteInfo::getInfo()->map_code)
-		<div class="col-12">
-			{!! SiteInfo::getInfo()->map_code !!}
-		</div>
-		@endisset
+		
 	</div>
 
 </section>

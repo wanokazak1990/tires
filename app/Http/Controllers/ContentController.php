@@ -294,7 +294,7 @@ class ContentController extends Controller
     public function actionList(Request $request)
     {
         $actions = action::get();
-        $title = 'Список акций';
+        $title = 'Акции';
         
         return view('content.action')
             ->with('list',$actions)
@@ -342,7 +342,8 @@ class ContentController extends Controller
         $list = news::where('status',1)->orderBy('id', 'DESC')->paginate(env('PAGINATE'));
         
         return view('content.newslist')
-        ->with('list',$list);
+        ->with('list',$list)
+        ->with('title','Новости');
     }
 
     public function siteItem($id)
@@ -350,6 +351,7 @@ class ContentController extends Controller
         $new = news::find($id);
         
         return view('content.newslist')
-        ->with('new',$new);
+        ->with('new',$new)
+        ->with('title',$new->title);
     }
 }

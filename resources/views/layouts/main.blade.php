@@ -90,8 +90,7 @@
                                     Каталог
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @if(isset($categories) && $categories->count()>0)
-                                        @foreach($categories as $cat)
+                                        @foreach(App\hm_category::get() as $cat)
                                             <a 
                                                 class="dropdown-item" 
                                                 href="{{route('productlist')}}/?category_id={{$cat->id}}"
@@ -99,7 +98,6 @@
                                                 {{$cat->name}}
                                             </a>
                                         @endforeach
-                                    @endif
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -158,35 +156,6 @@
 
 @section('feedbacks')
 @show
-
-<section class="contact container-fluid">
-    
-</section>
-
-<!--section class="myquality container-fluid">
-        <div class="row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-3">
-                        <i class="icofont-wall-clock"></i>
-                        <span>Круглосуточный<br> режим работы</span>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <i class="icofont-money"></i>
-                        <span>Доступные<br> цены</span>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <i class="icofont-repair"></i>
-                        <span>Большой опыт<br> работы</span>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <i class="icofont-help-robot"></i>
-                        <span>Современное<br> оборудование</span>
-                    </div>
-                </div>
-            </div>
-        </div> 
-</section-->
 
 @isset($map)
 <section class="container-fluid">

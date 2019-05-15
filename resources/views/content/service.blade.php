@@ -4,17 +4,17 @@
 <section class="container">
 
 	@if(isset($service))
-		<div class="row itemnews">
+		<div class="row content-area pb-4">
 			<div class="col-12">
 				@if(isset($service->img))
-					<img src="{{Image::url($service->img)}}">
+					<img src="{{Image::url($service->img)}}" class="area-img">
 				@endif
-				<h2>
+				<h2 class="area-title">
 					{{$service->name}}
 				</h2>
-				<p class="text-justify">
+				<div>
 					{!!$service->text!!}
-				</p>
+				</div>
 			</div>
 		</div>
 	@endif

@@ -7,14 +7,14 @@
 		<div class="row content-area">
 			<div class="col-12">
 				@if(isset($page->img))
-					<img src="{{Image::url($page->img)}}" width="100%">
+					<img src="{{Image::url($page->img)}}" class="area-img">
 				@endif
-				<h2>
+				<h2 class="area-title">
 					{{$page->title}}
 				</h2>
-				<p class="text-justify">
+				<div>
 					{!! $page->text !!}
-				</p>
+				</div>
 			</div>
 		</div>
 	@endif

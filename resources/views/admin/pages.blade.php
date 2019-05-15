@@ -73,9 +73,8 @@
 	
 
 	@elseif(isset($page))
-	<div class="col-12">
 		{{Form::open(array('files'=>'true','url'=>$route))}}
-		<div class="input-group no-gutters">
+		<div class="row pt-3 pb-5">
 			<div class="col-md-6 col-sm-12 mb-3">
 				{{Form::label('title','Заголовок:')}}
 				{{Form::text('title',$page->title,['class'=>'form-control mb-2'])}}
@@ -83,8 +82,7 @@
 				{{Form::label('alias','Псевдоним (eng):')}}
 				{{Form::text('alias',$page->alias,['class'=>'form-control mb-2'])}}
 
-				{{Form::label('text','Текст:')}}
-				{{Form::textarea('text',$page->text,['class'=>'form-control mb-2', 'id'=>'editor'])}}
+
 
 				{{Form::label('status','Статус:')}}
 				{{Form::checkbox('status',1,($page->status)?'true':'')}}
@@ -98,6 +96,11 @@
 				<br>{{Form::file('img')}}
 			</div>	
 
+			<div class="col-12 pb-3">
+				{{Form::label('text','Текст:')}}
+				{{Form::textarea('text',$page->text,['class'=>'form-control mb-2', 'id'=>'editor'])}}
+			</div>
+
 			<div class="col-12">
 				<div class="input-group no-gutters">
 					<div class="col-md-2 col-sm-12">
@@ -107,7 +110,6 @@
 			</div>	
 		</div>
 		{{Form::close()}}
-	</div>
 	@endif
 
 @endsection

@@ -8,7 +8,7 @@
 @if(isset($products) and is_array($products))
 <section class="content container pt-4">
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-3" >
+        <div class="col-12 col-sm-12 col-md-3 mb-3">
             @include('content.filter')
         </div>
 
@@ -18,7 +18,7 @@
                 @if(isset($group['products']) && is_object($group['products']) && $group['products']->count() > 0)
                                       
                     <div class="product-type-block">
-                        <div class="row"> 
+                        <div class="input-group no-gutters"> 
                             @foreach ($group['products'] as $k => $item)
                                 @include('content.productcell')
                             @endforeach
@@ -27,7 +27,7 @@
 
                 @endif
                     
-                    <div class="row">
+                    <div class="input-group no-gutters">
                         <div class="col-12 text-right product-more p-0">
                             <a class="btn btn-dark" href="{{route('productlist')}}?category_id={{$cat_index}}">Все {{$group['category']}} в наличии</a>
                         </div>

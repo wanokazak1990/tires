@@ -235,6 +235,10 @@
       }))
     })
 
+    $(document).on('change','#category_id',function(){
+      alert(1)
+    })
+
     $(document).on('change','.product-category',function(){
       let url = $(this).attr('url')
       let parameters = {'category_id':$(this).val()}

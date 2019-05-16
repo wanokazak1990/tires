@@ -83,11 +83,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 	});
 
 	Route::group(['prefix'=>'product'],function(){
-		Route::get('/','ProductController@index')			->name('tovarlist');
+		Route::match(['get','post'],'/','ProductController@index')->name('tovarlist');
 		Route::get('/create','ProductController@create')	->name('tovarcreate');
-		Route::post('/','ProductController@store')			->name('tovarstore');
-		Route::get('/{id}/edit','ProductController@show')	->name('tovarshow');
-		Route::post('/{id}','ProductController@update')		->name('tovarupdate');
+		Route::post('/create','ProductController@store')	->name('tovarstore');
+		Route::get('/edit/{id}','ProductController@show')	->name('tovarshow');
+		Route::post('/edit/{id}','ProductController@update')		->name('tovarupdate');
 		Route::delete('/','ProductController@destroy')		->name('tovardelete');
 	});
 

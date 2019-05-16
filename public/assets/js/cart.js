@@ -123,10 +123,13 @@ $(document).ready(function(){
     })
     //МЕНЯЕТ СОСТОЯНИЕ КНОПКИ ДОБАВИТЬ В КОРЗИНУ
     function CheckProductOnCart(){
-
+        var append = '<i class="icofont-plus"></i>'
         $('body').find('.tocart').addClass('btn-warning')
         if($(window).width()>1180)
+        {
             $('body').find('.tocart').html('В корзину')
+            append = 'Добавлено'
+        }
 
         var url = $('.cart-in-nav').attr('url')
         var parameters = {'val':'id'}
@@ -134,7 +137,7 @@ $(document).ready(function(){
             data = JSON.parse(data)
             for(i in data){
                 var id = data[i]
-                $('body').find('.tocart[product-id="'+id+'"]').html('Добавлено')
+                $('body').find('.tocart[product-id="'+id+'"]').html(append)
                 $('body').find('.tocart[product-id="'+id+'"]').removeClass('btn-warning')
             }
         }))
@@ -145,9 +148,11 @@ $(document).ready(function(){
         var cart = $('.cart-in-nav').find('.cart-indikator')
         var count = data.total_count
         var price = data.total_price
-        var indicator = 'Корзина'
+        var indicator = ''
+        if($(window).width()>755)
+            indicator = 'Корзина'
         if(count!=0 || price!=0)
-            indicator+=' ('+count+' ед. / '+price+' руб.)'
+            indicator+=' ['+count+' ед. / '+price+' руб.]'
         cart.html(indicator)
     }
 
@@ -195,6 +200,7 @@ $(document).ready(function(){
     {        
         var clone = $('.cart-in-nav').clone()
         $('.cart-in-nav').parent().html('')
+        clone.find('.cart-indikator').html('')
         $('.navbar-brand').html(clone).css('font-size','14px')
     }
 })

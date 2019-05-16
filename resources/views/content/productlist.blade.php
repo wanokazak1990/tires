@@ -7,7 +7,7 @@
 @section('products')
 <section class="content container pt-4 pb-4">
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-3" >
+        <div class="col-12 col-sm-12 col-md-3 mb-3">
             @include('content.filter')
         </div>
 
@@ -16,14 +16,14 @@
                 @if($products->count() > 0)
                     <h2>{{$catName}}</h2>
                     <div class="product-type-block">
-                        <div class="row"> 
+                        <div class="input-group no-gutters"> 
                             @foreach ($products as $k => $item)
                                 @include('content.productcell')
                             @endforeach
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="input-group no-gutters">
                         <div class="col-12" >
                             {!! $products->appends($filter)->links() !!}
                         </div>

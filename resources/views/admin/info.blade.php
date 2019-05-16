@@ -7,15 +7,20 @@
 	</div>
 	@endisset
 
-	@if(isset($visits) && count($visits)>0)
-		@foreach($visits as $key => $vis)
-			<div class="col-12">{{$vis->getDays($key)}}: {{$vis->count}}</div>
-		@endforeach
-	@endif
+	<div class="col-12">
+		<div class="h5">Статистика посещений:</div>
+		<ul class="list-unstyled">
+			@if(isset($visits) && count($visits)>0)
+				@foreach($visits as $key => $vis)
+					<li>{{$vis->getDays($key)}}: {{$vis->count}}</li>
+				@endforeach
+			@endif
 
-	@if(isset($totalVisit) && !empty($totalVisit))
-		<div class="col-12">За всё время: {{$totalVisit}}</div>
-	@endif
+			@if(isset($totalVisit) && !empty($totalVisit))
+				<li>За всё время: {{$totalVisit}}</li>
+			@endif
+		</ul>
+	</div>
 
 	@isset($info)
 	<div class="col-12 py-3">

@@ -43,29 +43,28 @@
         <div class="row">
             <div class="container pt-3 pb-3">
                 <div class="row">
-                    <div class="col-6 col-sm-2 justify-content-start d-flex ">
-                        <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="height:100px;width: 100px;display: block;">
-                        
+                    <div class="col-4 col-md-2 d-flex justify-content-center">
+                        <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="height:100px; width: 100px; display: block;">
                     </div>
                     
-                    <div class="col-6 col-sm-3 d-flex">
-                        <div class="align-self-center">
+                    <div class="col-8 col-md-3 d-flex align-items-center justify-content-center">
+                        <div class="">
                             <div class="head-name">{{ SiteInfo::getInfo()->name }}</div>
                             <div class="head-slogan">{{ SiteInfo::getInfo()->slogan }}</div>
                         </div>
                     </div> 
                     
-                    <div class="col-12 col-sm-4 d-flex">
-                        <div class="align-self-center text-center text-center" style="width: 100%;">
+                    <div class="col-4 col-md-3 d-flex align-items-center justify-content-center">
+                        <div class="text-center">
                             <div class="head-name">{{ SiteInfo::getInfo()->hours }}</div>
                             <div class="head-slogan">{{ SiteInfo::getInfo()->weekend }}</div>
                         </div>                    
                     </div> 
 
-                    <div class="col-12 col-sm-3 d-flex">
-                        <div class="align-self-center head-info pl-3">
-                                <div class="head-phone">{{ SiteInfo::getInfo()->phone }}</div>
-                                <div class="head-address">{{ SiteInfo::getInfo()->address }}</div>
+                    <div class="col-8 col-md-4 d-flex align-items-center justify-content-center">
+                        <div class="head-info pl-3">
+                            <div class="head-phone">{{ SiteInfo::getInfo()->phone }}</div>
+                            <div class="head-address">{{ SiteInfo::getInfo()->address }}</div>
                         </div>
                     </div>
                 </div>
@@ -210,7 +209,6 @@
     </div>
 </section>
 
-
 @include('content.productmodal')
 
 @include('content.cartmodal')
@@ -272,6 +270,9 @@
                 //$('select').styler();
             });
 
+            // $(document).on('click', '', function() {
+            //     alert(1);
+            // });
 
             //PRODUCT CLICK MORE BUTTON
             $(document).on('click','.product .more',function(){

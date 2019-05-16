@@ -24,8 +24,13 @@
 					</tr>
 				</thead>
 				<tbody>
+				<style>
+					.reder{
+						background: rgba(250,0,0,0.2);
+					}
+				</style>
 				@foreach($list as $item)
-					<tr class="col-4 p-0 content-item ">
+					<tr class="col-4 p-0 content-item {{($item->status==1)?'reder':''}}" >
 						<td>
 							{{str_pad($item->id,5,'0',STR_PAD_LEFT)}}
 						</td>

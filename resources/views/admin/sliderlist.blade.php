@@ -54,14 +54,20 @@
 		<div class="container mb-3"> 
 			<div class="row"> 
 				<div class="col-md-6 col-sm-12 mb-3">
+					
 					{{Form::label('title','Заголовок')}}
 					{{Form::text('title',$slider->title,['class'=>'form-control mb-2'])}}
 				
 					{{Form::label('title','Текст')}}
 					{{Form::textarea('text',$slider->text,['class'=>'form-control mb-2'])}}
 
-					{{Form::label('title','Ссылка')}}
-					{{Form::text('link',$slider->link,['class'=>'form-control mb-2'])}}
+					{{Form::label('title','Ссылка на акцию (если требуется)')}}
+					{{Form::select(
+						'link',
+						[0=>'У слайда нет ссылки на акцию']+App\hm_action::pluck('name','id')->toArray(),
+						$slider->link,
+						['class'=>'form-control mb-2']
+					)}}
 
 					{{Form::label('title','Статус')}}
 					{{Form::checkbox('status',1,($slider->status)?'true':'')}}

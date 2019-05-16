@@ -304,11 +304,14 @@ class ContentController extends Controller
     public function actionItem($id,Request $request)
     {
         $action = action::find($id);
-        $title = $action->name;
-        
-        return view('content.action')
-            ->with('action',$action)
-            ->with('title',$title);
+        if(isset($action->id))
+        {
+            $title = $action->name;
+            return view('content.action')
+                ->with('action',$action)
+                ->with('title',$title);
+        }
+        return redirect()->route('main');
     }
 
     public function services($alias,Request $request)

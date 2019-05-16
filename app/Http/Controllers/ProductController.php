@@ -11,9 +11,41 @@ class ProductController extends Controller
 {
     public $link = ['productActive'=>'active'];
 
-    public function index()
+    public function index(Request $request)
     {
-    	$list = product::with('category')->with('attributes')->orderBy('category_id','DESC')->paginate(env('PAGINATE'));
+        if($request->isMethod('get'))
+    	   $list = product::with('category')->with('attributes')->orderBy('category_id','DESC')->paginate(env('PAGINATE'));
+        else
+        {
+            $query = product::select('hm_products.*');
+
+            if($request->has('article') && !empty($request->article))
+                $query->where('article',trim($request->article));
+            
+            if($request->has('name') && !empty($request->name))
+                $query->where('name',trim($request->name));
+
+            if($request->has('pricefrom') && !empty($request->pricefrom) && is_numeric($request->pricefrom))
+                $query->where('price','>=',$request->pricefrom);
+
+            if($request->has('priceto') && !empty($request->priceto) && is_numeric($request->priceto))
+                $query->where('price','<=',$request->priceto);
+
+            if($request->has('countfrom') && !empty($request->countfrom) && is_numeric($request->countfrom))
+                $query->where('available','>=',$request->countfrom);
+
+            if($request->has('countto') && !empty($request->countto) && is_numeric($request->countto))
+                $query->where('available','<=',$request->countto);
+
+            if($request->has('status') && $request->status!=='null')
+                $query->where('status','=',$request->status);
+
+            if($request->has('category_id') && $request->category_id!=='null')
+                $query->where('category_id','=',$request->category_id);
+
+            
+            $list = $query->with('category')->with('attributes')->paginate(env('PAGINATE'));
+        }
     	
     	return view('admin.product')
         	->with('title', 'Список продуктов')

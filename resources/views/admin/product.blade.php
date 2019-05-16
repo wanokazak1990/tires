@@ -11,7 +11,61 @@
 			</div>
 		</div>
 	</div>
+
+		<div class="col-12 search_product">
+		{{Form::open(array('url'=>route('tovarlist')))}}
+
+			<div>
+				{{Form::label('article','Артикул')}}
+				{{Form::text('article','')}}
+			</div>
+
+			<div>
+				{{Form::label('name','Название')}}
+				{{Form::text('name','')}}
+			</div>
+
+			<div>
+				{{Form::label('pricefrom','Цена от')}}
+				{{Form::text('pricefrom','')}}
+			</div>
+
+			<div>
+				{{Form::label('priceto','Цена до')}}
+				{{Form::text('priceto','')}}
+			</div>
+
+			<div>
+				{{Form::label('status','Статус')}}
+				{{Form::select('status',['null'=>'Любой',0=>'Не активно',1=>'Активно'])}}
+			</div>
+
+			<div>
+				{{Form::label('countfrom','Кол-во от')}}
+				{{Form::text('countfrom','')}}
+			</div>
+
+			<div>
+				{{Form::label('countto','Кол-во до')}}
+				{{Form::text('countto','')}}
+			</div>
+
+			<div id="category_id">
+				{{Form::label('category_id','Категория')}}
+				{{Form::select('category_id',App\hm_category::getAllToSelect(),'')}}
+			</div>
+
+			<div class="product-attr">
+
+			</div>
+
+			{{Form::submit('Поиск')}}
+
+		{{Form::close()}}
+	</div>
+
 	@if(isset($list) && is_object($list) && count($list)>0)
+
 	<div class="col-12">
 		<table class="table table-hover table-bordered product-stock">
 			<thead class="thead-dark">

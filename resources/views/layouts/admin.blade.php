@@ -73,6 +73,9 @@
         padding: 0px;
         padding-right: 10px;
       }
+      .search_product label{
+        margin: 0px;padding: 0px;font-size: 12px;
+      }
       textarea{width: 100%;}
     </style>
   </head>
@@ -236,7 +239,28 @@
     })
 
     $(document).on('change','#category_id',function(){
-      alert(1)
+      var category = $(this).val()
+
+      $('.product-attr').find('select').
+        prop('disabled',true).
+        parent().
+        css('display','none')
+
+      $('.product-attr').find('select').each(function(){
+        var select = $(this)
+        select.prop('selectedIndex', 0)
+        if(select.attr('data-category')==category)
+          select.prop('disabled',false).parent().css('display','block')
+      })
+    })
+
+    $(document).on('click','[name="clear"]',function(event){
+      event.preventDefault();
+      var form = $(this).closest('form')
+      form.find('[type="text"]').val('')
+      form.find('select').prop('selectedIndex', 0)
+      form.append('<input type="hidden" name="clear" value="1">')
+      form.submit()
     })
 
     $(document).on('change','.product-category',function(){

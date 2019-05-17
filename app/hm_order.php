@@ -65,6 +65,16 @@ class hm_order extends Model
     	];
     }
 
+    public static function getStatusArr()
+    {
+        return [
+            1=>'Заказ новый, связаться с клиентом',
+            2=>'Заказ обработан, ожидается клиент',
+            3=>'Заказ закрыт, товар выдан',
+            4=>'Заказ отменён, клиент отказался'
+        ];
+    }
+
     public function orderTotalPrice($format='numeric')
     {
     	$totalPrice = 0;

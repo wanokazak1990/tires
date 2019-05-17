@@ -25,4 +25,17 @@ class hm_product extends Model
     {
         return $this->hasMany('App\hm_product_attribute','product_id','id')->with('parameter')->with('attrName');
     }
+
+    public function getSmallAttribute($attr)
+    {
+        $mas = [];
+        if(is_object($attr) && count($attr))
+        foreach ($attr as $key => $a) 
+            {
+                if($a->attrName->status)
+                    $mas[] = $a->parameter->value;
+            }
+
+        return join($mas,', ');
+    }
 }

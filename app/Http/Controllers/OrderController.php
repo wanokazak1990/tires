@@ -8,6 +8,7 @@ use App\hm_client as client;
 use App\hm_order_product as orderProduct;
 use App\hm_product as product;
 use Session;
+use DB;
 
 class OrderController extends Controller
 {
@@ -18,17 +19,39 @@ class OrderController extends Controller
     	Session::forget('orderPrevPage');
     	$orders = order::with('client')->orderBy('status')->orderBy('id')->paginate(30);
     	return view('admin.order')
-	    	->with('title','Список заказов')
+	    	->with('title', 'Список заказов')
             ->with($this->link)
-	    	->with('list',$orders);
+	    	->with('list', $orders);
+    }
+
+    public function search(Request $request)
+    {
+        // Session::forget('orderPrevPage');
+
+        // dd($request->all());
+
+        $orders = order::with('client')->with('products');
+
+        /*if ($request->price != null)
+            $orders = $orders->whereRaw("hm_order_products.id * hm_order_products.saleprice = {$request->price}");
+
+        if ($request->status != 0)
+            $orders = $orders->where('status', $request->status);*/
+
+        $orders = $orders->orderBy('status')->orderBy('id')->paginate(30);
+
+        return view('admin.order')
+            ->with('title', 'Список заказов')
+            ->with($this->link)
+            ->with('list', $orders);
     }
 
     public function show($id, Request $request)
     {
-    	if(!Session::has('orderPrevPage'))
+    	if (!Session::has('orderPrevPage'))
     	{
     		$str = url()->previous();
-    		if(explode('?',url()->previous())[0]!=route('orderindex'))
+    		if (explode('?',url()->previous())[0]!=route('orderindex'))
     		 	Session::put('orderPrevPage', route('orderindex'));
     		else
     			Session::put('orderPrevPage', url()->previous());
@@ -36,7 +59,7 @@ class OrderController extends Controller
 
     	$order = order::with('client')->with('products')->find($id);
     	
-	    if($request->isMethod('post'))
+	    if ($request->isMethod('post'))
 	    {
 	    	if($request->has('status'))
 	    	{
@@ -45,8 +68,8 @@ class OrderController extends Controller
 	    	}
 	    }
 	    return view('admin.order')
-		    	->with('title','Заказ №'.$order->id.' от '.$order->created_at->format('d.m.Y h:m'))
+		    	->with('title', 'Заказ №'.$order->id.' от '.$order->created_at->format('d.m.Y h:m'))
                 ->with($this->link)
-		    	->with('order',$order);
+		    	->with('order', $order);
     }
 }

@@ -182,6 +182,8 @@ return [
 
         App\Providers\ImageProvider::class,
 
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
 
     ],
@@ -235,6 +237,7 @@ return [
         'Cart' => App\Helpers\Cart\CartFacade::class,
         'SiteInfo' => App\Helpers\SiteInfo\SiteInfoFacade::class,
         'Image' => App\Helpers\Image\ImageFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

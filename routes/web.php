@@ -126,7 +126,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 	});
 
 	Route::group(['prefix'=>'orders'],function(){
-		Route::get('/','OrderController@index')->name('orderindex');
+		Route::match(['get','post'],'/','OrderController@index')->name('orderindex');
 		Route::match(['get','post'],'/{id}','OrderController@show')->name('ordershow');
 	});
 

@@ -44,6 +44,29 @@ a{
 @media screen and (max-width: 755px){
     .head-address, .head-phone{
         text-align: center;
+        font-size: 16px;
+    }
+    .block-name,.block-phone,.block-work{
+        padding-bottom: 15px;
+    }
+    .block-phone{
+        position: absolute;
+        left: 0px;
+        bottom: 30px;
+        width: 100%;
+        background: #fc3;
+    }
+    .block-phone .icofont{
+        font-size: 100px;
+        padding-bottom: 20px; 
+        text-decoration: none;
+    }
+    .block-phone .icofont:hover,.block-phone .icofont:focus{
+        text-decoration: none;color: #000;text-transform: none;
+    }
+    .site-info{
+        height: 100vh;
+        background: #fc3;
     }
 }
 

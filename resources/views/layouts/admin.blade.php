@@ -254,6 +254,15 @@
       })
     })
 
+    $(document).on('click','[name="clear"]',function(event){
+      event.preventDefault();
+      var form = $(this).closest('form')
+      form.find('[type="text"]').val('')
+      form.find('select').prop('selectedIndex', 0)
+      form.append('<input type="hidden" name="clear" value="1">')
+      form.submit()
+    })
+
     $(document).on('change','.product-category',function(){
       let url = $(this).attr('url')
       let parameters = {'category_id':$(this).val()}

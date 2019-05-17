@@ -84,13 +84,13 @@
 
 
 		<div class="input-group no-gutters d-flex justify-content-end">
-      <div class="col-1">
-				<a class="btn btn-warning" href=" {{ route('productexport',$filter) }} ">Экспорт Excel</a>
+      		<div class="col-2">
+				<a class="btn btn-warning mb-3 mt-3 btn-block" href=" {{ route('productexport',$filter) }} ">Экспорт Excel</a>
 			</div>
-			<div class="col-1">
+			<div class="col-2">
 				{{Form::submit('Поиск',['class'=>'btn btn-success btn-block mt-3 mb-3'])}}
 			</div>
-			<div class="col-1">
+			<div class="col-2">
 				<button type="submit" name="clear" class="btn btn-danger btn-block mb-3 mt-3">Отмена</button>
 			</div>
 		</div>

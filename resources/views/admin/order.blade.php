@@ -7,8 +7,54 @@
 		</div>
 	@endif
 
+	{{ Form::open(array('url' => route('ordersearch'), 'method' => 'get')) }}
+	<div class="col-12 mb-2">
+		<div class="input-group no-gutters border-bottom d-flex align-items-center">
+			
+			<div class="col-1 d-flex align-items-center">
+				Фильтр:
+			</div>
+			<div class="col-9">
+				<div class="input-group no-gutters">
+					<div class="col-2">
+						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" name="date" class="form-control" placeholder="Дата">
+					</div>
+					<div class="col-2">
+						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" name="datefrom" class="form-control" placeholder="Дата: от">
+					</div>
+					<div class="col-2">
+						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" name="dateto" class="form-control" placeholder="Дата: до">
+					</div>
+					<div class="col-2">
+						<select class="form-control" name="status">
+							<option value="0">Статус</option>
+							@foreach(\App\hm_order::getStatusArr() as $key => $value)
+							<option value="{{ $key }}">{{ $value }}</option>
+							@endforeach
+						</select>
+					</div>
+					<div class="col-2">
+						<input type="text" name="price" class="form-control" placeholder="Сумма">
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-2">
+				<div class="input-group no-gutters">
+					<div class="col-6">
+						<button type="submit" class="btn btn-success btn-block">Найти</button>
+					</div>
+					<div class="col-6">
+						<a href="{{ route('orderindex') }}" class="btn btn-danger btn-block">Сброс</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{ Form::close() }}
+
 	@if(isset($list))
-		@if(count($list)) 
+		@if(count($list))
 		<div class="col-12">
 			<table class="table table-hover table-bordered admin-editor">
 				<thead class="thead-dark">
@@ -69,7 +115,7 @@
 			</div>
 		</div>
 		@else
-			<div class="">Заказов не найдено.</div>
+			<div class="col-12">Заказов не найдено.</div>
 		@endif
 	@endif
 

@@ -7,53 +7,66 @@
 		</div>
 	@endif
 
-	{{ Form::open(array('url' => route('ordersearch'), 'method' => 'get')) }}
-	<div class="col-12 mb-2">
-		<div class="input-group no-gutters border-bottom d-flex align-items-center">
-			
-			<div class="col-1 d-flex align-items-center">
-				Фильтр:
-			</div>
-			<div class="col-9">
-				<div class="input-group no-gutters">
-					<div class="col-2">
-						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" name="date" class="form-control" placeholder="Дата">
-					</div>
-					<div class="col-2">
-						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" name="datefrom" class="form-control" placeholder="Дата: от">
-					</div>
-					<div class="col-2">
-						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" name="dateto" class="form-control" placeholder="Дата: до">
-					</div>
-					<div class="col-2">
+	@if(isset($list))
+		<div class="col-12 mb-3 search_product">
+		{{ Form::open(array('url' => route('orderindex'))) }}
+			{{Form::hidden('_method','get')}}
+			<div class="row">
+				<div class="col-4">
+					<div>
+						<label>Статус:</label>
 						<select class="form-control" name="status">
-							<option value="0">Статус</option>
+							<option value="0">Любой</option>
 							@foreach(\App\hm_order::getStatusArr() as $key => $value)
 							<option value="{{ $key }}">{{ $value }}</option>
 							@endforeach
 						</select>
 					</div>
-					<div class="col-2">
-						<input type="text" name="price" class="form-control" placeholder="Сумма">
+					<div>
+						<label>Телефон:</label>
+						<input type="text" pattern="[0-9]{1,11}" name="phone" class="form-control" title="Номер телефона (до 11 цифр)">
+					</div>
+					<div>
+						<label>Email:</label>
+						<input type="email" name="email" class="form-control" title="Адрес электронной почты">
 					</div>
 				</div>
-			</div>
-			
-			<div class="col-2">
-				<div class="input-group no-gutters">
-					<div class="col-6">
-						<button type="submit" class="btn btn-success btn-block">Найти</button>
-					</div>
-					<div class="col-6">
-						<a href="{{ route('orderindex') }}" class="btn btn-danger btn-block">Сброс</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	{{ Form::close() }}
 
-	@if(isset($list))
+				<div class="col-4">
+					<div>
+						<label>Дата (от):</label>
+						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" name="datefrom" class="form-control">
+					</div>
+					<div>
+						<label>Дата (до):</label>
+						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" name="dateto" class="form-control">
+					</div>					
+				</div>
+
+				<div class="col-4">
+					<div>
+						<label>Сумма (от):</label>
+						<input type="number" min="0" name="pricefrom" class="form-control">
+					</div>
+					<div>
+						<label>Сумма (до):</label>
+						<input type="number" min="0" name="priceto" class="form-control">
+					</div>
+				</div>
+			</div>
+
+			<div class="input-group no-gutters d-flex justify-content-end">
+				<div class="col-1">
+					<button type="submit" class="btn btn-success btn-block">Поиск</button>
+				</div>
+				<div class="col-1">
+					<button type="submit" name="cancel" class="btn btn-danger btn-block">Отмена</button>
+				</div>
+			</div>
+			{{ Form::close() }}
+		</div>
+		
+
 		@if(count($list))
 		<div class="col-12">
 			<table class="table table-hover table-bordered admin-editor">
@@ -111,7 +124,7 @@
 			</table>
 
 			<div class="paginate">
-				{{$list->links()}}
+				{{$list->appends($filter)->links()}}
 			</div>
 		</div>
 		@else

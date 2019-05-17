@@ -89,6 +89,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 		Route::get('/edit/{id}','ProductController@show')	->name('tovarshow');
 		Route::post('/edit/{id}','ProductController@update')		->name('tovarupdate');
 		Route::delete('/','ProductController@destroy')		->name('tovardelete');
+		Route::match(['post','get'],'/export','ProductController@export')->name('productexport');
 	});
 
 	Route::group(['prefix'=>'action'],function(){

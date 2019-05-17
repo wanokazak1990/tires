@@ -84,6 +84,7 @@
 
 		<div class="row">
 			<div class="col-12 text-right">
+				<a class="btn btn-warning" href=" {{ route('productexport',$filter) }} ">Экспорт Excel</a> 
 				{{Form::submit('Поиск',['class'=>'btn btn-success mt-3 mb-3'])}}
 				<button type="submit" name="clear" class="btn btn-danger mb-3 mt-3">Отмена</button>
 			</div>

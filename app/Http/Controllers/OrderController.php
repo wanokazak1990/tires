@@ -8,7 +8,7 @@ use App\hm_client as client;
 use App\hm_order_product as orderProduct;
 use App\hm_product as product;
 use Session;
-
+use DB;
 class OrderController extends Controller
 {
     public $link = ['orderActive'=>'active'];

@@ -24,7 +24,7 @@
 
 <section class="header">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row d-sm-none d-none d-md-block">
             <div class="container" style="border-bottom:1px solid #ccc;">
                 <div class="row">
                     <div class="col-12">
@@ -41,28 +41,33 @@
         </div>
 
         <div class="row">
-            <div class="container pt-3 pb-3">
+            <div class="container pt-3 pb-3 site-info">
                 <div class="row">
-                    <div class="col-4 col-md-2 d-flex justify-content-center">
+                    <div class="col-12 col-md-2 d-flex justify-content-center">
                         <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="height:100px; width: 100px; display: block;">
                     </div>
                     
-                    <div class="col-8 col-md-3 d-flex align-items-center justify-content-center">
+                    <div class="col-12 col-md-3 d-flex align-items-center justify-content-center block-name">
                         <div class="">
                             <div class="head-name">{{ SiteInfo::getInfo()->name }}</div>
                             <div class="head-slogan">{{ SiteInfo::getInfo()->slogan }}</div>
                         </div>
                     </div> 
                     
-                    <div class="col-4 col-md-3 d-flex align-items-center justify-content-center">
+                    <div class="col-12 col-md-3 d-flex align-items-center justify-content-center block-work">
                         <div class="text-center">
                             <div class="head-name">{{ SiteInfo::getInfo()->hours }}</div>
                             <div class="head-slogan">{{ SiteInfo::getInfo()->weekend }}</div>
                         </div>                    
                     </div> 
 
-                    <div class="col-8 col-md-4 d-flex align-items-center justify-content-center">
+                    <div class="col-12 col-md-4 d-flex align-items-center justify-content-center block-phone">
                         <div class="head-info pl-3">
+                            <div class="d-block d-md-none text-center">
+                                <a href="tel: {{ SiteInfo::getInfo()->phone }}">
+                                    <i class="icofont icofont-phone-circle"></i>
+                                </a>
+                            </div>
                             <div class="head-phone">{{ SiteInfo::getInfo()->phone }}</div>
                             <div class="head-address">{{ SiteInfo::getInfo()->address }}</div>
                         </div>
@@ -166,37 +171,49 @@
     <div class="row h-100">
         <div class="container h-100">
             <div class="input-group no-gutters text-light d-flex align-items-center pb-3">
-                <div class="col-md-4 col-sm-12 d-flex align-items-center">
-                    <div class="input-group no-gutters d-flex align-items-center">
-                        <div class="col-md-4 col-sm-12 d-flex align-items-center">
-                            <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="width: 100px; height: 100px;"> 
+                <div class="col-12 col-md-4 col-sm-12 ">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-4  ">
+                            <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="width: 70px; height: 70px;"> 
                         </div>
-                        <div class="col-md-8 col-sm-12 py-3">
-                            <div class="input-group no-gutters">
-                                <span class="h5">{{ SiteInfo::getInfo()->name }}</span>
-                            </div>
-                            <div class="input-group no-gutters">
-                                {{ SiteInfo::getInfo()->slogan }}
-                            </div>
+                        <div class="col-8  text-left">
+                                <div class="head-name">
+                                    {{ SiteInfo::getInfo()->name }}
+                                </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4 col-sm-12 d-flex align-items-center">
-                    <ul class="list-unstyled m-0 py-3">
-                        <li>Режим работы: {{ SiteInfo::getInfo()->hours }}, {{ SiteInfo::getInfo()->weekend }}</li>
-                        <li>Телефон: {{ SiteInfo::getInfo()->phone }}</li>
-                        <li>Адрес компании: {{ SiteInfo::getInfo()->address }}</li>
-                    </ul>
+                    <table style="color: #ccc;font-size: 14px;width:100%;" class="mt-3 d-block">                       
+                        <tr>
+                            <td style="padding-right: 10px;">Телефон:</td>
+                            <td class="text-right"  style="width: 100%;">{{ SiteInfo::getInfo()->phone }}</td>
+                        </tr>
+                        <tr>
+                            <td  style="padding-right: 10px;">Адрес:</td>
+                            <td  class="text-right" style="width: 100%;"> {{ SiteInfo::getInfo()->address }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="block-work pt-3" >
+                                    <div class="text-center">
+                                        <div class="head-name">{{ SiteInfo::getInfo()->hours }}</div>
+                                        <div class="head-slogan">{{ SiteInfo::getInfo()->weekend }}</div>
+                                    </div>  
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
                 <div class="col-md-4 col-sm-12">
                     <ul class="list-unstyled m-0 py-3">
-                        <li><a href="{{route('main')}}" class="text-light">Главная</a></li>
-                        <li><a href="{{route('newslist')}}" class="text-light">Новости</a></li>
-                        <li><a href="{{route('actionlist')}}" class="text-light">Акции</a></li>
+                        <li style="border-bottom: 1px solid #666;"><a href="{{route('main')}}" class="text-light">Главная</a></li>
+                        <li style="border-bottom: 1px solid #666;"><a href="{{route('newslist')}}" class="text-light">Новости</a></li>
+                        <li style="border-bottom: 1px solid #666;"><a href="{{route('actionlist')}}" class="text-light">Акции</a></li>
                         @foreach(App\hm_page::where('status','>','0')->get() as $page)
-                            <li><a href="{{route('pages',['alias'=>$page->alias])}}" class="text-light">{{ $page->title }}</a></li>
+                            <li style="border-bottom: 1px solid #666;"><a href="{{route('pages',['alias'=>$page->alias])}}" class="text-light">{{ $page->title }}</a></li>
                         @endforeach
                     </ul>
                 </div>

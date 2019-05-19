@@ -66,7 +66,7 @@
 		{{Form::open(array('files'=>'true','url'=>$route))}}
 		<!-- <div class="container"> -->
 			<div class="row"> 
-				<div class="col-12">
+				<div class="col-6">
 					{{Form::label('title','Имя клиента')}}
 					{{Form::text('name',$feedback->name,['class'=>'form-control mb-3'])}}
 				
@@ -75,6 +75,14 @@
 
 					{{Form::label('title','Статус')}}
 					{{Form::checkbox('status',1,($feedback->status)?'true':'')}}
+				</div>
+
+				<div class="col-6">
+					{{Form::label('title','Изображение')}}
+					@if(!empty($feedback->img))
+						<img src="{{ Image::url($feedback->img) }}">
+					@endif
+					<br>{{Form::file('img')}}
 				</div>
 
 				<div class="col-12">

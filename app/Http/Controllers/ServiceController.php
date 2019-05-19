@@ -30,9 +30,11 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-    	$path = $request->file('img')->store('public/services');
+    	$img = $request->file('img')->store('public/services');
+        $ico = $request->file('icon')->store('public/services/icon');
     	$service = new service($request->all());
-    	$service->img = $path;
+    	$service->img = $img;
+        $service->icon = $ico;
     	$res = $service->save();
     	if($res)
     		return redirect()->route('serviceindex');
@@ -57,6 +59,11 @@ class ServiceController extends Controller
     		@unlink(storage_path('app/'.$service->img));
     		$service->img = $request->file('img')->store('public/services');
     	}
+        if($request->file('icon'))
+        {   
+            @unlink(storage_path('app/'.$service->icon));
+            $service->icon = $request->file('icon')->store('public/services/icon');
+        }
     	$res = $service->save();
     	if($res)
     		return redirect()->route('serviceindex');

@@ -56,10 +56,10 @@
 			</div>
 
 			<div class="input-group no-gutters d-flex justify-content-end">
-				<div class="col-1">
+				<div class="col-2">
 					<button type="submit" class="btn btn-success btn-block">Поиск</button>
 				</div>
-				<div class="col-1">
+				<div class="col-2">
 					<button type="submit" name="cancel" class="btn btn-danger btn-block">Отмена</button>
 				</div>
 			</div>
@@ -85,7 +85,7 @@
 				<tbody>
 				<style>
 					.reder{
-						background: rgba(250,0,0,0.2);
+						background: rgba(0,250,0,0.2);
 					}
 				</style>
 				@foreach($list as $item)

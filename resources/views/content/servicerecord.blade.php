@@ -10,7 +10,7 @@
                     <input type="text" name="phone" placeholder="Ваш телефон" required="">
                     <input type="date" name="date" placeholder="Дата" required="">
                     <input type="time" name="time" placeholder="Время" required="">
-                    <textarea  placeholder="Комментарий"></textarea>
+                    <textarea name="comment" placeholder="Комментарий"></textarea>
                     <button type="button" id="service-record">Записаться</button>
                 {{Form::close()}}
             </div>

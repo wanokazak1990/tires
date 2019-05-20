@@ -26,6 +26,10 @@ class OrderController extends Controller
         {   
             // Фильтр поиска заказов:
 
+            // Статус:
+            if ($request->has('status') && $request->status != 0)
+                $orders = $orders->where('status', '=', $request->status);
+
             // Дата от:
             if ($request->has('datefrom') && $request->datefrom != null)
                 $orders = $orders->whereDate('created_at', '>=', date('Y-m-d', strtotime($request->datefrom)));

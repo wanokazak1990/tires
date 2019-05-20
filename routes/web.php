@@ -131,6 +131,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 		Route::match(['get','post'],'/{id}','OrderController@show')->name('ordershow');
 	});
 
+	Route::group(['prefix'=>'entries'],function(){
+		Route::get('/', 'ServiceClientController@index')->name('serviceclientindex');
+		Route::delete('/','ServiceClientController@destroy')->name('serviceclientdelete');
+	});
+
 });
 
 Route::group(['prefix'=>'ajax'],function(){
@@ -138,6 +143,7 @@ Route::group(['prefix'=>'ajax'],function(){
 	Route::post('/attributes','AjaxController@attributes')->name('ajaxattr');
 	Route::post('/filter','AjaxController@filter')->name('filter');
 	Route::post('/record','AjaxController@recordService')->name('record');
+	Route::post('/showprofit','AjaxController@showProfit')->name('showprofit');
 });
 
 Route::group(['prefix'=>'cart','middleware'=>'cart'],function(){

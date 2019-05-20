@@ -117,6 +117,7 @@
         </li>
         
         <a class="nav-item nav-link {{ $orderActive or '' }}" href="{{route('orderindex')}}">Заказы</a>
+        <a class="nav-item nav-link {{ $serviceClientActive or '' }}" href="{{route('serviceclientindex')}}">Записи</a>
         <a class="nav-item nav-link {{ $actionActive or '' }}" href="{{route('actionindex')}}">Акции</a>
         <a class="nav-item nav-link text-warning" href="{{route('main')}}" target="_blank">Перейти в магазин</a>
       </div>
@@ -284,6 +285,28 @@
         }
         $('.parameters').append('</table>')
       }))
+    });
+
+    $(document).on('click', '#showProfit', function() {
+      $(this).blur();
+
+      var datefrom = $('#profit_date_from').val();
+      var dateto = $('#profit_date_to').val();
+
+      if (datefrom == '' || dateto == '')
+        alert('Для рассчета полученной прибыли необходимо задать интервал дат.');
+      else
+      {
+        var url = '/ajax/showprofit';
+        var parameters = {
+          'datefrom':datefrom, 
+          'dateto':dateto
+        };
+
+        $.when(ajax(parameters, url)).then(function(data) {
+          $('#profit').html(data);
+        });
+      }
     });
   </script>
 

@@ -40,7 +40,7 @@
         .slider-text{
             font-size: 20px;
         }
-    }*/
+    }
 </style>
 <section class="sliders">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

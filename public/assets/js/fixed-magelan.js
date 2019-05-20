@@ -43,8 +43,6 @@ $(document).ready(function(){
 				else
 					magelan.removeClass('fixed-magelan')
 			}
-				log(maxHeight)
-			log(magelanHeight)
 		}
 	}
 

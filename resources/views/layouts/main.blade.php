@@ -1,8 +1,7 @@
 @section('header')
 <!doctype html>
 <html lang="ru">
-  <head>
-    <!-- Required meta tags -->
+<head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,21 +14,19 @@
     <meta property = "og:type" content = "article" />
     <meta property = "og:description" content = "{{ SiteInfo::getInfo()->searchdesc }}" />
 
+    <link rel="shortcut icon" href="{{ SiteInfo::getInfo()->getTitleIconUrl() }}" type="image/png">
+    <link rel="stylesheet" type="text/css" href="{{asset('/assets/lib/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/style/main.css') }}">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">    
     <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic" rel="stylesheet">
     
     <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">
-
-    <link rel="shortcut icon" href="{{ SiteInfo::getInfo()->getTitleIconUrl() }}" type="image/png">
-
-    <link rel="stylesheet" type="text/css" href="{{asset('/assets/lib/bootstrap/css/bootstrap.min.css') }}">
-
+    
     <title>{{ SiteInfo::getInfo()->name }}</title>
+</head>
 
-  </head>
-  <body>
+<body>
     <span style="display: none;" id="cartpreloader" url="{{route('cartindikator')}}"></span>
 
 <section class="header">
@@ -264,61 +261,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/lib/slick/slick.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/lib/slick/slick-theme.css') }}"/>
     <script type="text/javascript" src="{{ asset('/assets/lib/slick/slick.min.js') }}"></script>
-    <script>
-      $('.news-slider').slick({
-        infinite: true,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-          }
-        },
-        {
-          breakpoint: 700,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-        ]
-      });
+    <script src="{{asset('/assets/js/slick-config.js')}}"></script>
 
-      $('.feedback-slider').slick({
-        infinite: true,
-        speed: 300,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-          }
-        },
-        {
-          breakpoint: 700,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-        ]
-      });
-    </script>
-    <script src="{{asset('/assets/js/cart.js') }}"></script>
-    <script src="{{asset('/assets/js/function.js')}}"></script>
-    <script src="{{asset('/assets/js/filter.js')}}"></script>
-
-    <script src="{{asset('/assets/js/fixed-magelan.js')}}"></script>
-    <script src="{{asset('/assets/js/fixed-top.js')}}"></script>
+    <script src=" {{asset('/assets/js/cart.js') }} "></script>
+    <script src=" {{asset('/assets/js/function.js')}} "></script>
+    <script src=" {{asset('/assets/js/filter.js')}} "></script>
+    <script src=" {{asset('/assets/js/record-service.js') }}"></script>
+    <script src=" {{asset('/assets/js/fixed-magelan.js') }}"></script>
+    <script src=" {{asset('/assets/js/fixed-top.js') }}"></script>
 
     <script>
         $(document).ready(function(){
@@ -386,47 +336,12 @@
                 $(whatSelector).height(min);
             }
 
+
             oneHeight('.feedback-message');
             oneHeight('.news-slider .description');
-            
-            $('#service-record').on('click',function(){
-                let err = [];
-                let form = $(this).closest('form');
-                
-                form.find('input').each(function() {
-                    if ($(this).val() == '')
-                        err.push($(this).attr('placeholder'));
-                });
-
-                if (err.length < 1)
-                {
-                    let parameters = form.serialize();
-                    let url = form.attr('action');
-                    $.when(ajax(parameters,url).then(function(data){
-                        if (data == '1')
-                        {
-                            alert('Заявка на сервис успешно отправлена.');
-                            form[0].reset();
-                        }
-                        else
-                        {
-                            alert('Не удалось отправить заявку на сервис.');
-                        }
-                    }));
-                }
-                else
-                {
-                    let msg_err = '';
-                    for (i in err)
-                        msg_err += 'Поле "' + err[i] + '" не заполнено. \n';
-                    
-                    alert(msg_err);
-                }
-            });
-
-
 
         });
+
     </script>
 </body>
 </html>

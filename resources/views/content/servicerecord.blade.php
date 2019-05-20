@@ -1,3 +1,5 @@
+
+
 <div class="container-fluid zapis" >
     <div style="background: url('{{asset('/assets/images/imgtires.png')}}');background-size: contain;background-repeat: no-repeat;background-position: right;">
         <div class="container">
@@ -16,7 +18,6 @@
                     {{Form::close()}}
                 </div>
                 <div class="col-12 col-md-8 d-none d-sm-flex align-items-center" style="">
-                    <!--img src="{{asset('/assets/images/imgtires.png')}}" style="display:block;width: 2000px !important;height: auto; "-->
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@
 	</div>
 
 	<div class="col-12 search_product">
+		<div>Поиск по фильтрам:</div>
 		{{Form::open(array('url'=>route('tovarlist')))}}
 
 			{{Form::hidden('_method','get')}}

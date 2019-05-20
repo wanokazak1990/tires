@@ -63,4 +63,9 @@ class AjaxController extends Controller
 
         return;
     }
+
+    public function recordService(Request $request)
+    {
+        echo "string";
+    }
 }

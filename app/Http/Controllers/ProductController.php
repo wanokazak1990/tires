@@ -8,6 +8,7 @@ use App\hm_attribute as attribute;
 use App\hm_product_attribute as pattribute;
 use DB;
 use Excel;
+use Storage;
 
 class ProductController extends Controller
 {
@@ -217,7 +218,7 @@ class ProductController extends Controller
 
         $list = $query->get();
 
-        Excel::create('Filename', function($excel) use ($list) {
+        Excel::create(storage_path('Filename'), function($excel) use ($list) {
             $excel->sheet('Экспорт', function($sheet) use ($list) {
                 $sheet->row(1, array(
                     '№',
@@ -244,6 +245,6 @@ class ProductController extends Controller
                     ));
                 }
             });
-        })->export('xls');
+        })->download('xls');
     }
 }

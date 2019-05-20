@@ -8,12 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"-->
 
     <link rel="stylesheet" href="{{ asset('/assets/style/main.css') }}">
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet"> 
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet"> 
+    
     <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic" rel="stylesheet">
+
     <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">
 
     <link rel="shortcut icon" href="{{ SiteInfo::getInfo()->getTitleIconUrl() }}" type="image/png">
@@ -62,7 +66,7 @@
                     </div> 
 
                     <div class="col-12 col-md-4 d-flex align-items-center justify-content-center block-phone">
-                        <div class="head-info pl-3">
+                        <div class="head-info">
                             <div class="d-block d-md-none text-center">
                                 <a href="tel: {{ SiteInfo::getInfo()->phone }}">
                                     <i class="icofont icofont-phone-circle"></i>
@@ -149,8 +153,10 @@
 @section('products')      
 @show
 
-@section('news')
+@section('why')
 @show
+
+
 
 @section('page')
 @show
@@ -159,6 +165,9 @@
 @show
 
 @section('feedbacks')
+@show
+
+@section('news')
 @show
 
 @isset($map)
@@ -171,49 +180,54 @@
     <div class="row h-100">
         <div class="container h-100">
             <div class="input-group no-gutters text-light d-flex align-items-center pb-3">
-                <div class="col-12 col-md-4 col-sm-12 ">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-4  ">
-                            <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="width: 70px; height: 70px;"> 
+                <div class="col-12 col-md-6 col-sm-12 ">
+                    <div class="row ">
+                        <div class="col-12 col-sm-3 d-none d-sm-block">
+                            <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="width: 100%; height: 100%;"> 
                         </div>
-                        <div class="col-8  text-left">
-                                <div class="head-name">
-                                    {{ SiteInfo::getInfo()->name }}
-                                </div>
+                        <div class="col-md-9 col-12 text-left">
+                            <div class="head-name">
+                                {{ SiteInfo::getInfo()->name }}
+                            </div>
+                            <table style="color: #ccc;font-size: 14px;" class="mt-3 d-block">                       
+                                <tr>
+                                    <td style="padding-right: 10px;">Телефон:</td>
+                                    <td class=""  style="">{{ SiteInfo::getInfo()->phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td  style="padding-right: 10px;">Адрес:</td>
+                                    <td  class="" style=""> {{ SiteInfo::getInfo()->address }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="block-work pt-3" >
+                                            <div class="text-center">
+                                                
+                                            </div>  
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-sm-12 d-flex align-items-center">
-                    <table style="color: #ccc;font-size: 14px;width:100%;" class="mt-3 d-block">                       
-                        <tr>
-                            <td style="padding-right: 10px;">Телефон:</td>
-                            <td class="text-right"  style="width: 100%;">{{ SiteInfo::getInfo()->phone }}</td>
-                        </tr>
-                        <tr>
-                            <td  style="padding-right: 10px;">Адрес:</td>
-                            <td  class="text-right" style="width: 100%;"> {{ SiteInfo::getInfo()->address }}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="block-work pt-3" >
-                                    <div class="text-center">
-                                        <div class="head-name">{{ SiteInfo::getInfo()->hours }}</div>
-                                        <div class="head-slogan">{{ SiteInfo::getInfo()->weekend }}</div>
-                                    </div>  
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                <div class="col-md-3">
+                    <div class="head-name">
+                            {{ SiteInfo::getInfo()->hours }}
+                    </div>
+                    <div class="head-slogan">
+                        {{ SiteInfo::getInfo()->weekend }}
+                    </div>
                 </div>
 
-                <div class="col-md-4 col-sm-12">
-                    <ul class="list-unstyled m-0 py-3">
-                        <li style="border-bottom: 1px solid #666;"><a href="{{route('main')}}" class="text-light">Главная</a></li>
-                        <li style="border-bottom: 1px solid #666;"><a href="{{route('newslist')}}" class="text-light">Новости</a></li>
-                        <li style="border-bottom: 1px solid #666;"><a href="{{route('actionlist')}}" class="text-light">Акции</a></li>
+                <div class="col-md-3 col-sm-12">
+                    <ul class="list-unstyled m-0 py-3 text-center">
+                        <li style=""><a href="{{route('main')}}" class="text-light">Главная</a></li>
+                        <li style=""><a href="{{route('newslist')}}" class="text-light">Новости</a></li>
+                        <li style=""><a href="{{route('actionlist')}}" class="text-light">Акции</a></li>
                         @foreach(App\hm_page::where('status','>','0')->get() as $page)
-                            <li style="border-bottom: 1px solid #666;"><a href="{{route('pages',['alias'=>$page->alias])}}" class="text-light">{{ $page->title }}</a></li>
+                            <li style=""><a href="{{route('pages',['alias'=>$page->alias])}}" class="text-light">{{ $page->title }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -239,8 +253,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     -->
     <script src="{{ asset('/assets/js/jquery.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script-->
+
+    <link rel="stylesheet" type="text/css" href="{{asset('/assets/lib/bootstrap/css/bootstrap.min.css') }}">
+    <script src="{{asset('/assets/lib/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <script src="{{ asset('/assets/lib/jQueryFormStyler-master/dist/jquery.formstyler.min.js') }}"></script>
     <link href="{{ asset('/assets/lib/jQueryFormStyler-master/dist/jquery.formstyler.css') }}" rel="stylesheet">
@@ -254,6 +271,30 @@
         infinite: true,
         speed: 300,
         slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+          }
+        },
+        {
+          breakpoint: 700,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        ]
+      });
+
+      $('.feedback-slider').slick({
+        infinite: true,
+        speed: 300,
+        slidesToShow: 3,
         slidesToScroll: 1,
         responsive: [
         {
@@ -344,9 +385,43 @@
                 })    
             })
 
+            function oneHeight(whatSelector)
+            {
+                let min = 0;
+                $(whatSelector).each(function(){
+                    if($(this).height()>min)
+                        min = $(this).height()
+                })
+                $(whatSelector).height(min)
+            }
+            oneHeight('.feedback-message')
+            oneHeight('.news-slider .description')
 
             
-            
+            $('#service-record').on('click',function(){
+                let err = []
+                let form = $(this).closest('form')
+                form.find('input').each(function(){
+                    if($(this).val()=='')
+                        err.push($(this).attr('placeholder'))
+                })
+                if(err.length<1)
+                {
+                    let parameters = form.serialize()
+                    let url = form.attr('action')
+                    $.when(ajax(parameters,url).then(function(data){
+                        alert(data)
+                    }))
+                }
+                else
+                {
+                    let msg_err = ''
+                    for (i in err)
+                        msg_err+='Поле "'+err[i]+'" не заполнено. \n'
+                    alert(msg_err)
+                }
+
+            })
             
 
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class hm_new extends Model
 {
     protected $fillable = [
-    	'title', 'alias', 'text', 'img', 'status'
+    	'title', 'alias', 'text', 'img', 'small', 'status'
     ];
 
     public function getUrlImg()

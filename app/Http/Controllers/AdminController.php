@@ -10,4 +10,9 @@ class AdminController extends Controller
     {
     	return redirect()->route('infoindex');
     }
+
+    public function info()
+    {
+    	echo phpinfo();
+    }
 }

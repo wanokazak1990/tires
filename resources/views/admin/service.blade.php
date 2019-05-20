@@ -85,7 +85,13 @@
 					@if(!empty($service->img))
 						<img src="{{ Image::url($service->img) }}" class="mb-2">
 					@endif
-					<br>{{Form::file('img')}}
+					<br>{{Form::file('img')}}<br/>
+
+					{{Form::label('title','Иконка')}}
+					@if(!empty($service->icon))
+						<img src="{{ Image::url($service->icon) }}" class="mb-2" style="width: 150px; height: auto;">
+					@endif
+					<br>{{Form::file('icon')}}<br/>
 				</div>
 
 				<div class="col-12 mb-3">

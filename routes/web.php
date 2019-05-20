@@ -36,6 +36,7 @@ Route::get('/home', function(){
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 	
 	Route::get('/','AdminController@index')->name('admin');
+	Route::get('/phpinf','AdminController@info')->name('phpinf');
 
 	Route::group(['prefix'=>'sliders'],function(){
 		Route::get('/','SliderController@index')			->name('sliderlist');
@@ -136,6 +137,7 @@ Route::group(['prefix'=>'ajax'],function(){
 	Route::post('/product','AjaxController@product')->name('ajaxproduct');
 	Route::post('/attributes','AjaxController@attributes')->name('ajaxattr');
 	Route::post('/filter','AjaxController@filter')->name('filter');
+	Route::post('/record','AjaxController@recordService')->name('record');
 });
 
 Route::group(['prefix'=>'cart','middleware'=>'cart'],function(){

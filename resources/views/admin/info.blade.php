@@ -58,6 +58,14 @@
 					<td>{{ $info->weekend }}</td>
 				</tr>
 				<tr>
+					<td>Ключевые слова:</td>
+					<td>{{ $info->keywords }}</td>
+				</tr>
+				<tr>
+					<td>Ключевое описание:</td>
+					<td>{{ $info->searchdesc }}</td>
+				</tr>
+				<tr>
 					<td>Описание компании:</td>
 					<td>{!! $info->description or 'Нет описания' !!}</td>
 				</tr>

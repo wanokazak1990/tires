@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\hm_action as action;
+use Image;
 
 class ActionController extends Controller
 {
@@ -31,6 +32,9 @@ class ActionController extends Controller
     public function store(Request $request)
     {
     	$path = $request->file('img')->store('public/actions');
+
+        $image = Image::editImgByWidth($path,1100);
+
     	$action = new action($request->all());
     	$action->img = $path;
     	$res = $action->save();
@@ -57,6 +61,7 @@ class ActionController extends Controller
     	{	
     		@unlink(storage_path('app/'.$action->img));
     		$action->img = $request->file('img')->store('public/actions');
+            $image = Image::editImgByWidth($action->img,1100);
     	}
     	$res = $action->save();
     	if($res)

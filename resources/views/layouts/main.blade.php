@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="{{ asset('/assets/style/main.css') }}">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">    
-    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic" rel="stylesheet">
+    
     <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">
 
     <link rel="shortcut icon" href="{{ SiteInfo::getInfo()->getTitleIconUrl() }}" type="image/png">
@@ -351,7 +352,7 @@
                     m_more.attr('product-id',data.id)
                     m_modal.modal('show')
                 }))
-            })
+            });
 
             //BORDER PRODUCT
             var productBlockWidth = $('.product-block').outerWidth()
@@ -373,20 +374,20 @@
                     if((k+1)>cellInLine)
                         product.css({'border-top':'1px solid transparent'})
                 })    
-            })
+            });
 
             function oneHeight(whatSelector)
             {
                 let min = 0;
                 $(whatSelector).each(function(){
                     if($(this).height()>min)
-                        min = $(this).height()
+                        min = $(this).height();
                 })
-                $(whatSelector).height(min)
+                $(whatSelector).height(min);
             }
-            oneHeight('.feedback-message')
-            oneHeight('.news-slider .description')
 
+            oneHeight('.feedback-message');
+            oneHeight('.news-slider .description');
             
             $('#service-record').on('click',function(){
                 let err = [];
@@ -422,9 +423,10 @@
                     alert(msg_err);
                 }
             });
-            
 
-        })
+
+
+        });
     </script>
 </body>
 </html>

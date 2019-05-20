@@ -7,6 +7,8 @@ use App\hm_product as product;
 use App\hm_attribute as attribute;
 use App\hm_product_attribute as pattribute;
 use DB;
+use Excel;
+use Storage;
 
 class ProductController extends Controller
 {
@@ -152,5 +154,97 @@ class ProductController extends Controller
         @unlink(storage_path('app/'.$new->img));
         pattribute::where('product_id',$request->id)->delete();
         echo $new->delete();
+    }
+
+    public function export(Request $request)
+    {
+        $query = product::select(DB::raw('hm_products.*,avg(hm_product_attributes.id)'))
+            ->leftjoin(
+                'hm_product_attributes',
+                'hm_product_attributes.product_id',
+                '=',
+                'hm_products.id'
+            )
+            ->with('category')
+            ->with('attributes');
+
+        $query->groupBy('hm_products.id');
+
+        if(!$request->has('clear'))
+        {
+            //поиск артикула
+            if($request->has('article') && !empty($request->article))
+                $query->where('article',trim($request->article));
+            //поиск имени
+            if($request->has('name') && !empty($request->name))
+                $query->where('name',trim($request->name));
+            //поиск цены от
+            if($request->has('pricefrom') && !empty($request->pricefrom) && is_numeric($request->pricefrom))
+                $query->where('price','>=',$request->pricefrom);
+            //поиск цены до
+            if($request->has('priceto') && !empty($request->priceto) && is_numeric($request->priceto))
+                $query->where('price','<=',$request->priceto);
+            //поиск кол-во от
+            if($request->has('countfrom') && !empty($request->countfrom) && is_numeric($request->countfrom))
+                $query->where('available','>=',$request->countfrom);
+            //поиск кол-во до
+            if($request->has('countto') && !empty($request->countto) && is_numeric($request->countto))
+                $query->where('available','<=',$request->countto);
+            //поиск статуса
+            if($request->has('status') && $request->status!=='null')
+                $query->where('status','=',$request->status);
+            //поиск категории
+            if($request->has('category_id') && $request->category_id!=='null')
+                $query->where('category_id','=',$request->category_id);
+            //поиск по атрибутам
+            if($request->has('attribute') && is_array($request->attribute))
+            {
+                $mas = [];
+                foreach ($request->attribute as $attr => $value) 
+                {
+                    if($value)
+                        $mas[] = $value;    
+                }
+                if(count($mas))
+                {
+                    $query->whereIn('hm_product_attributes.value_id',$mas);
+                    $query->having(DB::raw('COUNT(hm_product_attributes.id)'),'=',count($mas));
+                }
+            }
+            $filter = $request->all();
+            unset($filter['_method']);
+            unset($filter['_token']);
+        }
+
+        $list = $query->get();
+
+        Excel::create(storage_path('Filename'), function($excel) use ($list) {
+            $excel->sheet('Экспорт', function($sheet) use ($list) {
+                $sheet->row(1, array(
+                    '№',
+                    'Артикул',
+                    'Категория',
+                    'Название',
+                    'Кол-во в учете сайта',
+                    'Цена (руб.)',
+                    'Аттрибуты',
+                    'Дата регистрации в учёте',
+                    'Дата последнего изменения'
+                ));
+                foreach ($list as $key => $prod) {
+                    $sheet->row($key+2, array(
+                        $key+1,
+                        $prod->article,
+                        @$prod->category->name,
+                        $prod->name,
+                        $prod->available,
+                        number_format($prod->price,0,'',' ').' руб.',
+                        @$prod->getSmallAttribute($prod->attributes),
+                        $prod->created_at->format('d.m.Y'),
+                        $prod->updated_at->format('d.m.Y')
+                    ));
+                }
+            });
+        })->download('xls');
     }
 }

@@ -1,30 +1,37 @@
 @section('header')
 <!doctype html>
 <html lang="ru">
-  <head>
-    <!-- Required meta tags -->
+<head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="keywords" content="{{ SiteInfo::getInfo()->keywords }}" />
+    <meta name="description" content="{{ SiteInfo::getInfo()->searchdesc }}" />
 
-    <link rel="stylesheet" href="{{ asset('/assets/style/main.css') }}">
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
-    <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">
+    <meta property = "og:title" content="{{ SiteInfo::getInfo()->name }}" />
+    <meta property = "og:image" content="{{ Image::url(SiteInfo::getInfo()->logo) }}" />
+    <meta property = "og:type" content = "article" />
+    <meta property = "og:description" content = "{{ SiteInfo::getInfo()->searchdesc }}" />
 
     <link rel="shortcut icon" href="{{ SiteInfo::getInfo()->getTitleIconUrl() }}" type="image/png">
+    <link rel="stylesheet" type="text/css" href="{{asset('/assets/lib/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/style/main.css') }}">
+    
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic" rel="stylesheet">
+    
+    <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">
+    
     <title>{{ SiteInfo::getInfo()->name }}</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <span style="display: none;" id="cartpreloader" url="{{route('cartindikator')}}"></span>
 
 <section class="header">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row d-sm-none d-none d-md-block">
             <div class="container" style="border-bottom:1px solid #ccc;">
                 <div class="row">
                     <div class="col-12">
@@ -41,28 +48,33 @@
         </div>
 
         <div class="row">
-            <div class="container pt-3 pb-3">
+            <div class="container pt-3 pb-3 site-info">
                 <div class="row">
-                    <div class="col-4 col-md-2 d-flex justify-content-center">
+                    <div class="col-12 col-md-2 d-flex justify-content-center">
                         <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="height:100px; width: 100px; display: block;">
                     </div>
                     
-                    <div class="col-8 col-md-3 d-flex align-items-center justify-content-center">
+                    <div class="col-12 col-md-3 d-flex align-items-center justify-content-center block-name">
                         <div class="">
                             <div class="head-name">{{ SiteInfo::getInfo()->name }}</div>
                             <div class="head-slogan">{{ SiteInfo::getInfo()->slogan }}</div>
                         </div>
                     </div> 
                     
-                    <div class="col-4 col-md-3 d-flex align-items-center justify-content-center">
+                    <div class="col-12 col-md-3 d-flex align-items-center justify-content-center block-work">
                         <div class="text-center">
                             <div class="head-name">{{ SiteInfo::getInfo()->hours }}</div>
                             <div class="head-slogan">{{ SiteInfo::getInfo()->weekend }}</div>
                         </div>                    
                     </div> 
 
-                    <div class="col-8 col-md-4 d-flex align-items-center justify-content-center">
-                        <div class="head-info pl-3">
+                    <div class="col-12 col-md-4 d-flex align-items-center justify-content-center block-phone">
+                        <div class="head-info">
+                            <div class="d-block d-md-none text-center">
+                                <a href="tel: {{ SiteInfo::getInfo()->phone }}">
+                                    <i class="icofont icofont-phone-circle"></i>
+                                </a>
+                            </div>
                             <div class="head-phone">{{ SiteInfo::getInfo()->phone }}</div>
                             <div class="head-address">{{ SiteInfo::getInfo()->address }}</div>
                         </div>
@@ -144,8 +156,10 @@
 @section('products')      
 @show
 
-@section('news')
+@section('why')
 @show
+
+
 
 @section('page')
 @show
@@ -154,6 +168,9 @@
 @show
 
 @section('feedbacks')
+@show
+
+@section('news')
 @show
 
 @isset($map)
@@ -166,37 +183,54 @@
     <div class="row h-100">
         <div class="container h-100">
             <div class="input-group no-gutters text-light d-flex align-items-center pb-3">
-                <div class="col-md-4 col-sm-12 d-flex align-items-center">
-                    <div class="input-group no-gutters d-flex align-items-center">
-                        <div class="col-md-4 col-sm-12 d-flex align-items-center">
-                            <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="width: 100px; height: 100px;"> 
+                <div class="col-12 col-md-6 col-sm-12 ">
+                    <div class="row ">
+                        <div class="col-12 col-sm-3 d-none d-sm-block">
+                            <img src="{{ Image::url(SiteInfo::getInfo()->logo) }}" style="width: 100%; height: 100%;"> 
                         </div>
-                        <div class="col-md-8 col-sm-12 py-3">
-                            <div class="input-group no-gutters">
-                                <span class="h5">{{ SiteInfo::getInfo()->name }}</span>
+                        <div class="col-md-9 col-12 text-left">
+                            <div class="head-name">
+                                {{ SiteInfo::getInfo()->name }}
                             </div>
-                            <div class="input-group no-gutters">
-                                {{ SiteInfo::getInfo()->slogan }}
-                            </div>
+                            <table style="color: #ccc;font-size: 14px;" class="mt-3 d-block">                       
+                                <tr>
+                                    <td style="padding-right: 10px;">Телефон:</td>
+                                    <td class=""  style="">{{ SiteInfo::getInfo()->phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td  style="padding-right: 10px;">Адрес:</td>
+                                    <td  class="" style=""> {{ SiteInfo::getInfo()->address }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="block-work pt-3" >
+                                            <div class="text-center">
+                                                
+                                            </div>  
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-sm-12 d-flex align-items-center">
-                    <ul class="list-unstyled m-0 py-3">
-                        <li>Режим работы: {{ SiteInfo::getInfo()->hours }}, {{ SiteInfo::getInfo()->weekend }}</li>
-                        <li>Телефон: {{ SiteInfo::getInfo()->phone }}</li>
-                        <li>Адрес компании: {{ SiteInfo::getInfo()->address }}</li>
-                    </ul>
+                <div class="col-md-3">
+                    <div class="head-name">
+                            {{ SiteInfo::getInfo()->hours }}
+                    </div>
+                    <div class="head-slogan">
+                        {{ SiteInfo::getInfo()->weekend }}
+                    </div>
                 </div>
 
-                <div class="col-md-4 col-sm-12">
-                    <ul class="list-unstyled m-0 py-3">
-                        <li><a href="{{route('main')}}" class="text-light">Главная</a></li>
-                        <li><a href="{{route('newslist')}}" class="text-light">Новости</a></li>
-                        <li><a href="{{route('actionlist')}}" class="text-light">Акции</a></li>
+                <div class="col-md-3 col-sm-12">
+                    <ul class="list-unstyled m-0 py-3 text-center">
+                        <li style=""><a href="{{route('main')}}" class="text-light">Главная</a></li>
+                        <li style=""><a href="{{route('newslist')}}" class="text-light">Новости</a></li>
+                        <li style=""><a href="{{route('actionlist')}}" class="text-light">Акции</a></li>
                         @foreach(App\hm_page::where('status','>','0')->get() as $page)
-                            <li><a href="{{route('pages',['alias'=>$page->alias])}}" class="text-light">{{ $page->title }}</a></li>
+                            <li style=""><a href="{{route('pages',['alias'=>$page->alias])}}" class="text-light">{{ $page->title }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -216,14 +250,9 @@
 @include('content.ordermodal')
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!--
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    -->
     <script src="{{ asset('/assets/js/jquery.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <script src="{{asset('/assets/lib/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <script src="{{ asset('/assets/lib/jQueryFormStyler-master/dist/jquery.formstyler.min.js') }}"></script>
     <link href="{{ asset('/assets/lib/jQueryFormStyler-master/dist/jquery.formstyler.css') }}" rel="stylesheet">
@@ -232,47 +261,17 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/lib/slick/slick.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/lib/slick/slick-theme.css') }}"/>
     <script type="text/javascript" src="{{ asset('/assets/lib/slick/slick.min.js') }}"></script>
-    <script>
-      $('.news-slider').slick({
-        infinite: true,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-          }
-        },
-        {
-          breakpoint: 700,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-        ]
-      });
-    </script>
-    <script src="{{asset('/assets/js/cart.js') }}"></script>
-    <script src="{{asset('/assets/js/function.js')}}"></script>
-    <script src="{{asset('/assets/js/filter.js')}}"></script>
+    <script src="{{asset('/assets/js/slick-config.js')}}"></script>
 
-    <script src="{{asset('/assets/js/fixed-magelan.js')}}"></script>
-    <script src="{{asset('/assets/js/fixed-top.js')}}"></script>
+    <script src=" {{asset('/assets/js/cart.js') }} "></script>
+    <script src=" {{asset('/assets/js/function.js')}} "></script>
+    <script src=" {{asset('/assets/js/filter.js')}} "></script>
+    <script src=" {{asset('/assets/js/record-service.js') }}"></script>
+    <script src=" {{asset('/assets/js/fixed-magelan.js') }}"></script>
+    <script src=" {{asset('/assets/js/fixed-top.js') }}"></script>
 
     <script>
         $(document).ready(function(){
-            $(function() {
-                //$('select').styler();
-            });
-
-            // $(document).on('click', '', function() {
-            //     alert(1);
-            // });
 
             //PRODUCT CLICK MORE BUTTON
             $(document).on('click','.product .more',function(){
@@ -303,7 +302,7 @@
                     m_more.attr('product-id',data.id)
                     m_modal.modal('show')
                 }))
-            })
+            });
 
             //BORDER PRODUCT
             var productBlockWidth = $('.product-block').outerWidth()
@@ -325,21 +324,24 @@
                     if((k+1)>cellInLine)
                         product.css({'border-top':'1px solid transparent'})
                 })    
-            })
+            });
+
+            function oneHeight(whatSelector)
+            {
+                let min = 0;
+                $(whatSelector).each(function(){
+                    if($(this).height()>min)
+                        min = $(this).height();
+                })
+                $(whatSelector).height(min);
+            }
 
 
-            
-            
-            
+            oneHeight('.feedback-message');
+            oneHeight('.news-slider .description');
 
+        });
 
-
-            
-
-            
-            
-
-        })
     </script>
 </body>
 </html>

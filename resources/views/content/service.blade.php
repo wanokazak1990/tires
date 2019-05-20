@@ -21,4 +21,6 @@
 
 </section>
 
+@include('content.servicerecord')
+
 @endsection

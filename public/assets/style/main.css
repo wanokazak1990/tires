@@ -1,14 +1,55 @@
 /*
 font-family: 'Russo One', sans-serif;
 font-family: 'Roboto', sans-serif;
+font-family: 'Jura', sans-serif;
+font-family: 'Lato', sans-serif;
 */
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'PT Sans', sans-serif !important;
 }
 a{
     color: #333;
     text-decoration: none;
 }
+
+.zapis{
+    background: #FDC830;  
+    background: -webkit-linear-gradient(to left, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #F37335, #FDC830);
+    padding-top: 30px; 
+    padding-bottom: 30px; 
+}
+.zapis .form{
+    background: rgba(255,255,255,0.8);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 15px #000;
+}
+.zapis input,.zapis textarea{
+    display: block;
+    color: #666;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    width: 100%;
+    margin-bottom: 10px;
+    background: transparent;
+    border-radius: 5px;
+}
+.zapis button{
+    display: block;
+    background: #fc3;
+    border: 0px;
+    font-size: 20px;
+    padding: 10px 15px;
+    width: 100%;
+}
+
+.block-title{
+    font-weight: 700;
+    font-size: 30px;color: #333 !important;padding-left: 5px;
+    padding-top: 30px;
+}
+
 
 .content-area .col-md-12{
     padding: 0px !important;
@@ -44,6 +85,39 @@ a{
 @media screen and (max-width: 755px){
     .head-address, .head-phone{
         text-align: center;
+        font-size: 16px;
+    }
+    .head-name,.head-slogan{
+        text-align: center !important;
+    }
+    .head-info{
+        padding: 0px !important;
+        margin: 0px;
+    }
+    .block-name,.block-phone,.block-work{
+        padding-bottom: 15px;
+    }
+    .block-phone{
+        position: absolute;
+        left: 0px;
+        bottom: 30px;
+        width: 100%;
+        background: #fc3;
+    }
+    .block-phone a{
+        color: #333;
+    }
+    .block-phone .icofont{
+        font-size: 100px;
+        padding-bottom: 20px; 
+        text-decoration: none;
+    }
+    .block-phone a:hover,.block-phone a:focus{
+        text-decoration: none;color: #000;text-transform: none;
+    }
+    .site-info{
+        height: 100vh;
+        background: #fc3;
     }
 }
 
@@ -55,11 +129,16 @@ a{
     background:#fff;
     box-shadow: 0 0 5px #000;
 }
-
+.fixed-menu li{
+    padding-left: 15px;
+}
 
 /*SLIDER*/
-.carousel-item{
+.header-slider{
     height: 500px !important;
+    max-height: 100vh;
+}
+.carousel-item{
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -73,9 +152,9 @@ a{
     width: 100%;
 }
 .card-header{
-    padding: 0px;
-    margin: 0px;
-    background: #ffc107;
+    padding: 0px !important;
+    margin: 0px !important;
+    background: #ffc107 !important;
 }
 .card-header button{
     color: #333;
@@ -169,12 +248,23 @@ a{
 
 /*NEWS*/
 .news-slider {
-    margin-bottom: 25px;
+
+}
+.news-back{
+    color:#555;
+    background: #FF512F;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F09819, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F09819, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    padding-top: 15px;padding-bottom: 15px;
 }
 .news-slider .item-block {
-    display: flex;
-    padding: 0px 10px;
-    position: relative;
+    padding: 15px;
+    margin: 0px;
+    border-radius: 0px;
+    border:1px solid #ccc;
+    border-right: 0px;
+    background: rgba(255,255,255,1);
 }
 .news-slider img{
     display: block;width: 100%;
@@ -191,7 +281,9 @@ a{
 }
 
 .news-slider .description{
-    font-size: 12px;color: #666;text-align: justify;
+    text-align: left;
+    font-size: 16px;
+    line-height: 18px;
 }
 .newslist{
     margin-bottom: 15px;
@@ -232,13 +324,14 @@ a{
 
 /*FEEDBACK*/
 .feedback{
-  padding-top: 20px;
+
 }
 .feedback-block{
-  /*border-top:1px solid #ddd;*/
   margin-bottom: 30px;
   font-weight: 300;
   color: #444;
+  border:1px solid #ddd;
+  padding: 15px;
 }
 
 .feedback-block:hover{
@@ -261,16 +354,27 @@ a{
     transform: translateX(0px);
   }
 }
+.feedback .img{
+    background-size: cover !important;
+    background-position: center !important;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    border-radius: 100%;
+}
 .feedback-name{
   display: block;
-  font-family: 'Montserrat', sans-serif;
   font-size: 25px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  width: auto;
+  border-bottom: 3px solid #fc3;
 }
 .feedback-message{
   font-size: 15px;
 }
+
+
+
 
 /*FOOTER*/
 .footer{

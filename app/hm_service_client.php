@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class hm_feedback extends Model
+class hm_service_client extends Model
 {
     protected $fillable = [
-    	'name', 'text', 'status','img'
+    	'name','phone','date','time','comment'
     ];
 }

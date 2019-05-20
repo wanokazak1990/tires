@@ -40,6 +40,7 @@ class ContentController extends Controller
         $news = news::where('status','>','0')->orderBy('id', 'desc')->limit(9)->get();
         $feedbacks = feedback::where('status','>','0')->get();
         $categories = category::get();
+        $services = service::where('status','>','0')->get();
 
         if(is_object($categories) && count($categories)>0)
         {   
@@ -66,7 +67,8 @@ class ContentController extends Controller
             ->with('attributes',$attributes)
             ->with('categories',$categories)
             ->with('news',$news)
-            ->with('feedbacks',$feedbacks);
+            ->with('feedbacks',$feedbacks)
+            ->with('services',$services);
     }
 
     public function productlist(Request $request)

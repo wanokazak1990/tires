@@ -80,6 +80,9 @@
 					{{Form::label('title','Псевдоним (eng)')}}
 					{{Form::text('alias',$new->alias,['class'=>'form-control mb-2'])}}
 
+					{{Form::label('title','Аннотация')}}
+					{{Form::textarea('small',$new->small,['class'=>'form-control'])}}
+
 					{{Form::label('title','Текст')}}
 					{{Form::textarea('text',$new->text,['class'=>'form-control mb-2','id'=>'editor'])}}
 

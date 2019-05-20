@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\hm_feedback as feedback;
+use Image;
+use Storage;
 
 class FeedbackController extends Controller
 {
@@ -29,7 +31,12 @@ class FeedbackController extends Controller
 
     public function store(Request $request)
     {
-    	$feedback = new feedback($request->all());
+        $path = $request->file('img')->store('public/feedbacks');
+        
+        $image = Image::editImgByWidth($path,300);
+        
+        $feedback = new feedback($request->all());
+        $feedback->img = $path;
     	$res = $feedback->save();
     	if($res)
     		return redirect()->route('feedbacklist');
@@ -49,7 +56,13 @@ class FeedbackController extends Controller
     {
     	$feedback = feedback::find($id);
         $feedback->status = 0;
-    	$feedback->update($request->input());
+    	$feedback->fill($request->input());
+        if($request->file('img'))
+        {   
+            @unlink(storage_path('app/'.$feedback->img));
+            $feedback->img = $request->file('img')->store('public/feedbacks');
+            $image = Image::editImgByWidth($feedback->img,300);
+        }
     	$res = $feedback->save();
     	if($res)
     		return redirect()->route('feedbacklist');

@@ -8,7 +8,7 @@ class hm_service extends Model
 {
 	
 	protected $fillable = [
-    	'name','text','alias','img','status'
+    	'name','text','alias','img','status','icon'
     ];
 
     public function getUrlImg()

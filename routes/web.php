@@ -36,6 +36,7 @@ Route::get('/home', function(){
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 	
 	Route::get('/','AdminController@index')->name('admin');
+	Route::get('/phpinf','AdminController@info')->name('phpinf');
 
 	Route::group(['prefix'=>'sliders'],function(){
 		Route::get('/','SliderController@index')			->name('sliderlist');
@@ -89,6 +90,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 		Route::get('/edit/{id}','ProductController@show')	->name('tovarshow');
 		Route::post('/edit/{id}','ProductController@update')		->name('tovarupdate');
 		Route::delete('/','ProductController@destroy')		->name('tovardelete');
+		Route::match(['post','get'],'/export','ProductController@export')->name('productexport');
 	});
 
 	Route::group(['prefix'=>'action'],function(){
@@ -125,8 +127,13 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 	});
 
 	Route::group(['prefix'=>'orders'],function(){
-		Route::get('/','OrderController@index')->name('orderindex');
+		Route::match(['get','post'],'/','OrderController@index')->name('orderindex');
 		Route::match(['get','post'],'/{id}','OrderController@show')->name('ordershow');
+	});
+
+	Route::group(['prefix'=>'entries'],function(){
+		Route::get('/', 'ServiceClientController@index')->name('serviceclientindex');
+		Route::delete('/','ServiceClientController@destroy')->name('serviceclientdelete');
 	});
 
 });
@@ -135,6 +142,8 @@ Route::group(['prefix'=>'ajax'],function(){
 	Route::post('/product','AjaxController@product')->name('ajaxproduct');
 	Route::post('/attributes','AjaxController@attributes')->name('ajaxattr');
 	Route::post('/filter','AjaxController@filter')->name('filter');
+	Route::post('/record','AjaxController@recordService')->name('record');
+	Route::post('/showprofit','AjaxController@showProfit')->name('showprofit');
 });
 
 Route::group(['prefix'=>'cart','middleware'=>'cart'],function(){

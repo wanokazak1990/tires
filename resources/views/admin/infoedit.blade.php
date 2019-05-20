@@ -66,6 +66,24 @@
 
 		<div class="input-group no-gutters mb-2">
 			<div class="col-md-4 col-sm-12 d-flex align-items-center">
+				Ключевые слова:
+			</div>
+			<div class="col-md-8 col-sm-12">
+				<textarea name="keywords">{{ $info->keywords }}</textarea>
+			</div>
+		</div>
+
+		<div class="input-group no-gutters mb-2">
+			<div class="col-md-4 col-sm-12 d-flex align-items-center">
+				Ключевое описание(поисковикам):
+			</div>
+			<div class="col-md-8 col-sm-12">
+				<textarea name="searchdesc">{{ $info->searchdesc }}</textarea>
+			</div>
+		</div>
+
+		<div class="input-group no-gutters mb-2">
+			<div class="col-md-4 col-sm-12 d-flex align-items-center">
 				Описание компании:
 			</div>
 			<div class="col-md-8 col-sm-12">

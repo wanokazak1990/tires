@@ -7,6 +7,8 @@ use App\hm_product as product;
 use App\hm_category as category;
 use App\hm_attribute as attribute;
 use App\hm_car_filter as filter;
+use App\hm_order as order;
+use App\hm_service_client as serviceClient;
 
 class AjaxController extends Controller
 {
@@ -62,5 +64,49 @@ class AjaxController extends Controller
         echo $list;
 
         return;
+    }
+
+    public function recordService(Request $request)
+    {
+        $serviceClient = new serviceClient();
+
+        $serviceClient->name = $request->name;
+        $serviceClient->phone = $request->phone;
+        $serviceClient->date = strtotime($request->date);
+        $serviceClient->time = strtotime($request->time);
+        $serviceClient->comment = $request->comment;
+
+        if ($serviceClient->save())
+            echo '1';
+        else
+            echo '0';
+    }
+
+    public function showProfit(Request $request)
+    {
+        $orders = order::with('client')->with('products')
+            ->whereDate('created_at', '>=', date('Y-m-d', strtotime($request->datefrom)))
+            ->whereDate('created_at', '<=', date('Y-m-d', strtotime($request->dateto)))
+            ->where('status', 3)
+            ->get();
+
+        if (count($orders) > 0)
+        {
+            $profit = 0;
+
+            foreach ($orders as $o_key => $order) 
+            {
+                foreach ($order->products as $p_key => $product) 
+                {
+                    $profit += $product->count * $product->saleprice;
+                }
+            }
+
+            echo '<div class="h5">Прибыль за указанный период составила <span class="text-success">'.$profit.'</span> рублей.</div>';
+        }
+        else
+        {
+            echo '<div class="h5">За указанный период прибыли получено не было.</div>';
+        }
     }
 }

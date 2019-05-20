@@ -38,15 +38,8 @@ class InfoController extends Controller
     public function update(Request $request)
     {
     	$info = hm_info::first();
-    	$info->name = $request->name;
-    	$info->slogan = $request->slogan;
-    	$info->phone = $request->phone;
-    	$info->address = $request->address;
-    	$info->hours = $request->hours;
-    	$info->weekend = $request->weekend;
-    	$info->description = $request->description;
-    	$info->admin_email = $request->admin_email;
-    	$info->vk_group = $request->vk_group;
+
+    	$info->fill($request->all());
 
     	if ($request->has('logo'))
     	{
@@ -60,10 +53,8 @@ class InfoController extends Controller
     		$info->title_icon = $title_icon_path;
     	}
 
-    	$info->map_code = $request->map_code;
-    	$info->metrics_code = $request->metrics_code;
     	$result = $info->save();
-
+        
     	if ($result)
     		return redirect()->route('infoindex');
     }

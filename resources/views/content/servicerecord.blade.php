@@ -15,8 +15,7 @@
                         <button type="button" id="service-record">Записаться</button>
                     {{Form::close()}}
                 </div>
-                <div class="col-12 col-md-8 d-none d-sm-flex align-items-center" style="">
-                </div>
+                <div class="col-12 col-md-8 d-none d-sm-flex align-items-center" style=""></div>
             </div>
         </div>
     </div>

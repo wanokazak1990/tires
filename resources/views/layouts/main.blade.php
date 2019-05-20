@@ -17,8 +17,8 @@
     <link rel="shortcut icon" href="{{ SiteInfo::getInfo()->getTitleIconUrl() }}" type="image/png">
     <link rel="stylesheet" type="text/css" href="{{asset('/assets/lib/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/style/main.css') }}">
-
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">    
+    
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">   
     <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic" rel="stylesheet">
     
     <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\hm_page;
+use Image;
 
 class PageController extends Controller
 {
@@ -36,6 +37,7 @@ class PageController extends Controller
     	{
     		$path = $request->file('img')->store('public/pages');
     		$page->img = $path;
+            $image = Image::editImgByWidth($path,1100);
     	}
     	
     	$result = $page->save();
@@ -65,6 +67,7 @@ class PageController extends Controller
     	{	
     		@unlink(storage_path('app/'.$page->img));
     		$page->img = $request->file('img')->store('public/pages');
+            $image = Image::editImgByWidth($page->img,1100);
     	}
 
     	$result = $page->save();

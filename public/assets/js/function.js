@@ -12,3 +12,13 @@ function ajax(parameters,url)
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
     })
 }
+
+function oneHeight(whatSelector)
+{
+    let min = 0;
+    $(whatSelector).each(function(){
+        if($(this).height()>min)
+            min = $(this).height();
+    })
+    $(whatSelector).height(min);
+}

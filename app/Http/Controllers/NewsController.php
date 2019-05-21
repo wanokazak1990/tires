@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\hm_new as news;
+use Image;
 
 class NewsController extends Controller
 {
@@ -30,6 +31,7 @@ class NewsController extends Controller
     public function store(Request $request)
     {
     	$path = $request->file('img')->store('public/news');
+        $image = Image::editImgByWidth($path,1100);
     	$new = new news($request->all());
     	$new->img = $path;
     	$res = $new->save();
@@ -56,6 +58,7 @@ class NewsController extends Controller
     	{	
     		@unlink(storage_path('app/'.$new->img));
     		$new->img = $request->file('img')->store('public/news');
+            $image = Image::editImgByWidth($new->img,1100);
     	}
     	$res = $new->save();
     	if($res)

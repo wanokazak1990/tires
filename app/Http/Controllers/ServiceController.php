@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\hm_service as service;
+use Image;
 
 class ServiceController extends Controller
 {
@@ -31,8 +32,12 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
     	$img = $request->file('img')->store('public/services');
+        $image = Image::editImgByWidth($img,1100);
+
         $ico = $request->file('icon')->store('public/services/icon');
-    	$service = new service($request->all());
+    	$image = Image::editImgByWidth($ico,300);
+
+        $service = new service($request->all());
     	$service->img = $img;
         $service->icon = $ico;
     	$res = $service->save();
@@ -58,11 +63,13 @@ class ServiceController extends Controller
     	{	
     		@unlink(storage_path('app/'.$service->img));
     		$service->img = $request->file('img')->store('public/services');
+            $image = Image::editImgByWidth($service->img,1100);
     	}
         if($request->file('icon'))
         {   
             @unlink(storage_path('app/'.$service->icon));
             $service->icon = $request->file('icon')->store('public/services/icon');
+            $image = Image::editImgByWidth($service->icon,300);
         }
     	$res = $service->save();
     	if($res)

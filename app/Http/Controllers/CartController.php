@@ -107,6 +107,8 @@ class CartController extends Controller
             }
         }
 
+        Cart::clearCart();
+
         echo json_encode(['result'=>['Ваш заказ принят.']]);
     }
 }

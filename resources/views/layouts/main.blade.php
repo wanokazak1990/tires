@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/assets/lib/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/style/main.css') }}">
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">    
     <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic" rel="stylesheet">
     
     <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">
@@ -249,6 +249,11 @@
 
 @include('content.ordermodal')
 
+@include('content.modal')
+
+    <div id="toTop">
+        <i class="icofont-arrow-up"></i>
+    </div>
 
     <script src="{{ asset('/assets/js/jquery.js') }}"></script>
     
@@ -339,6 +344,19 @@
 
             oneHeight('.feedback-message');
             oneHeight('.news-slider .description');
+
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 638) {
+                    $('#toTop').fadeIn();
+                } 
+                else {
+                    $('#toTop').fadeOut();
+                }
+            });
+
+            $(document).on('click', '#toTop', function() {
+                $('body,html').animate({scrollTop:0}, 500);
+            });
 
         });
 

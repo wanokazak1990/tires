@@ -14,11 +14,11 @@
 				<div class="col-4">
 					<div>
 						<label>Дата (от):</label>
-						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" id="profit_date_from" class="form-control">
+						<input type="date" id="profit_date_from" class="form-control">
 					</div>
 					<div>
 						<label>Дата (до):</label>
-						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" id="profit_date_to" class="form-control">
+						<input type="date" id="profit_date_to" class="form-control">
 					</div>
 					<div class="row justify-content-end mt-3">
 						<div class="col-6">
@@ -64,11 +64,11 @@
 				<div class="col-4">
 					<div>
 						<label>Дата (от):</label>
-						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" name="datefrom" class="form-control" value="{{ $filter['datefrom'] or '' }}">
+						<input type="date" name="datefrom" class="form-control" value="{{ $filter['datefrom'] or '' }}">
 					</div>
 					<div>
 						<label>Дата (до):</label>
-						<input type="text" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}" title="Дата в формате ДД.ММ.ГГГГ" name="dateto" class="form-control" value="{{ $filter['dateto'] or '' }}">
+						<input type="date" name="dateto" class="form-control" value="{{ $filter['dateto'] or '' }}">
 					</div>					
 				</div>
 
@@ -124,11 +124,11 @@
 						</td>
 						<td class="text-center">
 							<div>{{$item->created_at->format('d.m.Y')}}</div>
-							<div>{{$item->created_at->format('h:m')}}</div>
+							<div>{{$item->created_at->format('H:i')}}</div>
 						</td>
 						<td class="text-center">
 							<div>{{$item->updated_at->format('d.m.Y')}}</div>
-							<div>{{$item->updated_at->format('h:m')}}</div>
+							<div>{{$item->updated_at->format('H:i')}}</div>
 						</td>
 						<td style="width: 270px;">
 							@if(!empty($item->client))
@@ -244,7 +244,7 @@
 			</div>
 
 
-			<div class="input-group no-gutters d-flex justify-content-between">
+			<div class="input-group no-gutters d-flex justify-content-between mb-5">
 				<div class="col-3">
 					{{Form::submit('Применить изменения', ['class'=>'btn btn-success btn-block mt-3'])}}
 				</div>

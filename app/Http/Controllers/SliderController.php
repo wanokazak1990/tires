@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\my_slider as slider;
 use Storage;
-
+use Image;
 
 class SliderController extends Controller
 {
@@ -32,6 +32,7 @@ class SliderController extends Controller
     public function store(Request $request)
     {
     	$path = $request->file('img')->store('public/sliders');
+        $image = Image::editImgByWidth($path,1920);
     	$slider = new slider($request->all());
     	$slider->img = $path;
     	$res = $slider->save();
@@ -58,6 +59,7 @@ class SliderController extends Controller
     	{	
     		@unlink(storage_path('app/'.$slider->img));
     		$slider->img = $request->file('img')->store('public/sliders');
+            $image = Image::editImgByWidth($slider->img,1920);
     	}
     	$res = $slider->save();
     	if($res)

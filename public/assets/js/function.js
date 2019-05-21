@@ -18,3 +18,13 @@ function alert(str)
 	$('#messageModal').find('.modal-body').html(str);
 	$('#messageModal').modal('show');
 }
+
+function oneHeight(whatSelector)
+{
+    let min = 0;
+    $(whatSelector).each(function(){
+        if($(this).height()>min)
+            min = $(this).height();
+    })
+    $(whatSelector).height(min);
+}

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use SiteInfo;
 use App\hm_info;
 use App\visit;
+use Image;
 
 class InfoController extends Controller
 {
@@ -45,12 +46,14 @@ class InfoController extends Controller
     	{
     		$logo_path = $request->file('logo')->store('public/settings');
     		$info->logo = $logo_path;
+            $image = Image::editImgByWidth($info->logo,300);
     	}    	
 
     	if ($request->has('title_icon'))
     	{
     		$title_icon_path = $request->file('title_icon')->store('public/settings');
     		$info->title_icon = $title_icon_path;
+            $image = Image::editImgByWidth($info->title_icon,300);
     	}
 
     	$result = $info->save();

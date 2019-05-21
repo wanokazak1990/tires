@@ -19,10 +19,14 @@
     <link rel="stylesheet" href="{{ asset('/assets/style/main.css') }}">
 
     <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">    
+
     <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic" rel="stylesheet">
     
     <link href="{{ asset('/assets/fonts/icofont/icofont.min.css') }}" rel="stylesheet">
     
+    <link rel="preconnect" href="//api-maps.yandex.ru">
+    <link rel="dns-prefetch" href="//api-maps.yandex.ru">
+
     <title>{{ SiteInfo::getInfo()->name }}</title>
 </head>
 
@@ -174,7 +178,7 @@
 @show
 
 @isset($map)
-<section class="container-fluid">
+<section class="container-fluid ya-map">
     {!! $map !!}
 </section>
 @endisset
@@ -330,17 +334,6 @@
                         product.css({'border-top':'1px solid transparent'})
                 })    
             });
-
-            function oneHeight(whatSelector)
-            {
-                let min = 0;
-                $(whatSelector).each(function(){
-                    if($(this).height()>min)
-                        min = $(this).height();
-                })
-                $(whatSelector).height(min);
-            }
-
 
             oneHeight('.feedback-message');
             oneHeight('.news-slider .description');

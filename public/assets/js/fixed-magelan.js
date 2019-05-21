@@ -26,7 +26,7 @@ $(document).ready(function(){
 			maxYB = $('.product-block').offset().top+$('.product-block').height()
 			maxHeight = $('.product-block').height()
 
-			$('.product-block').height(maxHeight)
+			//$('.product-block').height(maxHeight)
 			magelan.width(magelanWidth)
 
 		}
@@ -47,7 +47,9 @@ $(document).ready(function(){
 	}
 
 	setter()
-
+	$(window).on('load',function(){
+		setter()
+	})
 	//resizer
 	$(window).on('resize',function(){
 		setter()

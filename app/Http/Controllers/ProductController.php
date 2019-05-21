@@ -9,6 +9,7 @@ use App\hm_product_attribute as pattribute;
 use DB;
 use Excel;
 use Storage;
+use Image;
 
 class ProductController extends Controller
 {
@@ -98,6 +99,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
     	$path = $request->file('img')->store('public/products');
+        $image = Image::editImgByWidth($path,500);
     	$product = new product($request->all());
     	$product->img = $path;
     	$res = $product->save();
@@ -132,6 +134,7 @@ class ProductController extends Controller
     	{	
     		@unlink(storage_path('app/'.$product->img));
     		$product->img = $request->file('img')->store('public/products');
+            $image = Image::editImgByWidth($product->img,500);
     	}
     	$res = $product->save();
     	if($res && $request->has('attr'))

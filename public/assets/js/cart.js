@@ -188,6 +188,10 @@ $(document).ready(function(){
             $.each(data, function(index, value) {
                 result += value[0] + "\n";
             });
+
+            preloadIndikators();
+            CheckProductOnCart();
+            $('#modalOrder').modal('hide');
             alert(result)
 
         }));

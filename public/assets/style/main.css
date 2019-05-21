@@ -12,6 +12,49 @@ a{
     text-decoration: none;
 }
 
+/* Кнопка "Наверх" */
+#toTop {
+    display: none;
+    width: 65px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 15px; /* отступ кнопки от нижнего края страницы*/
+    left: 15px;
+    cursor: pointer;
+    color: #333;
+    opacity: 0.7;
+}
+
+#toTop i {
+    font-size: 30px;
+}
+
+@media screen and (max-device-width: 768px) {
+    #toTop {
+        display: none;
+        width: 50px;
+        border-radius: 40px;
+        border: 1px solid #ccc;
+        background: #f7f7f7;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 15px; 
+        left: 15px;
+        cursor: pointer;
+        color: #333;
+        opacity: 0.7;
+    }
+
+    #toTop i {
+        font-size: 25px;
+    }
+}
+
 .zapis{
     background: #FDC830;  
     background: -webkit-linear-gradient(to left, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */

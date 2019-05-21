@@ -85,6 +85,11 @@ Class Cart
 		}
 	}
 
+	public function clearCart()
+	{
+		Session::forget('cart');
+	}
+
 	public function totalPrice($totalPrice = 0)
 	{
 		$Cart = self::getCart();

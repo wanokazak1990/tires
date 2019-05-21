@@ -13,9 +13,9 @@
 		@foreach($list as $item)
 		
 			<div class="col-12 col-sm-12 col-md-6 mb-4">
-				<div style="position: relative;">
+				<div style="height: 300px;position: relative;background: url('{{Image::url($item->img)}}');background-size: cover;background-position: center;">
 					<h2 style="padding:0 15px;position: absolute;top: 15px; left: 0px; background: rgba(255,255,255,0.5);width: 100%;">{{$item->name}}</h2>
-					<img src="{{Image::url($item->img)}}" style="width: 100%;height: auto;">
+					<img src="" style="width: 100%;height: auto;">
 					<div class="text-right" style="position: absolute;bottom: 15px; right: 15px;">
 						<a href="{{route('actionitem',['id'=>$item->id])}}" class="btn btn-warning">
 							Подробнее

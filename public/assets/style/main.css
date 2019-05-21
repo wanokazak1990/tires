@@ -212,8 +212,15 @@ a{
     padding: 15px;
     padding-bottom: 40px;
 }
+.product-cell{
+    transition: 0.2s transform linear;
+}
 .product-cell:hover{
-    border-color: #faa !important;
+    /*border-color: #faa !important;*/
+    transform: scale(1.05,1.05);
+    background: #fff;
+    z-index: 10;
+    box-shadow: 0 0 5px #666;
 }
 .product-img img{
     width: 100%;
@@ -417,6 +424,28 @@ background: linear-gradient(to right, #F09819, #FF512F); /* W3C, IE 10+/ Edge, F
 }
 
 
+.fly-img{
+    animation: fly 2s linear infinite;
+    display: block;
+    position: relative;
+}
+@keyframes fly{
+    0%{
+        transform: translateY(0px); 
+    }
+    25%{
+        transform: translateY(-5px);
+    }
+    50%{
+        transform: translateY(0px);
+    }
+    75%{
+        transform: translateY(5px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
 
 
 /*FOOTER*/

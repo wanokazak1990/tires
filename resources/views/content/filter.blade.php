@@ -77,7 +77,7 @@
                 {{Form::open(['url'=>route('search'),'class'=>'filter-form'])}}
                         <div class="form-group">
                             <label>Марка</label>
-                            <select name="vendor" class="width-400 form-control" id="filter-vendor" url="{{route('filter')}}">
+                            <select name="vendor" class="width-400 form-control" id="filter-vendor" url="{{route('filter')}}" required="">
                                 <option selected disabled></option>
                                 @foreach(App\hm_car_filter::getBrands() as $brand)
                                     <option value="{{$brand}}">{{$brand}}</option>
@@ -87,21 +87,21 @@
 
                         <div class="form-group">
                             <label>Модель</label>
-                            <select name="car" class="width-400 form-control" id="filter-car" url="{{route('filter')}}">
+                            <select name="car" class="width-400 form-control" id="filter-car" url="{{route('filter')}}" required="">
                                 <option selected disabled></option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>Год</label>
-                            <select name="year" class="width-400 form-control" id="filter-year" url="{{route('filter')}}">
+                            <select name="year" class="width-400 form-control" id="filter-year" url="{{route('filter')}}" required="">
                                 <option selected disabled></option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>Исполнение</label>
-                            <select name="modification" class="width-400 form-control" id="filter-modification" url="{{route('filter')}}">
+                            <select name="modification" class="width-400 form-control" id="filter-modification" url="{{route('filter')}}" required="">
                                 <option selected disabled></option>
                             </select>
                         </div>

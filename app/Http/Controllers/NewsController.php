@@ -30,11 +30,14 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
-    	$path = $request->file('img')->store('public/news');
-        $image = Image::editImgByWidth($path,1100);
-    	$new = new news($request->all());
-    	$new->img = $path;
-    	$res = $new->save();
+        $new = new news($request->all());
+        if($request->file('img'))
+        {
+        	$path = $request->file('img')->store('public/news');
+            $image = Image::editImgByWidth($path,1100);    	
+        	$new->img = $path;
+    	}
+        $res = $new->save();
     	if($res)
     		return redirect()->route('newlist');
     }

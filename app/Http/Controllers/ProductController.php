@@ -98,10 +98,13 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-    	$path = $request->file('img')->store('public/products');
-        $image = Image::editImgByWidth($path,500);
-    	$product = new product($request->all());
-    	$product->img = $path;
+        $product = new product($request->all());
+        if($request->file(('img')))
+        {
+    	   $path = $request->file('img')->store('public/products');
+            $image = Image::editImgByWidth($path,500);
+    	   $product->img = $path;
+        }
     	$res = $product->save();
     	if($res && $request->has('attr'))
     	{

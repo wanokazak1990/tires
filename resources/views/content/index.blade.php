@@ -155,26 +155,28 @@
 
                     <div class="news-slider col-12 d-flex align-items-center">
                         @foreach($news as $new)
-                        <div class="item-block" style="background: url('{{Image::url($new->img)}}'); background-size: cover; background-position: center;">
-                            <div class="white-bg" style="">
-                                <div class="date">
-                                    {{$new->created_at->format('d.m.Y')}}
-                                </div>
-                                <div style="border-radius:5px;width: 100%; height: 200px; ">
-                                </div>
-                                <div style="background: linear-gradient(to top,#fff 40%,transparent 100%);padding: 15px;">
-                                    <div class="title" style="">
-                                        {{$new->title}}
+                        <div class="item-block" style="">
+                            <div style="background: url('{{Image::url($new->img)}}'); background-size: auto 100%; background-position: center;">
+                                <div class="white-bg" style="">
+                                    <div class="date">
+                                        {{$new->created_at->format('d.m.Y')}}
                                     </div>
-                                    <div class="description" style="">
-                                        {!! mb_strimwidth($new->small,0,216,'...') !!}
+                                    <div style="border-radius:5px;width: 100%; height: 100px; ">
                                     </div>
-                                    <div class="text-center mt-3" >
-                                        <a class="btn btn-dark" href="{{route('itemnew',['id'=>$new->id])}}" >
-                                            Подробнее
-                                        </a>
+                                    <div style="background: linear-gradient(to top,#fff ,transparent 100%);padding: 15px;">
+                                        <div class="title" style="">
+                                            {{$new->title}}
+                                        </div>
+                                        <div class="description" style="">
+                                            {!! mb_strimwidth($new->small,0,216,'...') !!}
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="text-center mt-1 more-news" >
+                                <a class="btn btn-warning" href="{{route('itemnew',['id'=>$new->id])}}" >
+                                    Подробнее
+                                </a>
                             </div>
                         </div>
                         @endforeach

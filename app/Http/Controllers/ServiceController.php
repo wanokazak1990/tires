@@ -31,15 +31,21 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-    	$img = $request->file('img')->store('public/services');
-        $image = Image::editImgByWidth($img,1100);
-
-        $ico = $request->file('icon')->store('public/services/icon');
-    	$image = Image::editImgByWidth($ico,300);
-
         $service = new service($request->all());
-    	$service->img = $img;
-        $service->icon = $ico;
+        if($request->file('img'))
+        {
+    	    $img = $request->file('img')->store('public/services');
+            $image = Image::editImgByWidth($img,1100);
+            $service->img = $img;
+        }
+
+        if($request->file('ico'))
+        {
+           $ico = $request->file('icon')->store('public/services/icon');
+    	   $image = Image::editImgByWidth($ico,300);
+           $service->icon = $ico;
+        }
+
     	$res = $service->save();
     	if($res)
     		return redirect()->route('serviceindex');

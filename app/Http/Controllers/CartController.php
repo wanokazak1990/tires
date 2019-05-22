@@ -8,6 +8,7 @@ use Validator;
 use App\hm_client as client;
 use App\hm_order as order;
 use App\hm_order_product as oproduct;
+use Messandger;
 
 use Illuminate\Http\Request;
 
@@ -110,5 +111,8 @@ class CartController extends Controller
         Cart::clearCart();
 
         echo json_encode(['result'=>['Ваш заказ принят.']]);
+
+        if(isset($order->id) && !(empty($order->id)))
+            Messandger::orderMsg($order->created_at->format('d.m.Y').' новый заказ с сайта. Подробности в консоли сайта.');  
     }
 }

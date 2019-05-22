@@ -22,7 +22,9 @@ Class Cart
 
 	public static function getCart()
 	{
-		return Session::get('cart');
+		if(Session::get('cart'))
+			return Session::get('cart');
+		else return [];
 	}
 
 	public function setCart($cart)

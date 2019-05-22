@@ -10,6 +10,8 @@ use App\hm_car_filter as filter;
 use App\hm_order as order;
 use App\hm_service_client as serviceClient;
 
+use Messandger;
+
 class AjaxController extends Controller
 {
     public function product(Request $request)
@@ -76,10 +78,14 @@ class AjaxController extends Controller
         $serviceClient->time = strtotime($request->time);
         $serviceClient->comment = $request->comment;
 
+        //$serviceClient->save();
+        
         if ($serviceClient->save())
             echo '1';
         else
             echo '0';
+
+        Messandger::serviceMsg($request->all());
     }
 
     public function showProfit(Request $request)

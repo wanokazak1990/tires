@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\my_slider as slider;
 use Storage;
 use Image;
+use Messandger;
 
 class SliderController extends Controller
 {

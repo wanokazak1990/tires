@@ -31,12 +31,13 @@ class FeedbackController extends Controller
 
     public function store(Request $request)
     {
-        $path = $request->file('img')->store('public/feedbacks');
-        
-        $image = Image::editImgByWidth($path,300);
-        
         $feedback = new feedback($request->all());
-        $feedback->img = $path;
+        if($request->file('img'))
+        {
+            $path = $request->file('img')->store('public/feedbacks');
+            $image = Image::editImgByWidth($path,300);
+            $feedback->img = $path;
+        }
     	$res = $feedback->save();
     	if($res)
     		return redirect()->route('feedbacklist');

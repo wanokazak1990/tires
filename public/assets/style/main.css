@@ -55,6 +55,10 @@ a{
     }
 }
 
+#toTop:hover {
+    opacity: 0.9;
+}
+
 .zapis{
     background: #FDC830;  
     background: -webkit-linear-gradient(to left, #F37335, #FDC830);  /* Chrome 10-25, Safari 5.1-6 */
@@ -193,6 +197,9 @@ a{
 .filter-form input, .filter-form select{
     display: block;
     width: 100%;
+}
+.card {
+    border: 1px solid rgba(200,200,200,.125) !important;
 }
 .card-header{
     padding: 0px !important;
@@ -450,10 +457,11 @@ background: linear-gradient(to right, #F09819, #FF512F); /* W3C, IE 10+/ Edge, F
 
 /*FOOTER*/
 .footer{
+    background: #333;
+}
+.footer div[class="row h-100"] {
     padding-top: 50px;
     padding-bottom: 50px;
-    /*height: 300px;*/
-    background: #333;
 }
 
 /*MODAL*/

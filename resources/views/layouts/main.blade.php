@@ -282,6 +282,13 @@
     <script>
         $(document).ready(function(){
 
+            var header = $('section[class="header"]');
+            var content = $('section[class="container"]');
+            var footer = $('section[class="footer container-fluid"]');
+
+            if ((header.height() + content.height() + footer.height()) < $(window).height())
+                content.height($(window).height() - header.height() - footer.height());
+
             //PRODUCT CLICK MORE BUTTON
             $(document).on('click','.product .more',function(){
                 

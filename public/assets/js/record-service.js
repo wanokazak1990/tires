@@ -27,7 +27,7 @@ $('#service-record').on('click',function(){
     {
         let msg_err = '';
         for (i in err)
-            msg_err += 'Поле "' + err[i] + '" не заполнено. \n';
+            msg_err += 'Поле "' + err[i] + '" не заполнено.<br>';
         
         alert(msg_err);
     }

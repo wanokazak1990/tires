@@ -1,8 +1,14 @@
+/**
+ * Сокращенное отображение логов
+ */
 function log(str)
 {
     console.log(str);
 }
 
+/**
+ * Краткая запись ajax-функции
+ */
 function ajax(parameters,url)
 {
     return $.ajax({
@@ -13,12 +19,25 @@ function ajax(parameters,url)
     });
 }
 
+/**
+ * Отображение сообщений alert'а в специальном модальном окне
+ */
 function alert(str)
 {
-	$('#messageModal').find('.modal-body').html(str);
-	$('#messageModal').modal('show');
+    $('#messageModal').find('.modal-body').html(str);
+    $('#messageModal').modal('show');
 }
 
+/**
+ * Очистка модального окна собщений при его закрытии
+ */
+$('#messageModal').on('hidden.bs.modal', function () {
+    $(this).find('.modal-body').html('');
+});
+
+/**
+ * Задание одинаковой высоты нескольким блокам
+ */
 function oneHeight(whatSelector)
 {
     let min = 0;

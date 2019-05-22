@@ -32,11 +32,14 @@ class SliderController extends Controller
 
     public function store(Request $request)
     {
-    	$path = $request->file('img')->store('public/sliders');
-        $image = Image::editImgByWidth($path,1920);
-    	$slider = new slider($request->all());
-    	$slider->img = $path;
-    	$res = $slider->save();
+        $slider = new slider($request->all());
+    	if($request->file('img'))
+        {
+            $path = $request->file('img')->store('public/sliders');
+            $image = Image::editImgByWidth($path,1920);
+        	$slider->img = $path;
+    	}
+        $res = $slider->save();
     	if($res)
     		return redirect()->route('sliderlist');
     }

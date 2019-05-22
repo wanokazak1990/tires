@@ -31,12 +31,13 @@ class ActionController extends Controller
 
     public function store(Request $request)
     {
-    	$path = $request->file('img')->store('public/actions');
-
-        $image = Image::editImgByWidth($path,1100);
-
-    	$action = new action($request->all());
-    	$action->img = $path;
+        $action = new action($request->all());
+        if($request->file('img'))
+        {
+    	   $path = $request->file('img')->store('public/actions');
+            $image = Image::editImgByWidth($path,1100);
+            $action->img = $path;
+        }
     	$res = $action->save();
     	if($res)
     		return redirect()->route('actionindex');

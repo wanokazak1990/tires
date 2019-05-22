@@ -22,7 +22,7 @@
 					</div>
 					<div class="row justify-content-end mt-3">
 						<div class="col-6">
-							<button type="button" id="showProfit" class="btn btn-success btn-block">Показать</button>	
+							<button type="button" id="showProfit" class="btn btn-success btn-block" data-url="{{ route('showprofit') }}">Показать</button>	
 						</div>
 					</div>
 				</div>
@@ -53,11 +53,11 @@
 					</div>
 					<div>
 						<label>Телефон:</label>
-						<input type="text" pattern="[0-9]{1,11}" name="phone" class="form-control" title="Номер телефона (до 11 цифр)" value="{{ $filter['phone'] or '' }}">
+						<input type="number" name="phone" class="form-control" value="{{ $filter['phone'] or '' }}">
 					</div>
 					<div>
 						<label>Email:</label>
-						<input type="email" name="email" class="form-control" title="Адрес электронной почты" value="{{ $filter['email'] or '' }}">
+						<input type="text" name="email" class="form-control" title="Адрес электронной почты" value="{{ $filter['email'] or '' }}">
 					</div>
 				</div>
 

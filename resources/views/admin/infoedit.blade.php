@@ -146,6 +146,33 @@
 		</div>
 
 		<div class="input-group no-gutters mb-2">
+			<div class="col-md-4 col-sm-12 d-flex align-items-center">
+				Токен Telegram-бота:
+			</div>
+			<div class="col-md-8 col-sm-12">
+				<input type="text" name="tg_token" value="{{ $info->tg_token or '' }}" class="form-control" placeholder="Код метрики для сайта">
+			</div>
+		</div>
+
+		<div class="input-group no-gutters mb-2">
+			<div class="col-md-4 col-sm-12 d-flex align-items-center">
+				Идентификатор Telegram-чата:
+			</div>
+			<div class="col-md-8 col-sm-12">
+				<input type="text" name="tg_chat" value="{{ $info->tg_chat or '' }}" class="form-control" placeholder="Код метрики для сайта">
+			</div>
+		</div>
+
+		<div class="input-group no-gutters mb-2">
+			<div class="col-md-4 col-sm-12 d-flex align-items-center">
+				Прокси-сервер (ip:port):
+			</div>
+			<div class="col-md-8 col-sm-12">
+				<input type="text" name="tg_proxy" value="{{ $info->tg_proxy or '' }}" class="form-control" placeholder="Код метрики для сайта">
+			</div>
+		</div>
+
+		<div class="input-group no-gutters mb-2">
 			<div class="col-md-2 col-sm-12">
 				{{Form::submit('Применить', ['class'=>'btn btn-success btn-block'])}}
 			</div>

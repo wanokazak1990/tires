@@ -181,6 +181,11 @@ $(document).ready(function(){
         var form = $(this).closest('form')
         var url = form.attr('action')
         var parameters = form.serialize()
+        
+        //$('#modalOrder').modal('hide');
+        alert()
+        //$('#messageModal').modal('show');
+
         $.when(ajax(parameters,url).then(function(data){
             data = JSON.parse(data)
             
@@ -191,8 +196,8 @@ $(document).ready(function(){
 
             preloadIndikators();
             CheckProductOnCart();
-            $('#modalOrder').modal('hide');
-            alert(result)
+
+            writeAlert(result)
 
         }));
     });

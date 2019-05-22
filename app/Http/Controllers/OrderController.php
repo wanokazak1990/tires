@@ -53,13 +53,13 @@ class OrderController extends Controller
             // Телефон:
             if ($request->has('phone') && $request->phone != null && is_numeric($request->phone))
             {
-                $orders = $orders->where(DB::raw('(SELECT phone FROM hm_clients WHERE hm_clients.id = hm_orders.client_id)'), '=', $request->phone);
+                $orders = $orders->where(DB::raw('(SELECT phone FROM hm_clients WHERE hm_clients.id = hm_orders.client_id)'), 'like', '%'.$request->phone.'%');
             }
            
             // Email:
             if ($request->has('email') && $request->email != null)
             {
-                $orders = $orders->where(DB::raw('(SELECT mail FROM hm_clients WHERE hm_clients.id = hm_orders.client_id)'), '=', $request->email);
+                $orders = $orders->where(DB::raw('(SELECT mail FROM hm_clients WHERE hm_clients.id = hm_orders.client_id)'), 'like', '%'.$request->email.'%');
             }
 
             $filter = $request->all();

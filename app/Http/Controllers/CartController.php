@@ -75,11 +75,14 @@ class CartController extends Controller
             return;
         }
 
-        $client = client::where('phone',$request->phone)->first();
+        $clientPhone = str_replace(array(' ', '(', ')', '-'), '', $request->phone);
+        
+        $client = client::where('phone', $clientPhone)->first();
         if(!isset($client->id))
         {
             $client = new client();
             $client->fill($request->all());
+            $client->phone = $clientPhone;
             $client->save();
         }
 

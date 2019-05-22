@@ -183,6 +183,7 @@
 </section>
 @endisset
 
+
 <section class="footer container-fluid">
     <div class="row h-100">
         <div class="container h-100">
@@ -260,12 +261,13 @@
     </div>
 
     <script src="{{ asset('/assets/js/jquery.js') }}"></script>
-    
+
     <script src="{{asset('/assets/lib/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <script src="{{ asset('/assets/lib/jQueryFormStyler-master/dist/jquery.formstyler.min.js') }}"></script>
     <link href="{{ asset('/assets/lib/jQueryFormStyler-master/dist/jquery.formstyler.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/lib/jQueryFormStyler-master/dist/jquery.formstyler.theme.css') }}" rel="stylesheet">
+    <script src="{{ asset('/assets/lib/jQueryMaskedInput/jquery.maskedinput.min.js') }}"></script>
 
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/lib/slick/slick.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/lib/slick/slick-theme.css') }}"/>
@@ -288,6 +290,8 @@
 
             if ((header.height() + content.height() + footer.height()) < $(window).height())
                 content.height($(window).height() - header.height() - footer.height());
+
+            $('.input-phone').mask('8 (999) 99-99-999');
 
             //PRODUCT CLICK MORE BUTTON
             $(document).on('click','.product .more',function(){

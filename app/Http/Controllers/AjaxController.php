@@ -73,12 +73,10 @@ class AjaxController extends Controller
         $serviceClient = new serviceClient();
 
         $serviceClient->name = $request->name;
-        $serviceClient->phone = $request->phone;
+        $serviceClient->phone = str_replace(array(' ', '(', ')', '-'), '', $request->phone);
         $serviceClient->date = strtotime($request->date);
         $serviceClient->time = strtotime($request->time);
         $serviceClient->comment = $request->comment;
-
-        //$serviceClient->save();
         
         if ($serviceClient->save())
             echo '1';

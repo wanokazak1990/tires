@@ -27,7 +27,7 @@
               {{Form::label('phone','Ваш телефон:')}}
             </div>
             <div>
-              {{Form::text('phone','',['class'=>'form-control'])}}
+              {{Form::text('phone','',['class'=>'form-control input-phone'])}}
             </div>
           </div>
 

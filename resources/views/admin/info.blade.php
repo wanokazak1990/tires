@@ -105,6 +105,18 @@
 					<td>Код метрики для сайта:</td>
 					<td>{{ $info->metrics_code or 'Код не загружен' }}</td>
 				</tr>
+				<tr>
+					<td>Токен Telegram-бота:</td>
+					<td>{{ $info->tg_token or 'Токен не загружен' }}</td>
+				</tr>
+				<tr>
+					<td>Идентификатор Telegram-чата:</td>
+					<td>{{ $info->tg_chat or 'Идентификатор не загружен' }}</td>
+				</tr>
+				<tr>
+					<td>Прокси-сервер (ip:port):</td>
+					<td>{{ $info->tg_proxy or 'Прокси-сервер не загружен' }}</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

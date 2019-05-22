@@ -11,6 +11,7 @@
 			</div>
 
 			<div class="modal-body">
+
 			</div>
 
 			<div class="modal-footer">
@@ -20,5 +21,13 @@
 			</div>
 		</div>
 
+	</div>
+</div>
+
+<div class="loader-wrapper" style="display: none; padding: 20px 0px;">
+	<div class="loader">
+		<div class="inner one"></div>
+		<div class="inner two"></div>
+		<div class="inner three"></div>
 	</div>
 </div>

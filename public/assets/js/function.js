@@ -22,10 +22,23 @@ function ajax(parameters,url)
 /**
  * Отображение сообщений alert'а в специальном модальном окне
  */
-function alert(str)
+function alert(str = '')
 {
-    $('#messageModal').find('.modal-body').html(str);
+    $(document).find('.modal').modal('hide');
     $('#messageModal').modal('show');
+    
+    if (str == '')
+    {
+        var loader = $(document).find('.loader-wrapper').clone().css('display', 'block');
+        $('#messageModal').find('.modal-body').html(loader);
+    }
+    else
+        writeAlert(str);
+}
+
+function writeAlert(data) 
+{
+    $('#messageModal').find('.modal-body').html(data);
 }
 
 /**

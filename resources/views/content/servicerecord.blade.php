@@ -8,7 +8,7 @@
                     </h2>
                     {{Form::open(['url'=>route('record')])}}
                         <input type="text" name="name" placeholder="Ваше имя" required="" class="form-contol">
-                        <input type="text" name="phone" placeholder="Ваш телефон" required="" class="form-contol">
+                        <input type="text" name="phone" placeholder="Ваш телефон" required="" class="form-contol input-phone">
                         <input type="date" name="date" placeholder="Дата" required="" class="form-contol">
                         <input type="time" name="time" placeholder="Время" required="" class="form-contol">
                         <textarea name="comment" placeholder="Комментарий"></textarea>

@@ -128,7 +128,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 
 	Route::group(['prefix'=>'orders'],function(){
 		Route::match(['get','post'],'/','OrderController@index')->name('orderindex');
-		Route::match(['get','post'],'/{id}','OrderController@show')->name('ordershow');
+		Route::match(['get','post'],'/show/{id}','OrderController@show')->name('ordershow');
+		Route::match(['get','post'],'/showprofit','AjaxController@showProfit')->name('showprofit');
 	});
 
 	Route::group(['prefix'=>'entries'],function(){
@@ -143,7 +144,6 @@ Route::group(['prefix'=>'ajax'],function(){
 	Route::post('/attributes','AjaxController@attributes')->name('ajaxattr');
 	Route::post('/filter','AjaxController@filter')->name('filter');
 	Route::post('/record','AjaxController@recordService')->name('record');
-	Route::post('/showprofit','AjaxController@showProfit')->name('showprofit');
 });
 
 Route::group(['prefix'=>'cart','middleware'=>'cart'],function(){

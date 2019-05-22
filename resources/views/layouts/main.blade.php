@@ -337,6 +337,7 @@
 
             oneHeight('.feedback-message');
             oneHeight('.news-slider .description');
+            oneHeight('.news-slider .title');
 
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 638) {

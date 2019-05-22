@@ -181,6 +181,7 @@ return [
         App\Providers\InfoProvider::class,
 
         App\Providers\ImageProvider::class,
+        App\Providers\MessandgerProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
@@ -238,6 +239,7 @@ return [
         'SiteInfo' => App\Helpers\SiteInfo\SiteInfoFacade::class,
         'Image' => App\Helpers\Image\ImageFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Messandger' => App\Helpers\Messandger\MessandgerFacade::class,
     ],
 
 ];

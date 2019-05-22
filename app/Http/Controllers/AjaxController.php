@@ -10,6 +10,8 @@ use App\hm_car_filter as filter;
 use App\hm_order as order;
 use App\hm_service_client as serviceClient;
 
+use Messandger;
+
 class AjaxController extends Controller
 {
     public function product(Request $request)
@@ -66,28 +68,6 @@ class AjaxController extends Controller
         return;
     }
 
-    private function message_to_telegram($token,$chat_id,$text) {
-        $ch = curl_init();
-        curl_setopt_array(
-            $ch,
-            array(
-                CURLOPT_URL => 'https://api.telegram.org/bot' . $token . '/sendMessage',
-                CURLOPT_POST => TRUE,
-                CURLOPT_RETURNTRANSFER => TRUE,
-                CURLOPT_TIMEOUT => 10,
-                CURLOPT_POSTFIELDS => array(
-                    'chat_id' => $chat_id,
-                    'text' => $text,
-                ),
-                CURLOPT_PROXY => '149.56.102.220:3128',
-                CURLOPT_PROXYUSERPWD => 'sensey:sensey',
-                CURLOPT_PROXYTYPE => CURLPROXY_HTTP,
-                CURLOPT_PROXYAUTH => CURLAUTH_BASIC,
-            )
-        );
-        curl_exec($ch);
-    }
-
     public function recordService(Request $request)
     {
         $serviceClient = new serviceClient();
@@ -105,10 +85,7 @@ class AjaxController extends Controller
         else
             echo '0';
 
-        $token = '766032711:AAHb_titvWYDMjFOgMo0HUqXG44sEdL1du4';
-        $chat_id = '476686432';
-        $message = '123';
-        $this->message_to_telegram($token,$chat_id,$message);
+        Messandger::serviceMsg($request->all());
     }
 
     public function showProfit(Request $request)

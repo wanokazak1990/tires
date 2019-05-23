@@ -116,6 +116,7 @@
           </div>
         </li>
         
+        <a class="nav-item nav-link {{ $clientActive or '' }}" href="{{route('clientindex')}}">Клиенты</a>
         <a class="nav-item nav-link {{ $orderActive or '' }}" href="{{route('orderindex')}}">Заказы</a>
         <a class="nav-item nav-link {{ $serviceClientActive or '' }}" href="{{route('serviceclientindex')}}">Записи</a>
         <a class="nav-item nav-link {{ $actionActive or '' }}" href="{{route('actionindex')}}">Акции</a>

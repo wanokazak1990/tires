@@ -98,7 +98,7 @@ class OrderController extends Controller
 	    	}
 	    }
 	    return view('admin.order')
-		    	->with('title', 'Заказ №'.$order->id.' от '.$order->created_at->format('d.m.Y h:m'))
+		    	->with('title', 'Заказ №'.$order->id.' от '.$order->created_at->format('d.m.Y H:i'))
                 ->with($this->link)
 		    	->with('order', $order);
     }

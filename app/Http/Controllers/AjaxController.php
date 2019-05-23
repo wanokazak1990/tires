@@ -77,13 +77,13 @@ class AjaxController extends Controller
         $serviceClient->date = strtotime($request->date);
         $serviceClient->time = strtotime($request->time);
         $serviceClient->comment = $request->comment;
+
+        Messandger::serviceMsg($request->all());
         
         if ($serviceClient->save())
             echo '1';
         else
-            echo '0';
-
-        Messandger::serviceMsg($request->all());
+            echo '0';        
     }
 
     public function showProfit(Request $request)

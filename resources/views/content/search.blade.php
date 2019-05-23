@@ -18,7 +18,7 @@
 						<h5>Рекомендованные заводом диски</h5>
 						<div class="list-group">						
 						@foreach($search['stock_disk'] as $disk)
-							<a href="{{route('searchresult',['params'=>implode('+',$disk)])}}" target="_blank" class="list-group-item list-group-item-action">
+							<a href="{{route('searchresult',['params'=>implode('+',$disk)])}}" class="list-group-item list-group-item-action">
 							@foreach($disk as $key=>$item)
 								@if($key!='category_id')
 									{{$item}}
@@ -33,7 +33,7 @@
 						<h5 class="mt-4">Допустимые к установке диски</h5>						
 						<div class="list-group">
 						@foreach($search['change_disk'] as $disk)
-							<a href="{{route('searchresult',['params'=>implode('+',$disk)])}}" target="_blank" class="list-group-item list-group-item-action">
+							<a href="{{route('searchresult',['params'=>implode('+',$disk)])}}" class="list-group-item list-group-item-action">
 							@foreach($disk as $key=>$item)
 								@if($key!='category_id')
 									{{$item}}
@@ -53,7 +53,7 @@
 						<h5>Рекомендованные заводом шины</h5>						
 						<div class="list-group">
 						@foreach($search['stock_tires'] as $tire)
-							<a href="{{route('searchresult',['params'=>implode('+',$tire)])}}" target="_blank" class="list-group-item list-group-item-action">
+							<a href="{{route('searchresult',['params'=>implode('+',$tire)])}}" class="list-group-item list-group-item-action">
 							@foreach($tire as $key=>$item)
 								@if($key!='category_id')
 									{{$item}}
@@ -68,7 +68,7 @@
 						<h5 class="mt-4">Допустимые к установке шины</h5>						
 						<div class="list-group">
 						@foreach($search['change_tires'] as $tire)							
-							<a href="{{route('searchresult',['params'=>implode('+',$tire)])}}" target="_blank" class="list-group-item list-group-item-action">
+							<a href="{{route('searchresult',['params'=>implode('+',$tire)])}}" class="list-group-item list-group-item-action">
 							@foreach($tire as $key=>$item)
 								@if($key!='category_id')
 									{{$item}}

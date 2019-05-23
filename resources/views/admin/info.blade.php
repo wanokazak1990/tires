@@ -97,6 +97,18 @@
 						@endif
 					</td>
 				</tr>
+
+				<tr>
+					<td>Картинка (поделиться):</td>
+					<td>
+						@if(isset($info->og_image))
+							<img src="{{ Image::url($info->og_image) }}" width="100">
+						@else
+							Иконка не загружена
+						@endif
+					</td>
+				</tr>
+
 				<tr>
 					<td>Код карты для сайта:</td>
 					<td>{{ $info->map_code or 'Код не загружен' }}</td>

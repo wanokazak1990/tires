@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class hm_info extends Model
 {
     protected $fillable = [
-        'name', 'slogan', 'phone', 'address', 'hours', 'weekend', 'description', 'admin_email', 'vk_group', 'logo', 'title_icon', 'map_code', 'metrics_code', 'keywords','searchdesc','tg_token','tg_chat','tg_proxy'
+
+        'name', 'slogan', 'phone', 'address', 'hours', 'weekend', 'description', 'admin_email', 'vk_group', 'logo', 'title_icon', 'map_code', 'metrics_code', 'keywords','searchdesc','tg_token','tg_chat','tg_proxy','og_image'
+
     ];
 
     public function getLogoUrl()

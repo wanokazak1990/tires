@@ -25,12 +25,7 @@ use Session;
 use Image;
 
 class ContentController extends Controller
-{
-    public function upload()
-    {
-        echo "string";
-    }
-    
+{    
     public function index()
     {   
         
@@ -62,6 +57,7 @@ class ContentController extends Controller
                     unset($products[$cat->id]);
             }
         }
+
         return view('content.index')
             ->with('map', SiteInfo::getInfo()->map_code)
             ->with('sliders',$sliders)
@@ -302,7 +298,8 @@ class ContentController extends Controller
         
         return view('content.action')
             ->with('list',$actions)
-            ->with('title',$title);
+            ->with('title',$title)
+            ->with('og',['title'=>$title]);
     }
 
     public function actionItem($id,Request $request)
@@ -313,7 +310,8 @@ class ContentController extends Controller
             $title = $action->name;
             return view('content.action')
                 ->with('action',$action)
-                ->with('title',$title);
+                ->with('title',$title)
+                ->with('og',['title'=>$title,'image'=>Image::url($action->img),'desc'=>$action->text]);
         }
         return redirect()->route('main');
     }
@@ -325,7 +323,8 @@ class ContentController extends Controller
         
         return view('content.service')
         ->with('service',$service)
-        ->with('title',$title);
+        ->with('title',$title)
+        ->with('og',['title'=>$title,'image'=>Image::url($service->img)]);
     }
 
     public function pages(Request $request, $alias)
@@ -335,13 +334,15 @@ class ContentController extends Controller
         
         return view('content.page')
         ->with('page', $page)
-        ->with('title', $title);
+        ->with('title', $title)
+        ->with('og',['title'=>$title,'image'=>Image::url($page->img)]);
     }
 
     public function contacts(Request $request)
     {
         return view('content.contacts')
-        ->with('title', 'Контакты');
+        ->with('title', 'Контакты')
+        ->with('og',['title'=>'Контакты']);
     }
 
     public function siteList()
@@ -350,7 +351,8 @@ class ContentController extends Controller
         
         return view('content.newslist')
         ->with('list',$list)
-        ->with('title','Новости');
+        ->with('title','Новости')
+        ->with('og',['title'=>'Новости']);
     }
 
     public function siteItem($id)
@@ -359,6 +361,7 @@ class ContentController extends Controller
         
         return view('content.newslist')
         ->with('new',$new)
-        ->with('title',$new->title);
+        ->with('title',$new->title)
+        ->with('og',['title'=>$new->title,'image'=>Image::url($new->img),'desc'=>$new->small]);
     }
 }

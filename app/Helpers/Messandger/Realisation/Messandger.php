@@ -25,25 +25,32 @@ Class Messandger
 
 	private function telegram($message)
 	{
-        $ch = curl_init();
-        curl_setopt_array(
-            $ch,
-            array(
-                CURLOPT_URL => 'https://api.telegram.org/bot' . $this->token . '/sendMessage',
-                CURLOPT_POST => TRUE,
-                CURLOPT_RETURNTRANSFER => TRUE,
-                CURLOPT_TIMEOUT => 10,
-                CURLOPT_POSTFIELDS => array(
-                    'chat_id' => $this->chat,
-                    'text' => $message,
-                ),
-                CURLOPT_PROXY => $this->proxy,
-                CURLOPT_PROXYUSERPWD => 'sensey:sensey',
-                CURLOPT_PROXYTYPE => CURLPROXY_HTTP,
-                CURLOPT_PROXYAUTH => CURLAUTH_BASIC,
-            )
-        );
-        curl_exec($ch);
+		if (function_exists('curl_init')) 
+		{
+	        $ch = curl_init();
+	        curl_setopt_array(
+	            $ch,
+	            array(
+	                CURLOPT_URL => 'https://api.telegram.org/bot' . $this->token . '/sendMessage',
+	                CURLOPT_POST => TRUE,
+	                CURLOPT_RETURNTRANSFER => TRUE,
+	                CURLOPT_TIMEOUT => 10,
+	                CURLOPT_POSTFIELDS => array(
+	                    'chat_id' => $this->chat,
+	                    'text' => $message,
+	                ),
+	                CURLOPT_PROXY => $this->proxy,
+	                CURLOPT_PROXYUSERPWD => 'sensey:sensey',
+	                CURLOPT_PROXYTYPE => CURLPROXY_HTTP,
+	                CURLOPT_PROXYAUTH => CURLAUTH_BASIC,
+	            )
+	        );
+	        curl_exec($ch);
+	    }
+	    else 
+	    {
+	    		
+	    }
 	}
 
 	public function serviceMsg($data)
@@ -56,7 +63,6 @@ Class Messandger
 		}
 		else
 			$str = $data;
-
 		$this->telegram($str);
 	}
 

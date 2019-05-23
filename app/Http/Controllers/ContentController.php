@@ -49,6 +49,8 @@ class ContentController extends Controller
                 $products[$cat->id]['products'] = product::with('category')
                     ->with('attributes')
                     ->where('category_id',$cat->id)
+                    ->orderBy('id','DESC')
+                    ->limit('8')
                     ->get();
                 if($products[$cat->id]['products']->count()>0)
                 {

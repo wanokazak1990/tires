@@ -137,6 +137,13 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
 		Route::delete('/','ServiceClientController@destroy')->name('serviceclientdelete');
 	});
 
+	Route::group(['prefix'=>'clients'],function(){
+		Route::get('/', 'ClientController@index')->name('clientindex');
+		Route::get('/edit/{id}','ClientController@edit')->name('clientedit');
+		Route::post('/edit/{id}','ClientController@update')->name('clientupdate');
+	});
+
+
 });
 
 Route::group(['prefix'=>'ajax'],function(){

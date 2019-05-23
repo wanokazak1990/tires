@@ -9,10 +9,10 @@
     <meta name="keywords" content="{{ SiteInfo::getInfo()->keywords }}" />
     <meta name="description" content="{{ SiteInfo::getInfo()->searchdesc }}" />
 
-    <meta property = "og:title" content="{{ SiteInfo::getInfo()->name }}" />
-    <meta property = "og:image" content="{{ Image::url(SiteInfo::getInfo()->logo) }}" />
+    <meta property = "og:title" content="{{ (isset($og['title'])) ? $og['title'] : SiteInfo::getInfo()->name }}" />
+    <meta property = "og:image" content="{{ (isset($og['image'])) ? $og['image'] : Image::url(SiteInfo::getInfo()->og_image) }}" />
     <meta property = "og:type" content = "article" />
-    <meta property = "og:description" content = "{{ SiteInfo::getInfo()->searchdesc }}" />
+    <meta property = "og:description" content = "{{ (isset($og['desc'])) ? $og['desc'] : SiteInfo::getInfo()->searchdesc }}" />
 
     <link rel="shortcut icon" href="{{ SiteInfo::getInfo()->getTitleIconUrl() }}" type="image/png">
     <link rel="stylesheet" type="text/css" href="{{asset('/assets/lib/bootstrap/css/bootstrap.min.css') }}">

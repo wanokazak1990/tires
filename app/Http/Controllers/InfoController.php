@@ -56,6 +56,13 @@ class InfoController extends Controller
             $image = Image::editImgByWidth($info->title_icon,300);
     	}
 
+        if ($request->has('og_image'))
+        {
+            $title_icon_path = $request->file('og_image')->store('public/settings');
+            $info->og_image = $title_icon_path;
+            $image = Image::editImgByWidth($info->og_image,700);
+        }
+
     	$result = $info->save();
         
     	if ($result)

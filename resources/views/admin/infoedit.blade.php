@@ -129,6 +129,15 @@
 
 		<div class="input-group no-gutters mb-2">
 			<div class="col-md-4 col-sm-12 d-flex align-items-center">
+				Картинка (для поделиться):
+			</div>
+			<div class="col-md-8 col-sm-12">
+				<input type="file" name="og_image" class="form-control-file">
+			</div>
+		</div>
+
+		<div class="input-group no-gutters mb-2">
+			<div class="col-md-4 col-sm-12 d-flex align-items-center">
 				Карта для сайта:
 			</div>
 			<div class="col-md-8 col-sm-12">

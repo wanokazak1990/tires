@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::match(['get','post'],'ContentController@upload');
+Route::match(['get','post'],'/upload/{count?}','ContentController@upload');
+Route::match(['get','post'],'/connect','ContentController@connect');
 
 Route::group(['middleware' => ['info','visit']], function() {
 	Route::get('/', 'ContentController@index')->name('main');
@@ -33,7 +34,7 @@ Route::get('/home', function(){
 	return redirect()->route('main');
 });
 
-Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function(){
+Route::group(['prefix'=>'admin','middleware'=>['auth','admin','info']],function(){
 	
 	Route::get('/','AdminController@index')->name('admin');
 	Route::get('/phpinf','AdminController@info')->name('phpinf');

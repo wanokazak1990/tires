@@ -12,6 +12,15 @@ a{
     text-decoration: none;
 }
 
+.pagination{
+    margin-top: 30px;
+}
+.pagination .active .page-link{
+    background: #fc3 !important;
+    border-color: #ddd;
+    color: #333;
+}
+
 /* Кнопка "Наверх" */
 #toTop {
     display: none;
@@ -373,6 +382,33 @@ a{
 }
 
 
+.content-area .responsive {
+  table-layout: fixed;
+  width: 400px;
+  word-wrap: break-word;
+}
+
+.responsive th, .responsive td {
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid gray;
+}
+
+@media screen and (max-width: 800px) {
+
+  .responsive table, .responsive tbody, .responsive tfoot, .responsive tr, .responsive td {
+    display: block;
+  }
+
+  .responsive td:first-child{
+    background: #fc3 !important;
+  }
+  .responsive thead, .responsive th {
+    display: none;
+  }
+}
+
+
 /*NEWS*/
 .news-slider {
 
@@ -565,6 +601,11 @@ a{
 #modalProduct .price{
     font-size: 25px;
     font-family: 'Russo One', sans-serif;
+}
+@media screen and (max-width: 800px){
+    #modalProduct .price{
+        font-size: 16px;
+    }
 }
 
 #modalCart img{

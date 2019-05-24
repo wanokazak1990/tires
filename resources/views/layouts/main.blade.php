@@ -280,6 +280,7 @@
     <script src=" {{asset('/assets/js/record-service.js') }}"></script>
     <script src=" {{asset('/assets/js/fixed-magelan.js') }}"></script>
     <script src=" {{asset('/assets/js/fixed-top.js') }}"></script>
+    <script src=" {{asset('/assets/js/responsive-table.js') }}"></script>
 
     <script>
         $(document).ready(function(){

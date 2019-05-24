@@ -23,9 +23,24 @@ use DB;
 use Cart;
 use Session;
 use Image;
+use Guid;
 
 class ContentController extends Controller
-{    
+{   
+
+    public function upload($count = 1)
+    {
+        return Guid::getGuid($count);
+    }
+
+    public function connect()
+    {
+        $count = 20;
+        $url = 'http://testim11.h1n.ru/upload/'.$count;
+        $res = file_get_contents($url);
+        dump($res);
+    }
+
     public function index()
     {   
         

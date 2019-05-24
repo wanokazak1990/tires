@@ -185,7 +185,7 @@ return [
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
-
+        App\Providers\GuidProvider::class,
 
     ],
 
@@ -240,6 +240,7 @@ return [
         'Image' => App\Helpers\Image\ImageFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Messandger' => App\Helpers\Messandger\MessandgerFacade::class,
+        'Guid' => App\Helpers\Guid\GuidFacade::class,
     ],
 
 ];

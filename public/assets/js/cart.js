@@ -216,6 +216,8 @@ $(document).ready(function(){
 
             modal.prepend(result)
 
+            modal.closest('.modal').css({'max-height':'100vh','overflow-y':'auto'})
+
         }));
     });
 

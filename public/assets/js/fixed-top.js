@@ -3,15 +3,25 @@ $(document).ready(function(){
 	let topMenu = menu.offset().top
 	let heightMenu = menu.height()
 
-	$(window).on('scroll',function(){
-		let scroll = $(this)
-		if(scroll.scrollTop()>topMenu+heightMenu)
-			menu.
-				css({'width':($('body').width()+15)+'px'}).
-				addClass('fixed-menu')
-		else
-			menu.
-				css({'width':($('body').width())+'px'}).
-				removeClass('fixed-menu')
-	})
+		if($(window).width()<800)
+		{
+			menu.css({'width':($('body').width()+15)+'px'}).addClass('fixed-menu')
+		}
+		
+
+		$(window).on('scroll',function(){
+			if($(window).width()>800)
+			{
+				let scroll = $(this)
+				if(scroll.scrollTop()>topMenu+heightMenu)
+					menu.
+						css({'width':($('body').width()+15)+'px'}).
+						addClass('fixed-menu')
+				else
+					menu.
+						css({'width':($('body').width())+'px'}).
+						removeClass('fixed-menu')
+			}
+		})
+
 })

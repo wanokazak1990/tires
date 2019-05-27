@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 	function addClass()
 	{
-		tables.addClass('responsive')
+		tables.addClass('responsive').removeAttr('width')
 	}
 
 	function getTHValues(table)

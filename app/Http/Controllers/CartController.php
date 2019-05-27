@@ -61,17 +61,28 @@ class CartController extends Controller
 
     public function order(Request $request)
     {
+        $messages = [
+          'name.required'    => 'Вы не указали своё имя.',
+          'phone.min:8' => 'Длина номера телефона должна быть больше 8 символов',
+          'phone.required'    => 'Вы не указали свой телефон.',
+          'mail.required' => 'Вы не указали свой e-mail',
+          'mail.email' => 'Это не может быть адресом электронной почты',
+          'personal.required'      => 'Вы не подтвердили согласие об обработке персональных данных.',
+        ];
+
         $validator = Validator::make($request->all(),
             array(
                 'name' => 'required',
                 'phone' => 'required|min:8',
-                'mail' => 'required|email'
-            )
+                'mail' => 'required|email',
+                'personal'=>'required',
+            ),
+            $messages
         );
 
         if($validator->fails())
         {
-            echo $validator->messages();
+            echo ($validator->messages());
             return;
         }
 

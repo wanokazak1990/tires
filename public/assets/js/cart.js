@@ -173,6 +173,7 @@ $(document).ready(function(){
         {
             $(this).closest('.modal').modal('hide');
             $('#modalOrder').modal('show');
+            $('#modalOrder').find('.message').remove()
         }
     });
 
@@ -182,22 +183,38 @@ $(document).ready(function(){
         var url = form.attr('action')
         var parameters = form.serialize()
         
-        //$('#modalOrder').modal('hide');
-        alert()
-        //$('#messageModal').modal('show');
+        var modal = $("#ordermaker").closest('.modal').find('.modal-body')
 
+        var loader = $(document).find('.loader-wrapper').clone().css({'display':'block','position':'absolute','top':'0px','width':'100%'});
+        modal.find('div').css('opacity',0)
+        modal.append(loader)
+        
         $.when(ajax(parameters,url).then(function(data){
+            
+            modal.find('div').css('opacity',1)
+            modal.find('.loader-wrapper').remove()
+
             data = JSON.parse(data)
+            
+            if(data.result)
+            {
+                alert()
+                writeAlert(data.result)
+                preloadIndikators();
+                CheckProductOnCart();
+                return
+            }
+
+            modal.find('.message').remove()
             
             var result = '';
             $.each(data, function(index, value) {
-                result += value[0] + "\n";
+                result += value[0] + "<br/>";
             });
+            
+            result = '<div class="message text-danger pb-3">'+result+'</div>'
 
-            preloadIndikators();
-            CheckProductOnCart();
-
-            writeAlert(result)
+            modal.prepend(result)
 
         }));
     });

@@ -34,11 +34,11 @@ class ProductController extends Controller
         if(!$request->has('clear'))
         {
             //поиск артикула
-            if($request->has('article') && !empty($request->article))
-                $query->where('article',trim($request->article));
+            if($request->has('article') && ($request->article!=''))
+                $query->where('article','LIKE','%'.trim($request->article.'%'));
             //поиск имени
-            if($request->has('name') && !empty($request->name))
-                $query->where('name',trim($request->name));
+            if($request->has('name') && ($request->name!=''))
+                $query->where('name','LIKE','%'.trim($request->name).'%');
             //поиск цены от
             if($request->has('pricefrom') && !empty($request->pricefrom) && is_numeric($request->pricefrom))
                 $query->where('price','>=',$request->pricefrom);

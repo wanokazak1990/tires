@@ -124,5 +124,9 @@
 			{{$list->appends($filter)->links()}}
 		</div>
 	</div>
+	@else
+		<div class="col-12">
+			<h2>Ничего не нашлось</h2>
+		</div>
 	@endif
 @endsection

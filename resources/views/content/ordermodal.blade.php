@@ -40,6 +40,17 @@
             </div>
           </div>
 
+          <div class="col-12 col-sm-12 ">
+            <div>
+
+              <label style="padding-top: 15px;">
+                Даю согласие на обработку своих персональных данных
+                <input type="checkbox" name="personal" id="personal" style="width: 15px;height: 15px;position: relative;top: 3px;">
+              </label>
+              
+            </div>
+          </div>
+
         </div>
 
       </div>

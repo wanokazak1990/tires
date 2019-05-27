@@ -16,7 +16,10 @@ $(document).ready(function(){
 
 	function addClass()
 	{
-		tables.addClass('responsive').removeAttr('width')
+		tables.addClass('responsive')
+		tables.each(function(){
+			$(this).css({'width':'100%'})
+		})
 	}
 
 	function getTHValues(table)
@@ -34,9 +37,12 @@ $(document).ready(function(){
 		if(th.length == countTD)
 			var i = 0
 			tr.find('td').each(function(){
-				var oldVal = $(this).html()
-				var newVal = th[i]+' : '+oldVal
-				$(this).html(newVal)
+				if(th[i])
+				{
+					var oldVal = $(this).html()
+					var newVal = th[i]+' : '+oldVal
+					$(this).html(newVal)
+				}
 				i++
 			})
 		

@@ -17,6 +17,7 @@ use App\hm_service as service;
 use App\hm_info;
 use App\hm_page;
 
+
 use SiteInfo;
 
 use DB;
@@ -35,10 +36,14 @@ class ContentController extends Controller
 
     public function connect()
     {
-        $count = 20;
-        $url = 'http://testim11.h1n.ru/upload/'.$count;
-        $res = file_get_contents($url);
-        dump($res);
+        $per = new \App\manSoisk();
+        $per->fill([
+            'name'=>'Myname',
+            'resume'=>'MyResume',
+            'date_resume'=>strtotime(date('d.m.Y'))
+        ]);
+        dump($per->onJob('wew',strtotime(date('d.m.Y'))));
+              
     }
 
     public function index()

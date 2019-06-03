@@ -8,7 +8,13 @@ $(document).ready(function(){
 			menu.css({'width':($('body').width()+15)+'px'}).addClass('fixed-menu')
 		}
 		
-
+		$(window).on('resize',function(){
+			if($(window).width()<800)
+			{
+				menu.css({'width':($('body').width()+15)+'px'}).addClass('fixed-menu')
+			}
+		})
+		
 		$(window).on('scroll',function(){
 			if($(window).width()>800)
 			{

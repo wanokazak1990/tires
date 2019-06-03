@@ -10,6 +10,7 @@ use Image;
 
 class InfoController extends Controller
 {
+
     public $link = ['infoActive'=>'active'];
 
     public function index(Request $request)
@@ -64,7 +65,7 @@ class InfoController extends Controller
         }
 
     	$result = $info->save();
-        
+        SiteInfo::refresh();
     	if ($result)
     		return redirect()->route('infoindex');
     }

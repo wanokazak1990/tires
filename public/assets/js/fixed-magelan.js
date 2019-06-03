@@ -2,8 +2,58 @@
 $(document).ready(function(){
 	let maxWidth = 755
 	let magelan = $('.filter-block')
+	magelan.css('width',magelan.parent().width()+'px')
+	magelan.parent().css('position','relative')
+	let product = $('.product-block')
 
-	let displayWidth
+	magelan.on('click','.btn-link',function(){
+		setTimeout(function() {
+
+
+			product.css('min-height',magelan.height()+18+'px')
+			if(magelan.offset().top+magelan.height()>product.offset().top+product.height())
+			{
+				magelan.removeClass('fixed-magelan')
+				magelan.addClass('bottom-magelan')
+			}
+
+
+		}, 300);
+	})
+
+	$(window).on('scroll',function(){
+		if($(window).width()>maxWidth)
+		{
+			let scroll = $(this).scrollTop()
+			
+			if(scroll<product.offset().top)
+			{
+				magelan.removeClass('fixed-magelan')
+				magelan.removeClass('bottom-magelan')
+			}
+
+			else if(
+				scroll>product.offset().top &&
+				scroll+magelan.height()+130<product.offset().top+product.height() &&
+				magelan.height()<product.height()
+
+			){
+				magelan.removeClass('bottom-magelan')
+				magelan.addClass('fixed-magelan')
+			}
+			else {
+				product.css('min-height',magelan.height()+17+'px')
+				magelan.removeClass('fixed-magelan')
+				magelan.addClass('bottom-magelan')		
+			}
+		}
+	})
+
+	$(window).on('resize',function(){
+		magelan.css('width',magelan.parent().width()+'px').removeClass('fixed-magelan').removeClass('bottom-magelan')
+	})
+
+	/*let displayWidth
 	let magelanYB
 	let magelanYT
 	let magelanWidth
@@ -66,11 +116,11 @@ $(document).ready(function(){
 		setTimeout(function() {
 
 			setter()
-			if(magelanYB>maxYB){
+			if(magelan.height()>$('.product-block').height()){
 				magelan.removeClass('fixed-magelan').addClass('bottom-magelan')
 			}
 
 		}, 300);
-	})
+	})*/
 
 })

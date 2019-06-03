@@ -6,7 +6,7 @@ use Storage;
 
 Class Guid{
 	
-	private $count;
+	/*private $count;
 	public $guids = [];
 
 	private function makeGuid()
@@ -38,5 +38,32 @@ Class Guid{
 	{
 		$date = date('d.m.Y h:m');
 		Storage::disk()->append('/public/tz/file.log', $date.'     '.request()->ip().'     '.end($this->guids));
+	}*/
+	private $mydate;
+	private $formats = [
+		'd.m.Y',
+		'H.i',
+		'd/m/Y H:i',
+		'H:i Y-m-d'
+	];
+
+	public function __construct($date='')
+	{
+		$this->mydate = $date;
+	}
+
+	public function checkFormat($date='')
+	{
+		$this->__construct($date);
+		$date = false;
+		foreach($this->formats as $format)
+		{
+			$date = \DateTime::createFromFormat('d.m.Y',$this->mydate);
+			if($date)
+			break;
+		}
+		if(!$date)
+			return false;
+		return true;
 	}
 }

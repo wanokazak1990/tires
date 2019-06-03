@@ -628,10 +628,12 @@ a{
 .fixed-magelan{
     position: fixed;
     top: 60px;
+    width: 100%;
 }
 .bottom-magelan{
     position: absolute;
     bottom: 0px;
+    width: 100%;
 }
 
 

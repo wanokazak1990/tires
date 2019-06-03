@@ -28,4 +28,9 @@ Class SiteInfo
 	{
 		return Session::get('info');
 	}
+
+	public function refresh()
+	{
+		Session::forget('info');
+	}
 }
